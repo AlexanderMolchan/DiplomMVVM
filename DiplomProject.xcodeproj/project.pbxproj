@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E4BA8B4C7ABBFDD334B6BEE /* Pods_DiplomProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82666C0AD362BF2983EDD3C4 /* Pods_DiplomProject.framework */; };
+		4025632129986C31000B6036 /* Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025632029986C30000B6036 /* Listener.swift */; };
 		40ED78BA29967A1E00EF36FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78B929967A1E00EF36FF /* AppDelegate.swift */; };
 		40ED78BC29967A1E00EF36FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78BB29967A1E00EF36FF /* SceneDelegate.swift */; };
 		40ED78C129967A1E00EF36FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40ED78BF29967A1E00EF36FF /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		0D22220D1061987A6C7D6BC1 /* Pods-DiplomProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiplomProject.debug.xcconfig"; path = "Target Support Files/Pods-DiplomProject/Pods-DiplomProject.debug.xcconfig"; sourceTree = "<group>"; };
 		1BCEA3B9967B63D600993E87 /* Pods-DiplomProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiplomProject.release.xcconfig"; path = "Target Support Files/Pods-DiplomProject/Pods-DiplomProject.release.xcconfig"; sourceTree = "<group>"; };
+		4025632029986C30000B6036 /* Listener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener.swift; sourceTree = "<group>"; };
 		40ED78B629967A1E00EF36FF /* DiplomProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiplomProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40ED78B929967A1E00EF36FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40ED78BB29967A1E00EF36FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4025631F29986C22000B6036 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4025632029986C30000B6036 /* Listener.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		40ED78AD29967A1E00EF36FF = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +83,7 @@
 		40ED78B829967A1E00EF36FF /* DiplomProject */ = {
 			isa = PBXGroup;
 			children = (
+				4025631F29986C22000B6036 /* Helpers */,
 				40ED78CE29967ABC00EF36FF /* Controllers */,
 				40ED78BB29967A1E00EF36FF /* SceneDelegate.swift */,
 				40ED78B929967A1E00EF36FF /* AppDelegate.swift */,
@@ -135,7 +146,6 @@
 				0D22220D1061987A6C7D6BC1 /* Pods-DiplomProject.debug.xcconfig */,
 				1BCEA3B9967B63D600993E87 /* Pods-DiplomProject.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -263,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40ED78D629967D0500EF36FF /* AddTransactionControllerView.swift in Sources */,
+				4025632129986C31000B6036 /* Listener.swift in Sources */,
 				40ED78D829967D1700EF36FF /* AddTransactionViewModel.swift in Sources */,
 				40ED78D329967B0800EF36FF /* TabBarViewModel.swift in Sources */,
 				40ED78BA29967A1E00EF36FF /* AppDelegate.swift in Sources */,
