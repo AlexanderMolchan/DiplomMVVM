@@ -16,9 +16,16 @@ class AddTransactionViewModel {
             cashFieldText.value = textForCashLabel
         }
     }
+    private var numbersCount = 0
     
-    func buttonAction() {
-        textForCashLabel += "1"
+    func buttonAction(number: String) {
+        textForCashLabel += number
+        
+    }
+    
+    func addNumbersCount(with num: Int) {
+        numbersCount += num
+   //     addLimit()
     }
     
 }

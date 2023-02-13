@@ -54,14 +54,7 @@ class AddTransactionControllerView: UIViewController {
         buttonsSettings()
         labelSettings()
         addButtonsAction()
-        oneButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
         bindLabel()
-    }
-    
-    @objc private func actionForButton() {
-        viewModel.buttonAction()
-        cashLabel.layer.add(bounceAnimation, forKey: nil)
-        oneButton.layer.add(bounceAnimation, forKey: nil)
     }
     
     private func bindLabel() {
@@ -74,15 +67,13 @@ class AddTransactionControllerView: UIViewController {
         view.addSubview(bottomStack)
         bottomStack.axis = .horizontal
         bottomStack.spacing = 10
-        bottomStack.distribution = .fill
-        bottomStack.backgroundColor = .systemCyan
+        bottomStack.distribution = .fillEqually
         bottomStack.snp.makeConstraints { make in
             make.height.equalTo(45)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
             make.leading.equalToSuperview().offset(40)
             make.trailing.equalToSuperview().offset(-40)
         }
-        
         view.addSubview(mainStack)
         mainStack.axis = .vertical
         mainStack.spacing = 12
@@ -92,7 +83,6 @@ class AddTransactionControllerView: UIViewController {
             make.leading.equalToSuperview().offset(40)
             make.trailing.equalToSuperview().offset(-40)
         }
-        
         addToMainStack(stack: fourButtonStack)
         addToMainStack(stack: thirdButtonStack)
         addToMainStack(stack: secondButtonStack)
@@ -151,6 +141,25 @@ class AddTransactionControllerView: UIViewController {
         buttonsArray.append(oneButton)
         buttonsArray.append(twoButton)
         buttonsArray.append(threeButton)
+        
+        selectedSpendCategoryButton = UIButton(type: .system)
+        selectedSpendCategoryButton.backgroundColor = .white
+        selectedSpendCategoryButton.alpha = 0.77
+        selectedSpendCategoryButton.layer.borderWidth = 2
+        selectedSpendCategoryButton.layer.borderColor = UIColor.systemCyan.cgColor
+        selectedSpendCategoryButton.layer.cornerRadius = 10
+        selectedSpendCategoryButton.tintColor = .systemCyan
+        selectedSpendCategoryButton.setTitle("Тип расхода", for: .normal)
+        bottomStack.addArrangedSubview(selectedSpendCategoryButton)
+        
+        enterButton = UIButton(type: .system)
+        enterButton.backgroundColor = .systemCyan
+        enterButton.alpha = 0.77
+        enterButton.layer.cornerRadius = 10
+        enterButton.tintColor = .white
+        enterButton.setTitle("Ввод", for: .normal)
+        enterButton.titleLabel?.font = UIFont(name: "Marker Felt Thin", size: 20)
+        bottomStack.addArrangedSubview(enterButton)
     }
     
     private func setButtonWith(title: String) -> UIButton {
@@ -187,7 +196,36 @@ class AddTransactionControllerView: UIViewController {
     }
     
     private func addButtonsAction() {
-        
+        oneButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
+        twoButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
+        threeButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
+        fourButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
+        fiveButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
+        sixButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
+        sevenButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
+        eightButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
+        nineButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
+        zeroButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
+    }
+    
+    @objc private func actionForButton(sender: UIButton) {
+        var num = ""
+        switch sender {
+            case oneButton:         num = "1"
+            case twoButton:         num = "2"
+            case threeButton:       num = "3"
+            case fourButton:        num = "4"
+            case fiveButton:        num = "5"
+            case sixButton:         num = "6"
+            case sevenButton:       num = "7"
+            case eightButton:       num = "8"
+            case nineButton:        num = "9"
+            case zeroButton:        num = "0"
+            default: break
+        }
+        viewModel.buttonAction(number: num)
+        cashLabel.layer.add(bounceAnimation, forKey: nil)
+        sender.layer.add(bounceAnimation, forKey: nil)
     }
     
     var bounceAnimation: CAKeyframeAnimation = {
