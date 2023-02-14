@@ -101,7 +101,7 @@ class AddTransactionControllerView: UIViewController {
         zeroButton = setButtonWith(title: "0")
         deleteButton = setButtonWith(title: "")
         deleteButton.setImage(UIImage(systemName: "delete.left.fill"), for: .normal)
-
+        
         firstButtonStack.addArrangedSubview(dotButton)
         firstButtonStack.addArrangedSubview(zeroButton)
         firstButtonStack.addArrangedSubview(deleteButton)
@@ -206,6 +206,14 @@ class AddTransactionControllerView: UIViewController {
         eightButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
         nineButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
         zeroButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
+        deleteButton.addTarget(self, action: #selector(actionForDeleteButton), for: .touchUpInside)
+        dotButton.addTarget(self, action: #selector(actionForDotButton), for: .touchUpInside)
+    }
+    
+    @objc private func actionForDeleteButton(sender: UIButton) {
+        viewModel.deleteAction()
+        cashLabel.layer.add(bounceAnimation, forKey: nil)
+        sender.layer.add(bounceAnimation, forKey: nil)
     }
     
     @objc private func actionForButton(sender: UIButton) {
@@ -223,7 +231,22 @@ class AddTransactionControllerView: UIViewController {
             case zeroButton:        num = "0"
             default: break
         }
+        cashLabel.layer.add(bounceAnimation, forKey: nil)
+        sender.layer.add(bounceAnimation, forKey: nil)
+        
         viewModel.buttonAction(number: num)
+        viewModel.actionButtonIsEnabled.bind { [weak self] enabled in
+            self?.buttonsArray.forEach { button in
+                button.isEnabled = enabled
+            }
+        }
+        viewModel.deleteButtonIsEnabled.bind { [weak self] enabled in
+            self?.deleteButton.isEnabled = enabled
+        }
+    }
+    
+    @objc private func actionForDotButton(sender: UIButton) {
+        viewModel.actionForDotButton()
         cashLabel.layer.add(bounceAnimation, forKey: nil)
         sender.layer.add(bounceAnimation, forKey: nil)
     }
