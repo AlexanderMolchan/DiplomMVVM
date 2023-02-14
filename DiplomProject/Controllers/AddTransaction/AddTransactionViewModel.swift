@@ -12,7 +12,6 @@ class AddTransactionViewModel {
     let cashFieldText: Dynamic<String?> = Dynamic(nil)
     let actionButtonIsEnabled: Dynamic<Bool> = Dynamic(true)
     let deleteButtonIsEnabled: Dynamic<Bool> = Dynamic(false)
-
     
     private var textForCashLabel = "" {
         didSet {
@@ -38,7 +37,7 @@ class AddTransactionViewModel {
         if numbersCount > 0 {
             textForCashLabel.removeLast()
             addNumbersCount(with: -1)
-  //          deleteAll()
+            //          deleteAll()
         }
     }
     
@@ -76,8 +75,8 @@ class AddTransactionViewModel {
         }
         actionButtonIsEnabled.value = limit
         deleteButtonIsEnabled.value = numbersCount > 0
-        }
-    
     }
+    
+}
     
 
