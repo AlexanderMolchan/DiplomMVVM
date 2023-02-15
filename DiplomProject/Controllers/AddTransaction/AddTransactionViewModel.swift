@@ -32,13 +32,18 @@ class AddTransactionViewModel {
     
     func deleteAction() {
         if textForCashLabel == "0." {
-            clearLabel()
+            clearAll()
         }
         if numbersCount > 0 {
             textForCashLabel.removeLast()
             addNumbersCount(with: -1)
-            //          deleteAll()
         }
+    }
+    
+    func clearAll() {
+        textForCashLabel.removeAll()
+        numbersCount = 0
+        addLimit()
     }
     
     func actionForDotButton() {
@@ -59,12 +64,6 @@ class AddTransactionViewModel {
     
     func addNumbersCount(with num: Int) {
         numbersCount += num
-        addLimit()
-    }
-    
-    private func clearLabel() {
-        textForCashLabel.removeAll()
-        numbersCount = 0
         addLimit()
     }
     

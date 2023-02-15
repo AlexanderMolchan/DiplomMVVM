@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1E4BA8B4C7ABBFDD334B6BEE /* Pods_DiplomProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82666C0AD362BF2983EDD3C4 /* Pods_DiplomProject.framework */; };
 		4025632129986C31000B6036 /* Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025632029986C30000B6036 /* Listener.swift */; };
+		40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */; };
+		40256374299C515F000B6036 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256373299C515F000B6036 /* ViewControllerExtension.swift */; };
 		40ED78BA29967A1E00EF36FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78B929967A1E00EF36FF /* AppDelegate.swift */; };
 		40ED78BC29967A1E00EF36FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78BB29967A1E00EF36FF /* SceneDelegate.swift */; };
 		40ED78C129967A1E00EF36FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40ED78BF29967A1E00EF36FF /* Main.storyboard */; };
@@ -16,7 +18,7 @@
 		40ED78C629967A1F00EF36FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40ED78C429967A1F00EF36FF /* LaunchScreen.storyboard */; };
 		40ED78D129967AF300EF36FF /* TabBarControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78D029967AF300EF36FF /* TabBarControllerView.swift */; };
 		40ED78D329967B0800EF36FF /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78D229967B0800EF36FF /* TabBarViewModel.swift */; };
-		40ED78D629967D0500EF36FF /* AddTransactionControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78D529967D0500EF36FF /* AddTransactionControllerView.swift */; };
+		40ED78D629967D0500EF36FF /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78D529967D0500EF36FF /* AddTransactionViewController.swift */; };
 		40ED78D829967D1700EF36FF /* AddTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78D729967D1700EF36FF /* AddTransactionViewModel.swift */; };
 		40ED78DA29967D8900EF36FF /* WalletControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78D929967D8900EF36FF /* WalletControllerView.swift */; };
 		40ED78DC29967D9900EF36FF /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78DB29967D9900EF36FF /* WalletViewModel.swift */; };
@@ -26,6 +28,8 @@
 		0D22220D1061987A6C7D6BC1 /* Pods-DiplomProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiplomProject.debug.xcconfig"; path = "Target Support Files/Pods-DiplomProject/Pods-DiplomProject.debug.xcconfig"; sourceTree = "<group>"; };
 		1BCEA3B9967B63D600993E87 /* Pods-DiplomProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiplomProject.release.xcconfig"; path = "Target Support Files/Pods-DiplomProject/Pods-DiplomProject.release.xcconfig"; sourceTree = "<group>"; };
 		4025632029986C30000B6036 /* Listener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener.swift; sourceTree = "<group>"; };
+		40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewControllerView.swift; sourceTree = "<group>"; };
+		40256373299C515F000B6036 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		40ED78B629967A1E00EF36FF /* DiplomProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiplomProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40ED78B929967A1E00EF36FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40ED78BB29967A1E00EF36FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +39,7 @@
 		40ED78C729967A1F00EF36FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40ED78D029967AF300EF36FF /* TabBarControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerView.swift; sourceTree = "<group>"; };
 		40ED78D229967B0800EF36FF /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
-		40ED78D529967D0500EF36FF /* AddTransactionControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionControllerView.swift; sourceTree = "<group>"; };
+		40ED78D529967D0500EF36FF /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		40ED78D729967D1700EF36FF /* AddTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewModel.swift; sourceTree = "<group>"; };
 		40ED78D929967D8900EF36FF /* WalletControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletControllerView.swift; sourceTree = "<group>"; };
 		40ED78DB29967D9900EF36FF /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
@@ -62,6 +66,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		40256372299C5138000B6036 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				40256373299C515F000B6036 /* ViewControllerExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		40ED78AD29967A1E00EF36FF = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +95,7 @@
 		40ED78B829967A1E00EF36FF /* DiplomProject */ = {
 			isa = PBXGroup;
 			children = (
+				40256372299C5138000B6036 /* Extensions */,
 				4025631F29986C22000B6036 /* Helpers */,
 				40ED78CE29967ABC00EF36FF /* Controllers */,
 				40ED78BB29967A1E00EF36FF /* SceneDelegate.swift */,
@@ -125,8 +138,9 @@
 		40ED78D429967CB200EF36FF /* AddTransaction */ = {
 			isa = PBXGroup;
 			children = (
-				40ED78D529967D0500EF36FF /* AddTransactionControllerView.swift */,
 				40ED78D729967D1700EF36FF /* AddTransactionViewModel.swift */,
+				40ED78D529967D0500EF36FF /* AddTransactionViewController.swift */,
+				40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */,
 			);
 			path = AddTransaction;
 			sourceTree = "<group>";
@@ -272,12 +286,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40ED78D629967D0500EF36FF /* AddTransactionControllerView.swift in Sources */,
+				40ED78D629967D0500EF36FF /* AddTransactionViewController.swift in Sources */,
 				4025632129986C31000B6036 /* Listener.swift in Sources */,
 				40ED78D829967D1700EF36FF /* AddTransactionViewModel.swift in Sources */,
 				40ED78D329967B0800EF36FF /* TabBarViewModel.swift in Sources */,
 				40ED78BA29967A1E00EF36FF /* AppDelegate.swift in Sources */,
 				40ED78DA29967D8900EF36FF /* WalletControllerView.swift in Sources */,
+				40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */,
+				40256374299C515F000B6036 /* ViewControllerExtension.swift in Sources */,
 				40ED78DC29967D9900EF36FF /* WalletViewModel.swift in Sources */,
 				40ED78D129967AF300EF36FF /* TabBarControllerView.swift in Sources */,
 				40ED78BC29967A1E00EF36FF /* SceneDelegate.swift in Sources */,
