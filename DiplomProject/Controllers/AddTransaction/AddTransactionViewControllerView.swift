@@ -1,15 +1,14 @@
 //
-//  AddTransactionControllerView.swift
+//  AddTransactionViewControllerView.swift
 //  DiplomProject
 //
-//  Created by Александр Молчан on 10.02.23.
+//  Created by Александр Молчан on 15.02.23.
 //
 
 import UIKit
 import SnapKit
 
-class AddTransactionControllerView: UIViewController {
-    let viewModel: AddTransactionViewModel
+class AddTransactionViewControllerView: UIView {
     
     var oneButton = UIButton()
     var twoButton = UIButton()
@@ -27,7 +26,7 @@ class AddTransactionControllerView: UIViewController {
     var selectedSpendCategoryButton = UIButton()
     var selectedAccountTypeButton = UIButton()
     var controllerTypeSegmentControl = UISegmentedControl()
-
+    
     let mainStack = UIStackView()
     let firstButtonStack = UIStackView()
     let secondButtonStack = UIStackView()
@@ -37,44 +36,41 @@ class AddTransactionControllerView: UIViewController {
     let cashLabel = UILabel()
     
     var buttonsArray = [UIButton]()
+    var bounceAnimation: CAKeyframeAnimation = {
+        let bounceAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
+        bounceAnimation.values = [1.0, 1.05, 0.95, 1.0]
+        bounceAnimation.duration = 0.35
+        bounceAnimation.calculationMode = CAAnimationCalculationMode.cubic
+        return bounceAnimation
+    }()
     
-    init(viewModel: AddTransactionViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configurateUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
+    private func configurateUI() {
         stackViewsSettings()
         buttonsSettings()
         labelSettings()
-        addButtonsAction()
-        bindLabel()
-    }
-    
-    private func bindLabel() {
-        viewModel.cashFieldText.bind { [weak self] text in
-            self?.cashLabel.text = text
-        }
     }
     
     private func stackViewsSettings() {
-        view.addSubview(bottomStack)
+        addSubview(bottomStack)
         bottomStack.axis = .horizontal
         bottomStack.spacing = 10
         bottomStack.distribution = .fillEqually
         bottomStack.snp.makeConstraints { make in
             make.height.equalTo(45)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
             make.leading.equalToSuperview().offset(40)
             make.trailing.equalToSuperview().offset(-40)
         }
-        view.addSubview(mainStack)
+        addSubview(mainStack)
         mainStack.axis = .vertical
         mainStack.spacing = 12
         mainStack.distribution = .fillEqually
@@ -95,7 +91,7 @@ class AddTransactionControllerView: UIViewController {
         stack.spacing = 10
         stack.distribution = .fillEqually
     }
-
+    
     private func buttonsSettings() {
         dotButton = setButtonWith(title: ".")
         zeroButton = setButtonWith(title: "0")
@@ -119,7 +115,7 @@ class AddTransactionControllerView: UIViewController {
         buttonsArray.append(sevenButton)
         buttonsArray.append(eightButton)
         buttonsArray.append(nineButton)
-
+        
         fourButton = setButtonWith(title: "4")
         fiveButton = setButtonWith(title: "5")
         sixButton = setButtonWith(title: "6")
@@ -130,7 +126,7 @@ class AddTransactionControllerView: UIViewController {
         buttonsArray.append(fourButton)
         buttonsArray.append(fiveButton)
         buttonsArray.append(sixButton)
-
+        
         oneButton = setButtonWith(title: "1")
         twoButton = setButtonWith(title: "2")
         threeButton = setButtonWith(title: "3")
@@ -184,7 +180,7 @@ class AddTransactionControllerView: UIViewController {
     }
     
     private func labelSettings() {
-        view.addSubview(cashLabel)
+        addSubview(cashLabel)
         cashLabel.font = UIFont(name: "Hiragino Maru Gothic ProN W4", size: 31)
         cashLabel.textAlignment = .center
         cashLabel.textColor = .systemCyan
@@ -195,68 +191,9 @@ class AddTransactionControllerView: UIViewController {
         }
     }
     
-    private func addButtonsAction() {
-        oneButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
-        twoButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
-        threeButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
-        fourButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
-        fiveButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
-        sixButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
-        sevenButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
-        eightButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
-        nineButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
-        zeroButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
-        deleteButton.addTarget(self, action: #selector(actionForDeleteButton), for: .touchUpInside)
-        dotButton.addTarget(self, action: #selector(actionForDotButton), for: .touchUpInside)
+    func hapticFeedback() {
+        let generator = UIImpactFeedbackGenerator()
+        generator.impactOccurred()
     }
-    
-    @objc private func actionForDeleteButton(sender: UIButton) {
-        viewModel.deleteAction()
-        cashLabel.layer.add(bounceAnimation, forKey: nil)
-        sender.layer.add(bounceAnimation, forKey: nil)
-    }
-    
-    @objc private func actionForButton(sender: UIButton) {
-        var num = ""
-        switch sender {
-            case oneButton:         num = "1"
-            case twoButton:         num = "2"
-            case threeButton:       num = "3"
-            case fourButton:        num = "4"
-            case fiveButton:        num = "5"
-            case sixButton:         num = "6"
-            case sevenButton:       num = "7"
-            case eightButton:       num = "8"
-            case nineButton:        num = "9"
-            case zeroButton:        num = "0"
-            default: break
-        }
-        cashLabel.layer.add(bounceAnimation, forKey: nil)
-        sender.layer.add(bounceAnimation, forKey: nil)
-        
-        viewModel.buttonAction(number: num)
-        viewModel.actionButtonIsEnabled.bind { [weak self] enabled in
-            self?.buttonsArray.forEach { button in
-                button.isEnabled = enabled
-            }
-        }
-        viewModel.deleteButtonIsEnabled.bind { [weak self] enabled in
-            self?.deleteButton.isEnabled = enabled
-        }
-    }
-    
-    @objc private func actionForDotButton(sender: UIButton) {
-        viewModel.actionForDotButton()
-        cashLabel.layer.add(bounceAnimation, forKey: nil)
-        sender.layer.add(bounceAnimation, forKey: nil)
-    }
-    
-    var bounceAnimation: CAKeyframeAnimation = {
-        let bounceAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
-        bounceAnimation.values = [1.0, 1.05, 0.95, 1.0]
-        bounceAnimation.duration = 0.35
-        bounceAnimation.calculationMode = CAAnimationCalculationMode.cubic
-        return bounceAnimation
-    }()
-    
+
 }

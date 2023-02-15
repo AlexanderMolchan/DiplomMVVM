@@ -13,7 +13,7 @@ class TabBarViewModel {
         let addTransactionViewModel = AddTransactionViewModel()
         let walletViewModel = WalletViewModel()
         
-        let addTransactionVc = UINavigationController(rootViewController: AddTransactionControllerView(viewModel: addTransactionViewModel))
+        let addTransactionVc = UINavigationController(rootViewController: AddTransactionViewController(viewModel: addTransactionViewModel))
         let walletVc = UINavigationController(rootViewController: WalletControllerView(viewModel: walletViewModel))
         
         addTransactionVc.tabBarItem = UITabBarItem(title: "Добавить", image: UIImage(systemName: "plus.circle"), tag: 0)
