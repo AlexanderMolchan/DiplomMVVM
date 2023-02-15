@@ -32,7 +32,8 @@ class AddTransactionViewController: UIViewController {
         super.viewDidLoad()
         controllerConfigurate()
         addButtonsAction()
-        bindLabel()
+        bindElements()
+        addSegmentAction()
     }
     
     private func controllerConfigurate() {
@@ -40,9 +41,16 @@ class AddTransactionViewController: UIViewController {
         navigationSettings(title: "Добавить")
     }
     
-    private func bindLabel() {
+    private func bindElements() {
         viewModel.cashFieldText.bind { [weak self] text in
             self?.contentView.cashLabel.text = text
+        }
+        viewModel.selectedAccountName.bind { [weak self] name in
+            self?.contentView.selectedAccountTypeButton.setTitle(name ?? "Выберите аккаунт", for: .normal)
+        }
+        
+        viewModel.selectedCategoryName.bind { [weak self] name in
+            self?.contentView.selectedSpendCategoryButton.setTitle(name ?? "SelectCategory", for: .normal)
         }
     }
     
@@ -60,6 +68,119 @@ class AddTransactionViewController: UIViewController {
         contentView.deleteButton.addTarget(self, action: #selector(actionForDeleteButton), for: .touchUpInside)
         contentView.dotButton.addTarget(self, action: #selector(actionForDotButton), for: .touchUpInside)
         contentView.deleteButton.isEnabled = false
+        
+        contentView.selectedAccountTypeButton.addTarget(self, action: #selector(selectAccount), for: .touchUpInside)
+        contentView.selectedSpendCategoryButton.addTarget(self, action: #selector(selectCategory), for: .touchUpInside)
+        contentView.enterButton.addTarget(self, action: #selector(enterAction), for: .touchUpInside)
+    }
+    
+    @objc private func enterAction() {
+        viewModel.transactionCreateError.bind { [weak self] error in
+            switch error {
+                case .emptyField:
+                    self?.emptyFieldError()
+                case .unselectedAccount:
+                    self?.accountError(button: self?.contentView.selectedAccountTypeButton)
+                case .unselectedCategory:
+                    self?.categoryError(button: self?.contentView.selectedSpendCategoryButton)
+                case .allIsGood:
+                    self?.contentView.labelAnimate(subTupe: .fromLeft)
+                default: break
+            }
+        }
+        viewModel.enterAction()
+        contentView.hapticFeedback()
+    }
+    
+    private func shakeAnimation(button: UIButton?) {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        animation.duration = 0.8
+        animation.values = [0, -8.0, 8.0, -8.0, 8.0, -8.0, 8.0, 0]
+        button?.layer.add(animation, forKey: nil)
+    }
+    
+    private func categoryError(button: UIButton?) {
+        shakeAnimation(button: button)
+        UIView.animate(withDuration: 0.3) {
+            button?.layer.borderColor = UIColor.systemRed.cgColor
+            button?.layer.borderWidth = 2
+            button?.tintColor = .red
+        } completion: { isFinish in
+            guard isFinish else { return }
+            UIView.animate(withDuration: 0.5) {
+                button?.layer.borderColor = UIColor.systemCyan.cgColor
+                button?.layer.borderWidth = 2
+                button?.tintColor = .systemCyan
+            }
+        }
+    }
+    
+    private func accountError(button: UIButton?) {
+        shakeAnimation(button: button)
+        UIView.animate(withDuration: 0.3) {
+            button?.tintColor = .red
+        } completion: { isFinish in
+            guard isFinish else { return }
+            UIView.animate(withDuration: 0.5) {
+                button?.tintColor = .systemCyan
+            }
+        }
+    }
+    
+    private func emptyFieldError() {
+        let errorLabel = UILabel()
+        errorLabel.text = "Введите сумму!"
+        errorLabel.alpha = 0
+        errorLabel.font = UIFont(name: "Marker Felt", size: 20)
+        errorLabel.textColor = .red
+        view.addSubview(errorLabel)
+        errorLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentView.selectedAccountTypeButton.snp.bottom).offset(5)
+            make.centerX.equalToSuperview()
+        }
+        UIView.animate(withDuration: 0.3) {
+            errorLabel.alpha = 0.77
+        } completion: { isFinish in
+            guard isFinish else { return }
+            UIView.animate(withDuration: 0.3) {
+                errorLabel.alpha = 0
+            } completion: { isFinish in
+                guard isFinish else { return }
+                UIView.animate(withDuration: 0.3) {
+                    errorLabel.alpha = 0.77
+                } completion: { isFinish in
+                    guard isFinish else { return }
+                    UIView.animate(withDuration: 0.3) {
+                        errorLabel.alpha = 0
+                    } completion: { isFinish in
+                        guard isFinish else { return }
+                        errorLabel.removeFromSuperview()
+                    }
+                }
+            }
+        }
+    }
+    
+    @objc private func selectAccount() {
+        let viewModel = SelectedAccountViewModel(controllerType: .account)
+        let selectedAccountVc = SelectedAccountViewController(viewModel: viewModel)
+        selectedAccountVc.nameChangeClosure = { account in
+            self.viewModel.selectedAccount = account
+        }
+        navigationController?.present(selectedAccountVc, animated: true)
+    }
+    
+    @objc private func selectCategory() {
+        let viewModel = SelectedAccountViewModel(controllerType: .spendCategory)
+        let selectedCategoryVc = SelectedAccountViewController(viewModel: viewModel)
+        selectedCategoryVc.categoryChangeClousure = { category in
+            self.viewModel.selectedCategory = category
+        }
+        selectedCategoryVc.modalPresentationStyle = .pageSheet
+        guard let sheet = selectedCategoryVc.sheetPresentationController else { return }
+        sheet.detents = [.medium(), .large()]
+        navigationController?.present(selectedCategoryVc, animated: true)
     }
     
     @objc private func actionForDeleteButton(sender: UIButton) {
@@ -68,6 +189,18 @@ class AddTransactionViewController: UIViewController {
         sender.layer.add(contentView.bounceAnimation, forKey: nil)
         contentView.hapticFeedback()
         deleteAll()
+    }
+    
+    private func addSegmentAction() {
+        contentView.controllerTypeSegmentControl.addTarget(self, action: #selector(segmentChangedValue), for: .valueChanged)
+    }
+    
+    @objc private func segmentChangedValue() {
+        switch contentView.controllerTypeSegmentControl.selectedSegmentIndex {
+            case 0: viewModel.cashFlowType = .spending
+            case 1: viewModel.cashFlowType = .incoming
+            default: break
+        }
     }
     
     private func deleteAll() {

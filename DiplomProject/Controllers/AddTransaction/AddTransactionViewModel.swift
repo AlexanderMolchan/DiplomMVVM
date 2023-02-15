@@ -12,14 +12,31 @@ class AddTransactionViewModel {
     let cashFieldText: Dynamic<String?> = Dynamic(nil)
     let actionButtonIsEnabled: Dynamic<Bool> = Dynamic(true)
     let deleteButtonIsEnabled: Dynamic<Bool> = Dynamic(false)
+    let selectedAccountName: Dynamic<String?> = Dynamic(nil)
+    let selectedCategoryName: Dynamic<String?> = Dynamic(nil)
+    let transactionCreateError: Dynamic<createTransactionError?> = Dynamic(nil)
     
     private var textForCashLabel = "" {
         didSet {
             cashFieldText.value = textForCashLabel
         }
     }
+    
+    var selectedAccount: AccountModel? {
+        didSet {
+            selectedAccountName.value = selectedAccount?.name
+        }
+    }
+    
+    var selectedCategory: String? {
+        didSet {
+            selectedCategoryName.value = selectedCategory
+        }
+    }
+    
     private var numbersCount = 0
     private var limitForDot = 0
+    var cashFlowType: CashFlowType = .spending
     
     func buttonAction(number: String) {
         if number == "0", numbersCount == 0 {
@@ -62,7 +79,7 @@ class AddTransactionViewModel {
         }
     }
     
-    func addNumbersCount(with num: Int) {
+    private func addNumbersCount(with num: Int) {
         numbersCount += num
         addLimit()
     }
@@ -76,6 +93,27 @@ class AddTransactionViewModel {
         deleteButtonIsEnabled.value = numbersCount > 0
     }
     
+    func enterAction() {
+        guard !textForCashLabel.isEmpty else { return transactionCreateError.value = .emptyField }
+        guard let selectedAccount else { return transactionCreateError.value = .unselectedAccount }
+        guard let selectedCategory else { return transactionCreateError.value = .unselectedCategory }
+        guard let summ = Double(textForCashLabel) else { return }
+        let accountType = selectedAccount.type.rawValue
+        let cashFlowType = cashFlowType.rawValue
+        if summ > 0.0 {
+            let ownerID = selectedAccount.id
+            let object = CashModel(summ: summ, accountTypeRawValue: accountType, cashFlowType: cashFlowType, ownerID: ownerID)
+            RealmManager<CashModel>().write(object: object)
+            clearAll()
+            transactionCreateError.value = .allIsGood
+        }
+    }
+    
 }
     
-
+enum createTransactionError {
+    case emptyField
+    case unselectedAccount
+    case unselectedCategory
+    case allIsGood
+}
