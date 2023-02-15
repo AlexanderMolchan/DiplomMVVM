@@ -195,5 +195,14 @@ class AddTransactionViewControllerView: UIView {
         let generator = UIImpactFeedbackGenerator()
         generator.impactOccurred()
     }
+    
+    func labelAnimate(subTupe: CATransitionSubtype) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.push
+        animation.subtype = subTupe
+        animation.duration = 0.3
+        cashLabel.layer.add(animation, forKey: CATransitionType.push.rawValue)
+    }
 
 }

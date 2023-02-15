@@ -80,7 +80,7 @@ class AddTransactionViewController: UIViewController {
         if gesture.state == .began {
             viewModel.clearAll()
             contentView.hapticFeedback()
-            labelAnimate(subTupe: .fromRight)
+            contentView.labelAnimate(subTupe: .fromRight)
         }
     }
     
@@ -120,15 +120,6 @@ class AddTransactionViewController: UIViewController {
         contentView.cashLabel.layer.add(contentView.bounceAnimation, forKey: nil)
         sender.layer.add(contentView.bounceAnimation, forKey: nil)
         contentView.hapticFeedback()
-    }
-    
-    private func labelAnimate(subTupe: CATransitionSubtype) {
-        let animation = CATransition()
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        animation.type = CATransitionType.push
-        animation.subtype = subTupe
-        animation.duration = 0.3
-        contentView.cashLabel.layer.add(animation, forKey: CATransitionType.push.rawValue)
     }
     
 }
