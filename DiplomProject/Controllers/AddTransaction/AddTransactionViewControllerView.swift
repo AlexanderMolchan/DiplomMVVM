@@ -57,6 +57,7 @@ class AddTransactionViewControllerView: UIView {
         stackViewsSettings()
         buttonsSettings()
         labelSettings()
+        segmentControlSettings()
     }
     
     private func stackViewsSettings() {
@@ -156,6 +157,14 @@ class AddTransactionViewControllerView: UIView {
         enterButton.setTitle("Ввод", for: .normal)
         enterButton.titleLabel?.font = UIFont(name: "Marker Felt Thin", size: 20)
         bottomStack.addArrangedSubview(enterButton)
+        
+        selectedAccountTypeButton = UIButton(type: .system)
+        selectedAccountTypeButton.backgroundColor = .clear
+        selectedAccountTypeButton.setTitle("Выберите аккаунт", for: .normal)
+        selectedAccountTypeButton.tintColor = .systemCyan
+        selectedAccountTypeButton.titleLabel?.font = UIFont(name: "Marker felt", size: 18)
+        selectedAccountTypeButton.alpha = 0.77
+        addSubview(selectedAccountTypeButton)
     }
     
     private func setButtonWith(title: String) -> UIButton {
@@ -188,6 +197,26 @@ class AddTransactionViewControllerView: UIView {
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalTo(mainStack.snp.top).offset(-20)
+        }
+    }
+    
+    private func segmentControlSettings() {
+        let items = ["Расход", "Доход"]
+        controllerTypeSegmentControl = UISegmentedControl(items: items)
+        controllerTypeSegmentControl.selectedSegmentIndex = 0
+        controllerTypeSegmentControl.selectedSegmentTintColor = .systemCyan
+        controllerTypeSegmentControl.alpha = 0.77
+        addSubview(controllerTypeSegmentControl)
+        let segmentInsets = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 25)
+        controllerTypeSegmentControl.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(segmentInsets)
+            make.top.equalTo(safeAreaLayoutGuide)
+        }
+        selectedAccountTypeButton.snp.makeConstraints { make in
+            make.top.equalTo(controllerTypeSegmentControl.snp.bottom).offset(10)
+            make.leading.equalTo(100)
+            make.trailing.equalTo(-100)
+            make.height.equalTo(30)
         }
     }
     

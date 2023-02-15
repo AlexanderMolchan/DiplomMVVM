@@ -24,6 +24,7 @@ class TabBarControllerView: UITabBarController {
         super.viewDidLoad()
         setViewControllers()
         tabBarSettings()
+        firstStartSettings()
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -45,6 +46,18 @@ class TabBarControllerView: UITabBarController {
         tabBar.alpha = 0.9
         tabBar.layer.borderWidth = 1
         tabBar.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
+    private func firstStartSettings() {
+        if DefaultsManager.firstStart {
+            let account = AccountModel(name: "Основной", sum: 2000, isCreditAccount: false)
+            let secondAccount = AccountModel(name: "Дополнительный", sum: 1000, isCreditAccount: true)
+
+            RealmManager<AccountModel>().write(object: account)
+            RealmManager<AccountModel>().write(object: secondAccount)
+
+            DefaultsManager.firstStart = false
+        }
     }
 
 }
