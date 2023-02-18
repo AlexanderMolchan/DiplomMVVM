@@ -28,9 +28,9 @@ class AddTransactionViewModel {
         }
     }
     
-    var selectedCategory: String? {
+    var selectedCategory: CashFlowCategory? {
         didSet {
-            selectedCategoryName.value = selectedCategory
+            selectedCategoryName.value = selectedCategory?.name
         }
     }
     
@@ -102,7 +102,7 @@ class AddTransactionViewModel {
         let cashFlowType = cashFlowType.rawValue
         if summ > 0.0 {
             let ownerID = selectedAccount.id
-            let object = CashModel(summ: summ, accountTypeRawValue: accountType, cashFlowType: cashFlowType, ownerID: ownerID)
+            let object = CashModel(summ: summ, accountTypeRawValue: accountType, cashFlowType: cashFlowType, category: selectedCategory, ownerID: ownerID)
             RealmManager<CashModel>().write(object: object)
             clearAll()
             transactionCreateError.value = .allIsGood

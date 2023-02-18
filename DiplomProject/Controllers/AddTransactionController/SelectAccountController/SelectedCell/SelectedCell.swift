@@ -28,7 +28,7 @@ class SelectedCell: UITableViewCell {
         backgroundColor = .lightGray.withAlphaComponent(0.15)
         
         addSubview(cellImage)
-        cellImage.tintColor = .systemCyan
+        cellImage.tintColor = .orange
         cellImage.snp.makeConstraints { make in
             make.leading.top.equalToSuperview().offset(5)
             make.bottom.equalToSuperview().offset(-5)
@@ -38,7 +38,7 @@ class SelectedCell: UITableViewCell {
         
         addSubview(cellLabel)
         cellLabel.textColor = .systemCyan
-        cellLabel.font = UIFont(name: "Chalkboard SE Regular", size: 18)
+        cellLabel.font = UIFont(name: "Chalkboard SE Bold", size: 18)
         cellLabel.snp.makeConstraints { make in
             make.leading.equalTo(cellImage.snp.trailing).offset(5)
             make.centerY.equalTo(cellImage.snp.centerY)
@@ -47,7 +47,7 @@ class SelectedCell: UITableViewCell {
         
         addSubview(summLabel)
         summLabel.textColor = .systemCyan
-        summLabel.font = UIFont(name: "Hiragino Mincho ProN W6", size: 17)
+        summLabel.font = UIFont(name: "Hiragino Sans W7", size: 15)
         summLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-5)
             make.leading.greaterThanOrEqualTo(cellLabel.snp.trailing).offset(5)
@@ -65,7 +65,12 @@ class SelectedCell: UITableViewCell {
             default: break
         }
         cellLabel.text = "\(account.name)"
-        summLabel.text = "\(account.sum)"
+        summLabel.text = "\(Int(account.currentSumm))"
+        if account.currentSumm > 0 {
+            summLabel.textColor = .systemGreen
+        } else {
+            summLabel.textColor = .systemRed
+        }
     }
     
     func set(category: String) {
@@ -77,5 +82,23 @@ class SelectedCell: UITableViewCell {
             make.centerY.equalToSuperview()
         }
     }
-
+    
+    func set(flow: CashModel) {
+        switch flow.cashFlow {
+            case .incoming:
+                cellImage.image = UIImage(systemName: "plus.circle")
+                cellImage.tintColor = .systemGreen
+                summLabel.textColor = .systemGreen
+            case .spending:
+                cellImage.image = UIImage(systemName: "minus.circle")
+                cellImage.tintColor = .red
+                summLabel.textColor = .red
+            default: break
+        }
+        cellLabel.text = flow.category?.name
+        summLabel.text = "\(flow.summ)"
+    }
+    
 }
+
+

@@ -146,7 +146,7 @@ class AddTransactionViewControllerView: UIView {
         selectedSpendCategoryButton.layer.borderColor = UIColor.systemCyan.cgColor
         selectedSpendCategoryButton.layer.cornerRadius = 10
         selectedSpendCategoryButton.tintColor = .systemCyan
-        selectedSpendCategoryButton.setTitle("Тип расхода", for: .normal)
+        selectedSpendCategoryButton.setTitle("Категория", for: .normal)
         bottomStack.addArrangedSubview(selectedSpendCategoryButton)
         
         enterButton = UIButton(type: .system)

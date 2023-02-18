@@ -9,12 +9,14 @@ import Foundation
 
 class SelectedAccountViewModel {
     var controllerType: SelectedType
+    var cashFlowType: CashFlowType
     
     var accountArray = RealmManager<AccountModel>().read()
-    var spendCategory = ["Продукты","Платежи","Развлечения","Женщины"]
+    lazy var spendCategory = RealmManager<CashFlowCategory>().read().filter({ $0.type == cashFlowType })
     
-    init(controllerType: SelectedType) {
+    init(controllerType: SelectedType, cashFlowType: CashFlowType) {
         self.controllerType = controllerType
+        self.cashFlowType = cashFlowType
     }
     
 }
