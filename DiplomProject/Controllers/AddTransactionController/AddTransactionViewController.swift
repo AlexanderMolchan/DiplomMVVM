@@ -50,7 +50,7 @@ class AddTransactionViewController: UIViewController {
         }
         
         viewModel.selectedCategoryName.bind { [weak self] name in
-            self?.contentView.selectedSpendCategoryButton.setTitle(name ?? "SelectCategory", for: .normal)
+            self?.contentView.selectedSpendCategoryButton.setTitle(name ?? "Категория", for: .normal)
         }
     }
     
@@ -163,7 +163,7 @@ class AddTransactionViewController: UIViewController {
     }
     
     @objc private func selectAccount() {
-        let viewModel = SelectedAccountViewModel(controllerType: .account)
+        let viewModel = SelectedAccountViewModel(controllerType: .account, cashFlowType: viewModel.cashFlowType)
         let selectedAccountVc = SelectedAccountViewController(viewModel: viewModel)
         selectedAccountVc.nameChangeClosure = { account in
             self.viewModel.selectedAccount = account
@@ -172,7 +172,7 @@ class AddTransactionViewController: UIViewController {
     }
     
     @objc private func selectCategory() {
-        let viewModel = SelectedAccountViewModel(controllerType: .spendCategory)
+        let viewModel = SelectedAccountViewModel(controllerType: .spendCategory, cashFlowType: viewModel.cashFlowType)
         let selectedCategoryVc = SelectedAccountViewController(viewModel: viewModel)
         selectedCategoryVc.categoryChangeClousure = { category in
             self.viewModel.selectedCategory = category
@@ -197,8 +197,12 @@ class AddTransactionViewController: UIViewController {
     
     @objc private func segmentChangedValue() {
         switch contentView.controllerTypeSegmentControl.selectedSegmentIndex {
-            case 0: viewModel.cashFlowType = .spending
-            case 1: viewModel.cashFlowType = .incoming
+            case 0:
+                viewModel.cashFlowType = .spending
+                viewModel.selectedCategory = nil
+            case 1:
+                viewModel.cashFlowType = .incoming
+                viewModel.selectedCategory = nil
             default: break
         }
     }

@@ -11,7 +11,7 @@ import RealmSwift
 class AccountModel: Object {
     @objc dynamic var id = ""
     @objc dynamic var name: String = ""
-    @objc dynamic var sum: Int = 0
+    @objc dynamic var creationgSumm: Int = 0
     @objc private dynamic var isCreditAccount: Bool = true
     
     var type: AccountType {
@@ -34,15 +34,28 @@ class AccountModel: Object {
         return accountIncoming
     }
     
-    convenience init(name: String, sum: Int, isCreditAccount: Bool) {
+    var currentSumm: Double {
+        var summ = Double(creationgSumm)
+        spending.forEach { spend in
+            summ -= spend.summ
+        }
+        incoming.forEach { income in
+            summ += income.summ
+        }
+        return summ
+    }
+    
+    convenience init(name: String, creationgSumm: Int, isCreditAccount: Bool) {
         self.init()
         self.id = UUID().uuidString
         self.name = name
-        self.sum = sum
+        self.creationgSumm = creationgSumm
         self.isCreditAccount = isCreditAccount
     }
     
 }
+
+
 
 enum AccountType: String {
     case cash
@@ -58,29 +71,14 @@ enum AccountType: String {
     }
     
 }
+    
 
-enum SpendCategory: CaseIterable {
-    case food
-    case bills
-    case cars
-    
-    var name: String {
-        switch self {
-            case .food:
-                return "Еда"
-            case .bills:
-                return "Платежи"
-            case .cars:
-                return "Транспорт"
-        }
-    }
-    
-}
 
 class CashModel: Object {
     @objc dynamic var summ: Double = 0.0
     @objc private dynamic var accountTypeRawValue = AccountType.error.rawValue
     @objc private dynamic var cashFlowType = CashFlowType.error.rawValue
+    @objc dynamic var category: CashFlowCategory? = CashFlowCategory()
     @objc dynamic var ownerID = ""
     
     var accountType: AccountType {
@@ -99,14 +97,30 @@ class CashModel: Object {
         }
     }
     
-    convenience init(summ: Double, accountTypeRawValue: AccountType.RawValue, cashFlowType: CashFlowType.RawValue, ownerID: String) {
+    convenience init(summ: Double, accountTypeRawValue: AccountType.RawValue, cashFlowType: CashFlowType.RawValue, category: CashFlowCategory, ownerID: String) {
         self.init()
         self.summ = summ
         self.accountTypeRawValue = accountTypeRawValue
         self.cashFlowType = cashFlowType
+        self.category = category
         self.ownerID = ownerID
     }
     
+}
+
+class CashFlowCategory: Object {
+    @objc dynamic var name: String = ""
+    @objc private dynamic var isSpendingFlow: Bool = true
+    
+    var type: CashFlowType {
+        isSpendingFlow ? .spending : .incoming
+    }
+    
+    convenience init(name: String, isSpendingFlow: Bool) {
+        self.init()
+        self.name = name
+        self.isSpendingFlow = isSpendingFlow
+    }
 }
 
 enum CashFlowType: String {

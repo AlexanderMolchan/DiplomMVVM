@@ -13,7 +13,7 @@ class SelectedAccountViewController: UIViewController {
     
     var tableView = UITableView()
     var nameChangeClosure: ((AccountModel) -> ())?
-    var categoryChangeClousure: ((String) -> ())?
+    var categoryChangeClousure: ((CashFlowCategory) -> ())?
     
     init(viewModel: SelectedAccountViewModel) {
         self.viewModel = viewModel
@@ -57,7 +57,7 @@ extension SelectedAccountViewController: UITableViewDelegate, UITableViewDataSou
             case .account:
                 selectedAccountCell.set(account: viewModel.accountArray[indexPath.row])
             case .spendCategory:
-                selectedAccountCell.set(category: viewModel.spendCategory[indexPath.row])
+                selectedAccountCell.set(category: viewModel.spendCategory[indexPath.row].name)
         }
         return selectedAccountCell
     }

@@ -17,6 +17,13 @@
 		40C960FF299D78DE004F8963 /* SelectedAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C960FE299D78DE004F8963 /* SelectedAccountViewModel.swift */; };
 		40C96101299D78F7004F8963 /* SelectedAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C96100299D78F7004F8963 /* SelectedAccountViewController.swift */; };
 		40C96104299D7A2C004F8963 /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C96103299D7A2C004F8963 /* SelectedCell.swift */; };
+		40E1300529A06B2B00D2A366 /* WalletViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1300429A06B2B00D2A366 /* WalletViewControllerView.swift */; };
+		40E1300829A07E4300D2A366 /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1300729A07E4300D2A366 /* AccountInfoViewController.swift */; };
+		40E1300A29A07E6F00D2A366 /* AccountInfoViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1300929A07E6F00D2A366 /* AccountInfoViewControllerView.swift */; };
+		40E1300C29A07E9900D2A366 /* AccountInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1300B29A07E9900D2A366 /* AccountInfoViewModel.swift */; };
+		40E1300E29A0860200D2A366 /* CreateEditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1300D29A0860200D2A366 /* CreateEditAccountViewController.swift */; };
+		40E1301129A0864300D2A366 /* CreateEditAccountViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1301029A0864300D2A366 /* CreateEditAccountViewControllerView.swift */; };
+		40E1301329A0866D00D2A366 /* CreateEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1301229A0866D00D2A366 /* CreateEditViewModel.swift */; };
 		40ED78BA29967A1E00EF36FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78B929967A1E00EF36FF /* AppDelegate.swift */; };
 		40ED78BC29967A1E00EF36FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78BB29967A1E00EF36FF /* SceneDelegate.swift */; };
 		40ED78C129967A1E00EF36FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40ED78BF29967A1E00EF36FF /* Main.storyboard */; };
@@ -26,7 +33,7 @@
 		40ED78D329967B0800EF36FF /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78D229967B0800EF36FF /* TabBarViewModel.swift */; };
 		40ED78D629967D0500EF36FF /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78D529967D0500EF36FF /* AddTransactionViewController.swift */; };
 		40ED78D829967D1700EF36FF /* AddTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78D729967D1700EF36FF /* AddTransactionViewModel.swift */; };
-		40ED78DA29967D8900EF36FF /* WalletControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78D929967D8900EF36FF /* WalletControllerView.swift */; };
+		40ED78DA29967D8900EF36FF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78D929967D8900EF36FF /* WalletViewController.swift */; };
 		40ED78DC29967D9900EF36FF /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78DB29967D9900EF36FF /* WalletViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +49,13 @@
 		40C960FE299D78DE004F8963 /* SelectedAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedAccountViewModel.swift; sourceTree = "<group>"; };
 		40C96100299D78F7004F8963 /* SelectedAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedAccountViewController.swift; sourceTree = "<group>"; };
 		40C96103299D7A2C004F8963 /* SelectedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
+		40E1300429A06B2B00D2A366 /* WalletViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewControllerView.swift; sourceTree = "<group>"; };
+		40E1300729A07E4300D2A366 /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
+		40E1300929A07E6F00D2A366 /* AccountInfoViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewControllerView.swift; sourceTree = "<group>"; };
+		40E1300B29A07E9900D2A366 /* AccountInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewModel.swift; sourceTree = "<group>"; };
+		40E1300D29A0860200D2A366 /* CreateEditAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEditAccountViewController.swift; sourceTree = "<group>"; };
+		40E1301029A0864300D2A366 /* CreateEditAccountViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEditAccountViewControllerView.swift; sourceTree = "<group>"; };
+		40E1301229A0866D00D2A366 /* CreateEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEditViewModel.swift; sourceTree = "<group>"; };
 		40ED78B629967A1E00EF36FF /* DiplomProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiplomProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40ED78B929967A1E00EF36FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40ED78BB29967A1E00EF36FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,7 +67,7 @@
 		40ED78D229967B0800EF36FF /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		40ED78D529967D0500EF36FF /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		40ED78D729967D1700EF36FF /* AddTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewModel.swift; sourceTree = "<group>"; };
-		40ED78D929967D8900EF36FF /* WalletControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletControllerView.swift; sourceTree = "<group>"; };
+		40ED78D929967D8900EF36FF /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		40ED78DB29967D9900EF36FF /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		82666C0AD362BF2983EDD3C4 /* Pods_DiplomProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiplomProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -122,6 +136,26 @@
 			path = SelectedCell;
 			sourceTree = "<group>";
 		};
+		40E1300629A07E2300D2A366 /* AccountInfoController */ = {
+			isa = PBXGroup;
+			children = (
+				40E1300B29A07E9900D2A366 /* AccountInfoViewModel.swift */,
+				40E1300729A07E4300D2A366 /* AccountInfoViewController.swift */,
+				40E1300929A07E6F00D2A366 /* AccountInfoViewControllerView.swift */,
+			);
+			path = AccountInfoController;
+			sourceTree = "<group>";
+		};
+		40E1300F29A0861900D2A366 /* CreateEditController */ = {
+			isa = PBXGroup;
+			children = (
+				40E1301229A0866D00D2A366 /* CreateEditViewModel.swift */,
+				40E1300D29A0860200D2A366 /* CreateEditAccountViewController.swift */,
+				40E1301029A0864300D2A366 /* CreateEditAccountViewControllerView.swift */,
+			);
+			path = CreateEditController;
+			sourceTree = "<group>";
+		};
 		40ED78AD29967A1E00EF36FF = {
 			isa = PBXGroup;
 			children = (
@@ -168,23 +202,25 @@
 		40ED78CE29967ABC00EF36FF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				40ED78CF29967AC400EF36FF /* TabBar */,
-				40ED78D429967CB200EF36FF /* AddTransaction */,
-				40ED78DD29967DAC00EF36FF /* Wallet */,
+				40ED78CF29967AC400EF36FF /* TabBarController */,
+				40ED78D429967CB200EF36FF /* AddTransactionController */,
+				40ED78DD29967DAC00EF36FF /* WalletController */,
+				40E1300629A07E2300D2A366 /* AccountInfoController */,
+				40E1300F29A0861900D2A366 /* CreateEditController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		40ED78CF29967AC400EF36FF /* TabBar */ = {
+		40ED78CF29967AC400EF36FF /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
 				40ED78D029967AF300EF36FF /* TabBarControllerView.swift */,
 				40ED78D229967B0800EF36FF /* TabBarViewModel.swift */,
 			);
-			path = TabBar;
+			path = TabBarController;
 			sourceTree = "<group>";
 		};
-		40ED78D429967CB200EF36FF /* AddTransaction */ = {
+		40ED78D429967CB200EF36FF /* AddTransactionController */ = {
 			isa = PBXGroup;
 			children = (
 				40C960FD299D78C8004F8963 /* SelectAccountController */,
@@ -192,16 +228,17 @@
 				40ED78D529967D0500EF36FF /* AddTransactionViewController.swift */,
 				40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */,
 			);
-			path = AddTransaction;
+			path = AddTransactionController;
 			sourceTree = "<group>";
 		};
-		40ED78DD29967DAC00EF36FF /* Wallet */ = {
+		40ED78DD29967DAC00EF36FF /* WalletController */ = {
 			isa = PBXGroup;
 			children = (
-				40ED78D929967D8900EF36FF /* WalletControllerView.swift */,
 				40ED78DB29967D9900EF36FF /* WalletViewModel.swift */,
+				40ED78D929967D8900EF36FF /* WalletViewController.swift */,
+				40E1300429A06B2B00D2A366 /* WalletViewControllerView.swift */,
 			);
-			path = Wallet;
+			path = WalletController;
 			sourceTree = "<group>";
 		};
 		62B7ABADE07E1B37B2760B61 /* Pods */ = {
@@ -338,19 +375,26 @@
 			files = (
 				40ED78D629967D0500EF36FF /* AddTransactionViewController.swift in Sources */,
 				4025632129986C31000B6036 /* Listener.swift in Sources */,
+				40E1301129A0864300D2A366 /* CreateEditAccountViewControllerView.swift in Sources */,
+				40E1300529A06B2B00D2A366 /* WalletViewControllerView.swift in Sources */,
 				40ED78D829967D1700EF36FF /* AddTransactionViewModel.swift in Sources */,
+				40E1300C29A07E9900D2A366 /* AccountInfoViewModel.swift in Sources */,
 				40C960FF299D78DE004F8963 /* SelectedAccountViewModel.swift in Sources */,
 				40ED78D329967B0800EF36FF /* TabBarViewModel.swift in Sources */,
 				40C960FA299D717B004F8963 /* UserDefaults.swift in Sources */,
 				40C96104299D7A2C004F8963 /* SelectedCell.swift in Sources */,
+				40E1301329A0866D00D2A366 /* CreateEditViewModel.swift in Sources */,
 				40ED78BA29967A1E00EF36FF /* AppDelegate.swift in Sources */,
 				40C960F8299D713E004F8963 /* RealmManager.swift in Sources */,
-				40ED78DA29967D8900EF36FF /* WalletControllerView.swift in Sources */,
+				40ED78DA29967D8900EF36FF /* WalletViewController.swift in Sources */,
+				40E1300E29A0860200D2A366 /* CreateEditAccountViewController.swift in Sources */,
 				40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */,
 				40256374299C515F000B6036 /* ViewControllerExtension.swift in Sources */,
 				40C96101299D78F7004F8963 /* SelectedAccountViewController.swift in Sources */,
 				40ED78DC29967D9900EF36FF /* WalletViewModel.swift in Sources */,
 				40ED78D129967AF300EF36FF /* TabBarControllerView.swift in Sources */,
+				40E1300829A07E4300D2A366 /* AccountInfoViewController.swift in Sources */,
+				40E1300A29A07E6F00D2A366 /* AccountInfoViewControllerView.swift in Sources */,
 				40ED78BC29967A1E00EF36FF /* SceneDelegate.swift in Sources */,
 				40C960FC299D71A1004F8963 /* Models.swift in Sources */,
 			);
