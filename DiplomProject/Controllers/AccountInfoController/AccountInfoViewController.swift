@@ -51,14 +51,23 @@ class AccountInfoViewController: UIViewController {
 }
 
 extension AccountInfoViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        viewModel.groupedAccountFlows.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let firstFlow = viewModel.groupedAccountFlows[section].first else { return "" }
+        return firstFlow.stringDate
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.accountFlows.count
+        viewModel.groupedAccountFlows[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = contentView.tableView.dequeueReusableCell(withIdentifier: SelectedCell.id, for: indexPath)
         guard let flowCell = cell as? SelectedCell else { return cell }
-        flowCell.set(flow: viewModel.accountFlows[indexPath.row])
+        flowCell.set(flow: viewModel.groupedAccountFlows[indexPath.section][indexPath.row])
         return flowCell
     }
     

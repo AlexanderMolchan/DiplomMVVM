@@ -94,6 +94,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         let currentAccount = viewModel.accountArray[indexPath.row]
         let viewModel = AccountInfoViewModel(currentAccount: currentAccount)
         let infoVc = AccountInfoViewController(viewModel: viewModel)
+        infoVc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(infoVc, animated: true)
     }
     

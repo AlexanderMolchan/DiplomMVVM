@@ -22,7 +22,7 @@ class AccountInfoViewControllerView: UIView {
     }
     
     private func configurateUI() {
-        tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView = UITableView(frame: .zero, style: .plain)
         addSubview(tableView)
         tableView.backgroundColor = .white
         tableView.snp.makeConstraints { make in

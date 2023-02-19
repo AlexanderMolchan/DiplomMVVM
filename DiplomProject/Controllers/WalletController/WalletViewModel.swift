@@ -12,7 +12,6 @@ class WalletViewModel {
     
     var accountArray = RealmManager<AccountModel>().read()
     
-    
     func reloadAccountData() {
         accountArray = RealmManager<AccountModel>().read()
         var summ = 0.0
