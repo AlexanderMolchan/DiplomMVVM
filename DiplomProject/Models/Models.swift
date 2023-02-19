@@ -80,6 +80,7 @@ class CashModel: Object {
     @objc private dynamic var cashFlowType = CashFlowType.error.rawValue
     @objc dynamic var category: CashFlowCategory? = CashFlowCategory()
     @objc dynamic var ownerID = ""
+    @objc dynamic var date: Date = Date()
     
     var accountType: AccountType {
         get {
@@ -97,6 +98,12 @@ class CashModel: Object {
         }
     }
     
+    var stringDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        return dateFormatter.string(from: self.date)
+    }
+    
     convenience init(summ: Double, accountTypeRawValue: AccountType.RawValue, cashFlowType: CashFlowType.RawValue, category: CashFlowCategory, ownerID: String) {
         self.init()
         self.summ = summ
@@ -104,6 +111,7 @@ class CashModel: Object {
         self.cashFlowType = cashFlowType
         self.category = category
         self.ownerID = ownerID
+        self.date = Date.now
     }
     
 }
