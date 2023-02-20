@@ -71,5 +71,9 @@ extension AccountInfoViewController: UITableViewDataSource, UITableViewDelegate 
         return flowCell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        contentView.tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     
 }
