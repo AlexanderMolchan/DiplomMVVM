@@ -8,12 +8,16 @@
 import Foundation
 
 class WalletViewModel {
+    let realm: RealmManager
     let totalAccountSumm: Dynamic<String?> = Dynamic(nil)
+    var accountArray = [AccountModel]()
     
-    var accountArray = RealmManager<AccountModel>().read()
-    
+    init(realm: RealmManager) {
+        self.realm = realm
+    }
+
     func reloadAccountData() {
-        accountArray = RealmManager<AccountModel>().read()
+        accountArray = realm.read(type: AccountModel.self)
         var summ = 0.0
         accountArray.forEach { account in
             summ += account.currentSumm

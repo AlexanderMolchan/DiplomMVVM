@@ -19,7 +19,7 @@ class AccountModel: Object {
     }
     
     var allCashFlows: [CashModel] {
-        let allCashModels = RealmManager<CashModel>().read()
+        let allCashModels = RealmManager().read(type: CashModel.self)
         let accountCashModels = allCashModels.filter({ $0.ownerID == self.id })
         return accountCashModels
     }

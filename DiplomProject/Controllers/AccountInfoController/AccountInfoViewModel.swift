@@ -8,15 +8,17 @@
 import Foundation
 
 class AccountInfoViewModel {
+    let realm: RealmManager
     var currentAccount: AccountModel
     var groupedAccountFlows = [[CashModel]]()
     
-    init(currentAccount: AccountModel) {
+    init(currentAccount: AccountModel, realm: RealmManager) {
         self.currentAccount = currentAccount
+        self.realm = realm
     }
     
     func setupFlows() {
-        let accountFlows = RealmManager<CashModel>().read().filter({ $0.ownerID == currentAccount.id })
+        let accountFlows = realm.read(type: CashModel.self).filter({ $0.ownerID == currentAccount.id })
         let groupedFlows = Dictionary.init(grouping: accountFlows) { element in
             return element.stringDate
         }

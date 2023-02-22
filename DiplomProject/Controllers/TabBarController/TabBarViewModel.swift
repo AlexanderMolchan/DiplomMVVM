@@ -8,10 +8,15 @@
 import UIKit
 
 class TabBarViewModel {
+    let realm: RealmManager
+    
+    init(realm: RealmManager) {
+        self.realm = realm
+    }
     
     func setViewControllers() -> [UIViewController] {
-        let addTransactionViewModel = AddTransactionViewModel()
-        let walletViewModel = WalletViewModel()
+        let addTransactionViewModel = AddTransactionViewModel(realm: realm)
+        let walletViewModel = WalletViewModel(realm: realm)
         
         let addTransactionVc = UINavigationController(rootViewController: AddTransactionViewController(viewModel: addTransactionViewModel))
         let walletVc = UINavigationController(rootViewController: WalletViewController(viewModel: walletViewModel))

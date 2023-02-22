@@ -46,7 +46,7 @@ extension SelectedAccountViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch viewModel.controllerType {
             case .account:         return viewModel.accountArray.count
-            case .spendCategory:   return viewModel.spendCategory.count
+            case .spendCategory:   return viewModel.cashFlowCategoryArray.count
         }
     }
     
@@ -57,7 +57,7 @@ extension SelectedAccountViewController: UITableViewDelegate, UITableViewDataSou
             case .account:
                 selectedAccountCell.set(account: viewModel.accountArray[indexPath.row])
             case .spendCategory:
-                selectedAccountCell.set(category: viewModel.spendCategory[indexPath.row].name)
+                selectedAccountCell.set(category: viewModel.cashFlowCategoryArray[indexPath.row].name)
         }
         return selectedAccountCell
     }
@@ -68,7 +68,7 @@ extension SelectedAccountViewController: UITableViewDelegate, UITableViewDataSou
                 let selectedAccount = viewModel.accountArray[indexPath.row]
                 nameChangeClosure?(selectedAccount)
             case .spendCategory:
-                let selectedCategory = viewModel.spendCategory[indexPath.row]
+                let selectedCategory = viewModel.cashFlowCategoryArray[indexPath.row]
                 categoryChangeClousure?(selectedCategory)
         }
         dismiss(animated: true)
