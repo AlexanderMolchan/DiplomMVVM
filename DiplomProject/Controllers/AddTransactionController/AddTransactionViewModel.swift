@@ -8,7 +8,7 @@
 import Foundation
 
 class AddTransactionViewModel {
-    
+    let realm: RealmManager
     let cashFieldText: Dynamic<String?> = Dynamic(nil)
     let actionButtonIsEnabled: Dynamic<Bool> = Dynamic(true)
     let deleteButtonIsEnabled: Dynamic<Bool> = Dynamic(false)
@@ -37,6 +37,10 @@ class AddTransactionViewModel {
     private var numbersCount = 0
     private var limitForDot = 0
     var cashFlowType: CashFlowType = .spending
+    
+    init(realm: RealmManager) {
+        self.realm = realm
+    }
     
     func buttonAction(number: String) {
         if number == "0", numbersCount == 0 {
@@ -103,7 +107,7 @@ class AddTransactionViewModel {
         if summ > 0.0 {
             let ownerID = selectedAccount.id
             let object = CashModel(summ: summ, accountTypeRawValue: accountType, cashFlowType: cashFlowType, category: selectedCategory, ownerID: ownerID)
-            RealmManager<CashModel>().write(object: object)
+            realm.write(object: object)
             clearAll()
             transactionCreateError.value = .allIsGood
         }

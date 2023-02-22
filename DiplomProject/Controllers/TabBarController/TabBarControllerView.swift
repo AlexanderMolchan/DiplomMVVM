@@ -53,8 +53,8 @@ class TabBarControllerView: UITabBarController {
             let account = AccountModel(name: "Основной", creationgSumm: 2000, isCreditAccount: false)
             let secondAccount = AccountModel(name: "Дополнительный", creationgSumm: 1000, isCreditAccount: true)
 
-            RealmManager<AccountModel>().write(object: account)
-            RealmManager<AccountModel>().write(object: secondAccount)
+            viewModel.realm.write(object: account)
+            viewModel.realm.write(object: secondAccount)
             
             let firstSpendCategory = CashFlowCategory(name: "Продукты", isSpendingFlow: true)
             let secondSpendCategory = CashFlowCategory(name: "Платежи", isSpendingFlow: true)
@@ -66,15 +66,15 @@ class TabBarControllerView: UITabBarController {
             let thirdIncomingCategory = CashFlowCategory(name: "Взятки", isSpendingFlow: false)
             let fourIncomingCategory = CashFlowCategory(name: "Пожертвования", isSpendingFlow: false)
 
-            RealmManager<CashFlowCategory>().write(object: firstSpendCategory)
-            RealmManager<CashFlowCategory>().write(object: secondSpendCategory)
-            RealmManager<CashFlowCategory>().write(object: thirdSpendCategory)
-            RealmManager<CashFlowCategory>().write(object: fourSpendCategory)
+            viewModel.realm.write(object: firstSpendCategory)
+            viewModel.realm.write(object: secondSpendCategory)
+            viewModel.realm.write(object: thirdSpendCategory)
+            viewModel.realm.write(object: fourSpendCategory)
 
-            RealmManager<CashFlowCategory>().write(object: firstIncomingCategory)
-            RealmManager<CashFlowCategory>().write(object: secondIncomingCategory)
-            RealmManager<CashFlowCategory>().write(object: thirdIncomingCategory)
-            RealmManager<CashFlowCategory>().write(object: fourIncomingCategory)
+            viewModel.realm.write(object: firstIncomingCategory)
+            viewModel.realm.write(object: secondIncomingCategory)
+            viewModel.realm.write(object: thirdIncomingCategory)
+            viewModel.realm.write(object: fourIncomingCategory)
 
             DefaultsManager.firstStart = false
         }

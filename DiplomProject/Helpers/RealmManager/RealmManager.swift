@@ -8,17 +8,17 @@
 import Foundation
 import RealmSwift
 
-class RealmManager<T> where T: Object {
+class RealmManager {
     private let realm = try? Realm()
     
-    func write(object: T) {
+    func write<T: Object>(object: T) {
         guard let realm else { return }
         try? realm.write {
             realm.add(object)
         }
     }
     
-    func read() -> [T] {
+    func read<T: Object>(type: T.Type) -> [T] {
         guard let realm else { return [] }
         return Array(realm.objects(T.self))
     }
@@ -28,7 +28,7 @@ class RealmManager<T> where T: Object {
         realmBlock(realm)
     }
     
-    func delete(object: T) {
+    func delete<T: Object>(object: T) {
         guard let realm else { return }
         try? realm.write {
             realm.delete(object)

@@ -8,15 +8,17 @@
 import Foundation
 
 class SelectedAccountViewModel {
+    let realm: RealmManager
     var controllerType: SelectedType
     var cashFlowType: CashFlowType
     
-    var accountArray = RealmManager<AccountModel>().read()
-    lazy var spendCategory = RealmManager<CashFlowCategory>().read().filter({ $0.type == cashFlowType })
+    lazy var accountArray = realm.read(type: AccountModel.self)
+    lazy var cashFlowCategoryArray = realm.read(type: CashFlowCategory.self).filter({ $0.type == cashFlowType })
     
-    init(controllerType: SelectedType, cashFlowType: CashFlowType) {
+    init(controllerType: SelectedType, cashFlowType: CashFlowType, realm: RealmManager) {
         self.controllerType = controllerType
         self.cashFlowType = cashFlowType
+        self.realm = realm
     }
     
 }

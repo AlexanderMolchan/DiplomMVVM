@@ -92,7 +92,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentAccount = viewModel.accountArray[indexPath.row]
-        let viewModel = AccountInfoViewModel(currentAccount: currentAccount)
+        let viewModel = AccountInfoViewModel(currentAccount: currentAccount, realm: viewModel.realm)
         let infoVc = AccountInfoViewController(viewModel: viewModel)
         infoVc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(infoVc, animated: true)
