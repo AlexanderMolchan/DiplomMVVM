@@ -92,18 +92,6 @@ class AddTransactionViewController: UIViewController {
         contentView.hapticFeedback()
     }
     
-    private func accountError(button: UIButton?) {
-        contentView.shakeAnimation(button: button)
-        UIView.animate(withDuration: 0.3) {
-            button?.tintColor = .red
-        } completion: { isFinish in
-            guard isFinish else { return }
-            UIView.animate(withDuration: 0.5) {
-                button?.tintColor = .systemCyan
-            }
-        }
-    }
-    
     @objc private func selectAccount() {
         let viewModel = SelectedAccountViewModel(controllerType: .account, cashFlowType: viewModel.cashFlowType, realm: viewModel.realm)
         let selectedAccountVc = SelectedAccountViewController(viewModel: viewModel)
