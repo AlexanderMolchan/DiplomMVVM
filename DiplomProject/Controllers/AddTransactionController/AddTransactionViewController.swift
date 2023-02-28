@@ -78,11 +78,11 @@ class AddTransactionViewController: UIViewController {
         viewModel.transactionCreateError.bind { [weak self] error in
             switch error {
                 case .emptyField:
-                    self?.emptyFieldError()
+                    self?.contentView.emptyFieldError()
                 case .unselectedAccount:
-                    self?.accountError(button: self?.contentView.selectedAccountTypeButton)
+                    self?.contentView.accountError()
                 case .unselectedCategory:
-                    self?.categoryError(button: self?.contentView.selectedSpendCategoryButton)
+                    self?.contentView.categoryError()
                 case .allIsGood:
                     self?.contentView.labelAnimate(subTupe: .fromLeft)
                 default: break
@@ -92,72 +92,14 @@ class AddTransactionViewController: UIViewController {
         contentView.hapticFeedback()
     }
     
-    private func shakeAnimation(button: UIButton?) {
-        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-        animation.duration = 0.8
-        animation.values = [0, -8.0, 8.0, -8.0, 8.0, -8.0, 8.0, 0]
-        button?.layer.add(animation, forKey: nil)
-    }
-    
-    private func categoryError(button: UIButton?) {
-        shakeAnimation(button: button)
-        UIView.animate(withDuration: 0.3) {
-            button?.layer.borderColor = UIColor.systemRed.cgColor
-            button?.layer.borderWidth = 2
-            button?.tintColor = .red
-        } completion: { isFinish in
-            guard isFinish else { return }
-            UIView.animate(withDuration: 0.5) {
-                button?.layer.borderColor = UIColor.systemCyan.cgColor
-                button?.layer.borderWidth = 2
-                button?.tintColor = .systemCyan
-            }
-        }
-    }
-    
     private func accountError(button: UIButton?) {
-        shakeAnimation(button: button)
+        contentView.shakeAnimation(button: button)
         UIView.animate(withDuration: 0.3) {
             button?.tintColor = .red
         } completion: { isFinish in
             guard isFinish else { return }
             UIView.animate(withDuration: 0.5) {
                 button?.tintColor = .systemCyan
-            }
-        }
-    }
-    
-    private func emptyFieldError() {
-        let errorLabel = UILabel()
-        errorLabel.text = "Введите сумму!"
-        errorLabel.alpha = 0
-        errorLabel.font = UIFont(name: "Marker Felt", size: 20)
-        errorLabel.textColor = .red
-        view.addSubview(errorLabel)
-        errorLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView.selectedAccountTypeButton.snp.bottom).offset(5)
-            make.centerX.equalToSuperview()
-        }
-        UIView.animate(withDuration: 0.3) {
-            errorLabel.alpha = 0.77
-        } completion: { isFinish in
-            guard isFinish else { return }
-            UIView.animate(withDuration: 0.3) {
-                errorLabel.alpha = 0
-            } completion: { isFinish in
-                guard isFinish else { return }
-                UIView.animate(withDuration: 0.3) {
-                    errorLabel.alpha = 0.77
-                } completion: { isFinish in
-                    guard isFinish else { return }
-                    UIView.animate(withDuration: 0.3) {
-                        errorLabel.alpha = 0
-                    } completion: { isFinish in
-                        guard isFinish else { return }
-                        errorLabel.removeFromSuperview()
-                    }
-                }
             }
         }
     }

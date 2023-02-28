@@ -18,6 +18,7 @@ class AccountInfoViewModel {
     }
     
     func setupFlows() {
+        groupedAccountFlows.removeAll()
         let accountFlows = realm.read(type: CashModel.self).filter({ $0.ownerID == currentAccount.id })
         let groupedFlows = Dictionary.init(grouping: accountFlows) { element in
             return element.stringDate
@@ -30,6 +31,12 @@ class AccountInfoViewModel {
             let sortedValues = values.sorted { $0.date > $1.date }
             groupedAccountFlows.append(sortedValues)
         }
+    }
+    
+    func deleteElementFromRealmAt(indexPath: IndexPath) {
+        let objectForDelete = groupedAccountFlows[indexPath.section][indexPath.row]
+        realm.delete(object: objectForDelete)
+        setupFlows()
     }
     
 }
