@@ -75,5 +75,19 @@ extension AccountInfoViewController: UITableViewDataSource, UITableViewDelegate 
         contentView.tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            contentView.tableView.performBatchUpdates {
+                if viewModel.groupedAccountFlows[indexPath.section].count == 1 {
+                    viewModel.deleteElementFromRealmAt(indexPath: indexPath)
+                    let indexSet = IndexSet(arrayLiteral: indexPath.section)
+                    contentView.tableView.deleteSections(indexSet, with: .automatic)
+                } else {
+                    viewModel.deleteElementFromRealmAt(indexPath: indexPath)
+                    contentView.tableView.deleteRows(at: [indexPath], with: .left)
+                }
+            }
+        }
+    }
     
 }

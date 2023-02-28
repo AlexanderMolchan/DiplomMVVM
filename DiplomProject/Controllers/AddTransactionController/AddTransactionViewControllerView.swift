@@ -225,6 +225,9 @@ class AddTransactionViewControllerView: UIView {
         generator.impactOccurred()
     }
     
+    // MARK: -
+    // MARK: - Animations
+    
     func labelAnimate(subTupe: CATransitionSubtype) {
         let animation = CATransition()
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
@@ -232,6 +235,78 @@ class AddTransactionViewControllerView: UIView {
         animation.subtype = subTupe
         animation.duration = 0.3
         cashLabel.layer.add(animation, forKey: CATransitionType.push.rawValue)
+    }
+    
+    func shakeAnimation(button: UIButton?) {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        animation.duration = 0.8
+        animation.values = [0, -8.0, 8.0, -8.0, 8.0, -8.0, 8.0, 0]
+        button?.layer.add(animation, forKey: nil)
+    }
+    
+    func emptyFieldError() {
+        let errorLabel = UILabel()
+        errorLabel.text = "Введите сумму!"
+        errorLabel.alpha = 0
+        errorLabel.font = UIFont(name: "Marker Felt", size: 20)
+        errorLabel.textColor = .red
+        
+        addSubview(errorLabel)
+        errorLabel.snp.makeConstraints { make in
+            make.top.equalTo(selectedAccountTypeButton.snp.bottom).offset(5)
+            make.bottom.equalTo(mainStack.snp.top).offset(-5)
+            make.centerX.equalToSuperview()
+        }
+        UIView.animate(withDuration: 0.3) {
+            errorLabel.alpha = 0.77
+        } completion: { isFinish in
+            guard isFinish else { return }
+            UIView.animate(withDuration: 0.3) {
+                errorLabel.alpha = 0
+            } completion: { isFinish in
+                guard isFinish else { return }
+                UIView.animate(withDuration: 0.3) {
+                    errorLabel.alpha = 0.77
+                } completion: { isFinish in
+                    guard isFinish else { return }
+                    UIView.animate(withDuration: 0.3) {
+                        errorLabel.alpha = 0
+                    } completion: { isFinish in
+                        guard isFinish else { return }
+                        errorLabel.removeFromSuperview()
+                    }
+                }
+            }
+        }
+    }
+    
+    func accountError() {
+        shakeAnimation(button: selectedAccountTypeButton)
+        UIView.animate(withDuration: 0.3) {
+            self.selectedAccountTypeButton.tintColor = .red
+        } completion: { isFinish in
+            guard isFinish else { return }
+            UIView.animate(withDuration: 0.5) {
+                self.selectedAccountTypeButton.tintColor = .systemCyan
+            }
+        }
+    }
+    
+    func categoryError() {
+        shakeAnimation(button: selectedSpendCategoryButton)
+        UIView.animate(withDuration: 0.3) {
+            self.selectedSpendCategoryButton.layer.borderColor = UIColor.systemRed.cgColor
+            self.selectedSpendCategoryButton.layer.borderWidth = 2
+            self.selectedSpendCategoryButton.tintColor = .red
+        } completion: { isFinish in
+            guard isFinish else { return }
+            UIView.animate(withDuration: 0.5) {
+                self.selectedSpendCategoryButton.layer.borderColor = UIColor.systemCyan.cgColor
+                self.selectedSpendCategoryButton.layer.borderWidth = 2
+                self.selectedSpendCategoryButton.tintColor = .systemCyan
+            }
+        }
     }
 
 }
