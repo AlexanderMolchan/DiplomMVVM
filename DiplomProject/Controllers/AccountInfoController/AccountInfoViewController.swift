@@ -34,6 +34,7 @@ class AccountInfoViewController: UIViewController {
         viewModel.setupFlows()
         configurateVc()
         tableViewSettings()
+        setupNavigationMenu()
     }
     
     private func configurateVc() {
@@ -46,6 +47,31 @@ class AccountInfoViewController: UIViewController {
         contentView.tableView.delegate = self
         contentView.tableView.dataSource = self
         contentView.tableView.register(SelectedCell.self, forCellReuseIdentifier: SelectedCell.id)
+    }
+    
+    private func setupNavigationMenu() {
+        let updateAccount = UIAction(title: "Редактировать счет", image: UIImage(systemName: "list.bullet.clipboard")) { _ in
+            self.updateAccount()
+        }
+        
+        let deleteAccount = UIAction(title: "Удалить счет", image: UIImage(systemName: "delete.backward"), attributes: .destructive) { _ in
+            self.deleteAccount()
+        }
+
+        let topMenu = UIMenu(title: "Дополнительно", options: .displayInline, children: [updateAccount, deleteAccount])
+        
+        let rightButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), menu: topMenu)
+        navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    private func updateAccount() {
+        let viewModel = CreateEditViewModel(controllerType: .edit)
+        let updateVc = CreateEditAccountViewController(viewModel: viewModel)
+        present(updateVc, animated: true)
+    }
+    
+    private func deleteAccount() {
+        
     }
     
 }
@@ -81,6 +107,7 @@ extension AccountInfoViewController: UITableViewDataSource, UITableViewDelegate 
                 if viewModel.groupedAccountFlows[indexPath.section].count == 1 {
                     viewModel.deleteElementFromRealmAt(indexPath: indexPath)
                     let indexSet = IndexSet(arrayLiteral: indexPath.section)
+                    contentView.tableView.cellForRow(at: indexPath)?.alpha = 0
                     contentView.tableView.deleteSections(indexSet, with: .automatic)
                 } else {
                     viewModel.deleteElementFromRealmAt(indexPath: indexPath)

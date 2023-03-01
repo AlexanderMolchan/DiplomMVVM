@@ -17,3 +17,12 @@ extension UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemCyan, NSAttributedString.Key.font: UIFont(name: "Marker Felt", size: 20) as Any]
     }
 }
+
+extension UITextField {
+    func addLeftAndRightView() {
+        self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        self.leftViewMode = .always
+        self.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        self.rightViewMode = .always
+    }
+}
