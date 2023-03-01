@@ -102,6 +102,29 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		40B0171B29AED22500787616 /* CustomElements */ = {
+			isa = PBXGroup;
+			children = (
+				40B0171D29AED24600787616 /* EmptyView */,
+				40B0171C29AED23800787616 /* CustomPopup */,
+			);
+			path = CustomElements;
+			sourceTree = "<group>";
+		};
+		40B0171C29AED23800787616 /* CustomPopup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomPopup;
+			sourceTree = "<group>";
+		};
+		40B0171D29AED24600787616 /* EmptyView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = EmptyView;
+			sourceTree = "<group>";
+		};
 		40C960F5299D7127004F8963 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +200,7 @@
 		40ED78B829967A1E00EF36FF /* DiplomProject */ = {
 			isa = PBXGroup;
 			children = (
+				40B0171B29AED22500787616 /* CustomElements */,
 				40C960F5299D7127004F8963 /* Models */,
 				40256372299C5138000B6036 /* Extensions */,
 				4025631F29986C22000B6036 /* Helpers */,

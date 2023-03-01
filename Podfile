@@ -10,5 +10,6 @@ target 'DiplomProject' do
   pod 'RealmSwift'
   pod 'Charts'
   pod 'SnapKit'
+  pod 'DeviceKit'
 
 end

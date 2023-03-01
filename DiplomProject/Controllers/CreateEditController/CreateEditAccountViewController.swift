@@ -28,4 +28,24 @@ class CreateEditAccountViewController: UIViewController {
         self.view = CreateEditAccountViewControllerView()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+    
+    private func setupUI() {
+        switch viewModel.controllerType {
+            case .create: contentView.titleLabel.text = "Создать новый аккаунт"
+            case .edit:   contentView.titleLabel.text = "Редактировать аккаунт"
+        }
+        contentView.summField.delegate = self
+        contentView.nameField.delegate = self
+    }
+}
+
+extension CreateEditAccountViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

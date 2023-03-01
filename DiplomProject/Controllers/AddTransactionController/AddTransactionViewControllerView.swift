@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import DeviceKit
 
 class AddTransactionViewControllerView: UIView {
     
@@ -177,12 +178,19 @@ class AddTransactionViewControllerView: UIView {
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.systemCyan.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addConstraint(NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: button, attribute: .width, multiplier: 1/1, constant: 0))
-        let screenWidth = UIScreen.main.bounds.width
-        let buttonWidth = (screenWidth - 100) / 3
-        button.layer.cornerRadius = buttonWidth / 5
         if title.isEmpty {
             button.layer.borderWidth = 0
+        }
+        let screenWidth = UIScreen.main.bounds.width
+        let buttonWidth = (screenWidth - 100) / 3
+        let device = Device.current
+        switch device {
+            case .iPhone8, .iPhoneSE2, .iPhoneSE3, .simulator(.iPhoneSE3):
+                button.addConstraint(NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: button, attribute: .width, multiplier: 1/2, constant: 20))
+                button.layer.cornerRadius = buttonWidth / 7
+            default:
+                button.addConstraint(NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: button, attribute: .width, multiplier: 1/1, constant: 0))
+                button.layer.cornerRadius = buttonWidth / 5
         }
         button.layer.add(bounceAnimation, forKey: nil)
         return button
