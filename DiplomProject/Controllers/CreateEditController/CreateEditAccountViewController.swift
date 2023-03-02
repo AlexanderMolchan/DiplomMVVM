@@ -47,7 +47,6 @@ class CreateEditAccountViewController: UIViewController {
                 contentView.summField.text = "\(Int(doubleSumm))"
                 contentView.switcher.isOn = isCreditAccount
         }
-        contentView.summField.delegate = self
         contentView.nameField.delegate = self
     }
     

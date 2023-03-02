@@ -11,6 +11,7 @@ import SnapKit
 class AccountInfoViewControllerView: UIView {
     
     var tableView = UITableView()
+    let emptyView = EmptyView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,4 +30,18 @@ class AccountInfoViewControllerView: UIView {
             make.edges.equalToSuperview()
         }
     }
+    
+    func addEmptyView() {
+        addSubview(emptyView)
+        emptyView.setLabelsText(top: "На данном счете нет транзакций.", bottom: "Добавьте транзакции, чтобы они отображались здесь.")
+        emptyView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        bringSubviewToFront(emptyView)
+    }
+    
+    func removeEmptyView() {
+        emptyView.removeFromSuperview()
+    }
+    
 }

@@ -12,6 +12,7 @@ class SelectedAccountViewController: UIViewController {
     let viewModel: SelectedAccountViewModel
     
     var tableView = UITableView()
+    let emptyView = EmptyView()
     var nameChangeClosure: ((AccountModel) -> ())?
     var categoryChangeClousure: ((CashFlowCategory) -> ())?
     
@@ -27,6 +28,38 @@ class SelectedAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewSettings()
+        emptyViewSettings()
+    }
+    
+    private func emptyViewSettings() {
+        emptyView.removeFromSuperview()
+        switch viewModel.controllerType {
+            case .account:
+                if viewModel.accountArray.isEmpty {
+                    createEmptyView(topTitle: "У вас нет активных счетов.", bottomTitle: "Перейдите в меню создания новых счетов, чтобы добавить их в список.", type: .account)
+                }
+            case .spendCategory:
+                if viewModel.cashFlowCategoryArray.isEmpty {
+                    createEmptyView(topTitle: "У вас нет категорий транзакций.", bottomTitle: "Перейдите в настройки, чтобы создать новые категории", type: .spendCategory)
+                }
+        }
+    }
+    
+    private func createEmptyView(topTitle: String, bottomTitle: String, type: SelectedType) {
+        emptyView.setLabelsText(top: topTitle, bottom: bottomTitle)
+        view.addSubview(emptyView)
+        switch type {
+            case .account:
+                emptyView.snp.makeConstraints { make in
+                    make.edges.equalToSuperview()
+                }
+            case .spendCategory:
+                emptyView.snp.makeConstraints { make in
+                    make.leading.trailing.equalToSuperview()
+                    make.top.equalToSuperview().inset(160)
+                }
+        }
+
     }
     
     private func tableViewSettings() {

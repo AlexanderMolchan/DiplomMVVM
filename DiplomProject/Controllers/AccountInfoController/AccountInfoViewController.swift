@@ -34,6 +34,7 @@ class AccountInfoViewController: UIViewController {
         viewModel.setupFlows()
         configurateVc()
         tableViewSettings()
+        emptyViewSettings()
         setupNavigationMenu()
     }
     
@@ -47,6 +48,15 @@ class AccountInfoViewController: UIViewController {
         contentView.tableView.delegate = self
         contentView.tableView.dataSource = self
         contentView.tableView.register(SelectedCell.self, forCellReuseIdentifier: SelectedCell.id)
+    }
+    
+    private func emptyViewSettings() {
+        contentView.tableView.reloadData()
+        if viewModel.groupedAccountFlows.isEmpty {
+            contentView.addEmptyView()
+        } else {
+            contentView.removeEmptyView()
+        }
     }
     
     private func setupNavigationMenu() {
@@ -94,19 +104,27 @@ class AccountInfoViewController: UIViewController {
     private func deleteTransactions() {
         let alert = UIAlertController(title: "Удалить все транзакции?", message: "С данного счета будут удалены все транзакции.", preferredStyle: .alert)
         let okBtn = UIAlertAction(title: "Удалить", style: .destructive) { _ in
-            UIView.animate(withDuration: 0.4) { [weak self] in
+            UIView.animate(withDuration: 0.25) { [weak self] in
                 guard let self else { return }
                 self.contentView.tableView.alpha = 0
             } completion: { isFinish in
                 guard isFinish else { return }
                 self.viewModel.deleteAllTransactions()
-                self.contentView.tableView.reloadData()
+                self.animatedEmptyViewShow()
             }
         }
         let cancelBtn = UIAlertAction(title: "Отмена", style: .cancel)
         alert.addAction(okBtn)
         alert.addAction(cancelBtn)
         present(alert, animated: true)
+    }
+    
+    private func animatedEmptyViewShow() {
+        contentView.emptyView.alpha = 0
+        emptyViewSettings()
+        UIView.animate(withDuration: 0.25) { [weak self] in
+            self?.contentView.emptyView.alpha = 1
+        }
     }
     
 }
@@ -144,6 +162,9 @@ extension AccountInfoViewController: UITableViewDataSource, UITableViewDelegate 
                     let indexSet = IndexSet(arrayLiteral: indexPath.section)
                     contentView.tableView.cellForRow(at: indexPath)?.alpha = 0
                     contentView.tableView.deleteSections(indexSet, with: .automatic)
+                    if viewModel.groupedAccountFlows.isEmpty {
+                        animatedEmptyViewShow()
+                    }
                 } else {
                     viewModel.deleteElementFromRealmAt(indexPath: indexPath)
                     contentView.tableView.deleteRows(at: [indexPath], with: .left)

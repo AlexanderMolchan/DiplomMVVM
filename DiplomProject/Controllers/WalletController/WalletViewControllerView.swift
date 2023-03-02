@@ -27,15 +27,6 @@ class WalletViewControllerView: UIView {
     private func configurateUI() {
         configurateLabels()
         configurateTableView()
-//        configurateEmptyView()
-    }
-    
-    private func configurateEmptyView() {
-        addSubview(emptyView)
-        emptyView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        bringSubviewToFront(emptyView)
     }
     
     private func configurateLabels() {
@@ -70,8 +61,17 @@ class WalletViewControllerView: UIView {
         }
     }
     
-    private func menuButtonConfigurate() {
-        
+    func addEmptyView() {
+        addSubview(emptyView)
+        emptyView.setLabelsText(top: "У вас нет активных счетов.", bottom: "Создайте новые счета, и они будут отображаться здесь.")
+        emptyView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        bringSubviewToFront(emptyView)
+    }
+    
+    func removeEmptyView() {
+        emptyView.removeFromSuperview()
     }
     
 }

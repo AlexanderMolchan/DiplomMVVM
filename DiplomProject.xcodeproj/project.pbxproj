@@ -233,8 +233,8 @@
 		40ED78CF29967AC400EF36FF /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				40ED78D029967AF300EF36FF /* TabBarControllerView.swift */,
 				40ED78D229967B0800EF36FF /* TabBarViewModel.swift */,
+				40ED78D029967AF300EF36FF /* TabBarControllerView.swift */,
 			);
 			path = TabBarController;
 			sourceTree = "<group>";
