@@ -61,7 +61,8 @@ class CreateEditAccountViewController: UIViewController {
     
     @objc private func confirmAction() {
         guard !contentView.nameField.text.isEmptyOrNil,
-              let name = contentView.nameField.text else {
+              let name = contentView.nameField.text,
+              !repeatedNameCheck(name: name) else {
             contentView.emptyFieldAnimation(field: contentView.nameField)
             return
         }
@@ -79,6 +80,22 @@ class CreateEditAccountViewController: UIViewController {
         }
         dismissClosure?()
         dismiss(animated: true)
+    }
+    
+    private func repeatedNameCheck(name: String) -> Bool {
+        let alert = UIAlertController(title: "Счет с таким именем уже существует!", message: "Выберите другое имя.", preferredStyle: .alert)
+        let okBtn = UIAlertAction(title: "Хорошо", style: .cancel)
+        alert.addAction(okBtn)
+        let accauntNames = viewModel.realm.read(type: AccountModel.self).map { account in
+            return account.name.lowercased()
+        }
+        let lowerCasedName = name.lowercased()
+        if accauntNames.contains(lowerCasedName) {
+            present(alert, animated: true)
+            return true
+        } else {
+            return false
+        }
     }
     
 }
