@@ -54,24 +54,59 @@ class AccountInfoViewController: UIViewController {
             self.updateAccount()
         }
         
-        let deleteAccount = UIAction(title: "Удалить счет", image: UIImage(systemName: "delete.backward"), attributes: .destructive) { _ in
+        let deleteAccount = UIAction(title: "Удалить счет", image: UIImage(systemName: "delete.backward.fill"), attributes: .destructive) { _ in
             self.deleteAccount()
         }
+        
+        let deleteAllTransactions = UIAction(title: "Удалить транзакции", image: UIImage(systemName: "delete.backward"), attributes: .destructive) { _ in
+            self.deleteTransactions()
+        }
+        
+        let subMenu = UIMenu(options: .displayInline, children: [deleteAccount])
 
-        let topMenu = UIMenu(title: "Дополнительно", options: .displayInline, children: [updateAccount, deleteAccount])
+        let topMenu = UIMenu(title: "Дополнительно", options: .displayInline, children: [updateAccount, deleteAllTransactions, subMenu])
         
         let rightButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), menu: topMenu)
         navigationItem.rightBarButtonItem = rightButton
     }
     
     private func updateAccount() {
-        let viewModel = CreateEditViewModel(controllerType: .edit)
+        let viewModel = CreateEditViewModel(realm: viewModel.realm, currentAccount: viewModel.currentAccount, controllerType: .edit)
         let updateVc = CreateEditAccountViewController(viewModel: viewModel)
+        updateVc.dismissClosure = {
+            self.navigationController?.popViewController(animated: false)
+        }
         present(updateVc, animated: true)
     }
     
     private func deleteAccount() {
-        
+        let alert = UIAlertController(title: "Удалить текущий счет?", message: "Удалив текущий счет, вы удалите все транзакции, принадлежащие ему.", preferredStyle: .alert)
+        let okBtn = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+            self.viewModel.deleteCurrentAccount()
+            self.navigationController?.popViewController(animated: true)
+        }
+        let cancelBtn = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(okBtn)
+        alert.addAction(cancelBtn)
+        present(alert, animated: true)
+    }
+    
+    private func deleteTransactions() {
+        let alert = UIAlertController(title: "Удалить все транзакции?", message: "С данного счета будут удалены все транзакции.", preferredStyle: .alert)
+        let okBtn = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+            UIView.animate(withDuration: 0.4) { [weak self] in
+                guard let self else { return }
+                self.contentView.tableView.alpha = 0
+            } completion: { isFinish in
+                guard isFinish else { return }
+                self.viewModel.deleteAllTransactions()
+                self.contentView.tableView.reloadData()
+            }
+        }
+        let cancelBtn = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(okBtn)
+        alert.addAction(cancelBtn)
+        present(alert, animated: true)
     }
     
 }

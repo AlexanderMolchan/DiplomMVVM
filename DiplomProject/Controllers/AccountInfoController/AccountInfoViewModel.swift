@@ -39,4 +39,16 @@ class AccountInfoViewModel {
         setupFlows()
     }
     
+    func deleteAllTransactions() {
+        currentAccount.allCashFlows.forEach { transaction in
+            self.realm.delete(object: transaction)
+        }
+        groupedAccountFlows.removeAll()
+    }
+    
+    func deleteCurrentAccount() {
+        deleteAllTransactions()
+        realm.delete(object: currentAccount)
+    }
+    
 }

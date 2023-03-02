@@ -14,7 +14,7 @@ class AddTransactionViewModel {
     let deleteButtonIsEnabled: Dynamic<Bool> = Dynamic(false)
     let selectedAccountName: Dynamic<String?> = Dynamic(nil)
     let selectedCategoryName: Dynamic<String?> = Dynamic(nil)
-    let transactionCreateError: Dynamic<createTransactionError?> = Dynamic(nil)
+    let transactionCreateError: Dynamic<ErrorTypeEnum?> = Dynamic(nil)
     
     private var textForCashLabel = "" {
         didSet {
@@ -113,10 +113,25 @@ class AddTransactionViewModel {
         }
     }
     
+    func accountInvalidatedCheck() {
+        guard let invalidAccount = selectedAccount?.isInvalidated else { return }
+        if invalidAccount {
+            selectedAccount = nil
+        }
+    }
+    
+    func categoryInvalidatedCheck() {
+        guard let invalidCategory = selectedCategory?.isInvalidated else { return }
+        if invalidCategory {
+            selectedCategory = nil
+        }
+    }
+    
 }
     
-enum createTransactionError {
+enum ErrorTypeEnum {
     case emptyField
+    case emptySecondField
     case unselectedAccount
     case unselectedCategory
     case allIsGood

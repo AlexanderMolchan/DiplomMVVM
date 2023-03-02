@@ -26,3 +26,10 @@ extension UITextField {
         self.rightViewMode = .always
     }
 }
+
+extension Optional where Wrapped == String {
+    
+    var isEmptyOrNil: Bool {
+        return self?.isEmpty ?? true
+    }
+}

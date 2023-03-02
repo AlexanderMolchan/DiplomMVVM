@@ -11,6 +11,7 @@
 		4025632129986C31000B6036 /* Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025632029986C30000B6036 /* Listener.swift */; };
 		40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */; };
 		40256374299C515F000B6036 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256373299C515F000B6036 /* ViewControllerExtension.swift */; };
+		40A9F94F29B02BE100967122 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9F94E29B02BE100967122 /* EmptyView.swift */; };
 		40C960F8299D713E004F8963 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C960F7299D713E004F8963 /* RealmManager.swift */; };
 		40C960FA299D717B004F8963 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C960F9299D717B004F8963 /* UserDefaults.swift */; };
 		40C960FC299D71A1004F8963 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C960FB299D71A1004F8963 /* Models.swift */; };
@@ -43,6 +44,7 @@
 		4025632029986C30000B6036 /* Listener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener.swift; sourceTree = "<group>"; };
 		40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewControllerView.swift; sourceTree = "<group>"; };
 		40256373299C515F000B6036 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		40A9F94E29B02BE100967122 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		40C960F7299D713E004F8963 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		40C960F9299D717B004F8963 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		40C960FB299D71A1004F8963 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -106,21 +108,14 @@
 			isa = PBXGroup;
 			children = (
 				40B0171D29AED24600787616 /* EmptyView */,
-				40B0171C29AED23800787616 /* CustomPopup */,
 			);
 			path = CustomElements;
-			sourceTree = "<group>";
-		};
-		40B0171C29AED23800787616 /* CustomPopup */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CustomPopup;
 			sourceTree = "<group>";
 		};
 		40B0171D29AED24600787616 /* EmptyView */ = {
 			isa = PBXGroup;
 			children = (
+				40A9F94E29B02BE100967122 /* EmptyView.swift */,
 			);
 			path = EmptyView;
 			sourceTree = "<group>";
@@ -418,6 +413,7 @@
 				40ED78DC29967D9900EF36FF /* WalletViewModel.swift in Sources */,
 				40ED78D129967AF300EF36FF /* TabBarControllerView.swift in Sources */,
 				40E1300829A07E4300D2A366 /* AccountInfoViewController.swift in Sources */,
+				40A9F94F29B02BE100967122 /* EmptyView.swift in Sources */,
 				40E1300A29A07E6F00D2A366 /* AccountInfoViewControllerView.swift in Sources */,
 				40ED78BC29967A1E00EF36FF /* SceneDelegate.swift in Sources */,
 				40C960FC299D71A1004F8963 /* Models.swift in Sources */,

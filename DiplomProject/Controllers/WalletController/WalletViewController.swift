@@ -71,8 +71,12 @@ class WalletViewController: UIViewController {
     }
     
     private func createAccount() {
-        let viewModel = CreateEditViewModel(controllerType: .create)
+        let viewModel = CreateEditViewModel(realm: viewModel.realm, controllerType: .create)
         let createVc = CreateEditAccountViewController(viewModel: viewModel)
+        createVc.dismissClosure = {
+            self.viewModel.reloadAccountData()
+            self.contentView.tableView.reloadData()
+        }
         present(createVc, animated: true)
     }
 
