@@ -37,6 +37,7 @@ class AddTransactionViewControllerView: UIView {
     let cashLabel = UILabel()
     
     var buttonsArray = [UIButton]()
+    
     var bounceAnimation: CAKeyframeAnimation = {
         let bounceAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
         bounceAnimation.values = [1.0, 1.05, 0.95, 1.0]

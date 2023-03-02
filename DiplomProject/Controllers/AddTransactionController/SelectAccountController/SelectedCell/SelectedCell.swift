@@ -37,20 +37,23 @@ class SelectedCell: UITableViewCell {
         cellImage.image = UIImage(systemName: "gear")
         
         addSubview(cellLabel)
+        addSubview(summLabel)
+
         cellLabel.textColor = .systemCyan
         cellLabel.font = UIFont(name: "Chalkboard SE Bold", size: 18)
         cellLabel.snp.makeConstraints { make in
             make.leading.equalTo(cellImage.snp.trailing).offset(5)
             make.centerY.equalTo(cellImage.snp.centerY)
+            make.trailing.lessThanOrEqualTo(summLabel.snp.leading).inset(-5)
         }
+        cellLabel.adjustsFontForContentSizeCategory = true
         cellLabel.text = "Test text account"
         
-        addSubview(summLabel)
         summLabel.textColor = .systemCyan
+        summLabel.textAlignment = .right
         summLabel.font = UIFont(name: "Hiragino Sans W7", size: 15)
         summLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-5)
-            make.leading.greaterThanOrEqualTo(cellLabel.snp.trailing).offset(5)
             make.centerY.equalTo(cellImage.snp.centerY)
         }
         summLabel.text = "54000$"

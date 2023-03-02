@@ -10,9 +10,9 @@ import SnapKit
 
 class EmptyView: UIView {
     
-    let imageView = UIImageView()
-    let topLabel = UILabel()
-    let bottomLabel = UILabel()
+    private let imageView = UIImageView()
+    private let topLabel = UILabel()
+    private let bottomLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

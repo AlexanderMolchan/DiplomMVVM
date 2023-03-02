@@ -39,7 +39,16 @@ class WalletViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel.reloadAccountData()
         contentView.totalSummLabel.text = viewModel.totalAccountSumm.value
+        emptyViewSettings()
+    }
+    
+    private func emptyViewSettings() {
         contentView.tableView.reloadData()
+        if viewModel.accountArray.isEmpty {
+            contentView.addEmptyView()
+        } else {
+            contentView.removeEmptyView()
+        }
     }
     
     private func controllerConfigurate() {
@@ -75,7 +84,7 @@ class WalletViewController: UIViewController {
         let createVc = CreateEditAccountViewController(viewModel: viewModel)
         createVc.dismissClosure = {
             self.viewModel.reloadAccountData()
-            self.contentView.tableView.reloadData()
+            self.emptyViewSettings()
         }
         present(createVc, animated: true)
     }
