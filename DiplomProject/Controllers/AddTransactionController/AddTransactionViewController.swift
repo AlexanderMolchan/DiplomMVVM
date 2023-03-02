@@ -36,6 +36,17 @@ class AddTransactionViewController: UIViewController {
         addSegmentAction()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        invalidateCheck()
+        bindElements()
+    }
+    
+    private func invalidateCheck() {
+        viewModel.accountInvalidatedCheck()
+        viewModel.categoryInvalidatedCheck()
+    }
+    
     private func controllerConfigurate() {
         view.backgroundColor = .white
         navigationSettings(title: "Добавить")

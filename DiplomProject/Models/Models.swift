@@ -11,8 +11,8 @@ import RealmSwift
 class AccountModel: Object {
     @objc dynamic var id = ""
     @objc dynamic var name: String = ""
-    @objc dynamic var creationgSumm: Int = 0
-    @objc private dynamic var isCreditAccount: Bool = true
+    @objc dynamic var creationgSumm: Double = 0.0
+    @objc dynamic var isCreditAccount: Bool = true
     
     var type: AccountType {
         isCreditAccount ? .credit : .cash
@@ -35,7 +35,7 @@ class AccountModel: Object {
     }
     
     var currentSumm: Double {
-        var summ = Double(creationgSumm)
+        var summ = creationgSumm
         spending.forEach { spend in
             summ -= spend.summ
         }
@@ -45,7 +45,7 @@ class AccountModel: Object {
         return summ
     }
     
-    convenience init(name: String, creationgSumm: Int, isCreditAccount: Bool) {
+    convenience init(name: String, creationgSumm: Double, isCreditAccount: Bool) {
         self.init()
         self.id = UUID().uuidString
         self.name = name

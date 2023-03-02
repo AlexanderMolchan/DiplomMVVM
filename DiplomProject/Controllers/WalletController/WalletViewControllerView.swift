@@ -13,6 +13,7 @@ class WalletViewControllerView: UIView {
     let totalSummLabel = UILabel()
     let commentLabel = UILabel()
     var tableView = UITableView()
+    let emptyView = EmptyView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +27,15 @@ class WalletViewControllerView: UIView {
     private func configurateUI() {
         configurateLabels()
         configurateTableView()
+//        configurateEmptyView()
+    }
+    
+    private func configurateEmptyView() {
+        addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        bringSubviewToFront(emptyView)
     }
     
     private func configurateLabels() {

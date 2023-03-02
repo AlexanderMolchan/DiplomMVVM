@@ -74,6 +74,7 @@ class CreateEditAccountViewControllerView: UIView {
         summField.layer.borderWidth = 1
         summField.layer.borderColor = UIColor.systemCyan.cgColor
         summField.layer.cornerRadius = 10
+        summField.keyboardType = .numberPad
         summField.addLeftAndRightView()
         addSubview(summField)
         summField.snp.makeConstraints { make in
@@ -149,6 +150,32 @@ class CreateEditAccountViewControllerView: UIView {
     @objc private func closeKeyboard() {
         nameField.endEditing(true)
         summField.endEditing(true)
+    }
+    
+    // MARK: -
+    // MARK: - Animations
+    
+    func emptyFieldAnimation(field: UITextField?) {
+        guard let field else { return }
+        shakeAnimation(view: field)
+        UIView.animate(withDuration: 0.3) {
+            field.layer.borderColor = UIColor.systemRed.cgColor
+            field.layer.borderWidth = 2
+        } completion: { isFinish in
+            guard isFinish else { return }
+            UIView.animate(withDuration: 0.5) {
+                field.layer.borderColor = UIColor.systemCyan.cgColor
+                field.layer.borderWidth = 1
+            }
+        }
+    }
+    
+    private func shakeAnimation(view: UIView) {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        animation.duration = 0.8
+        animation.values = [0, -10.0, 10.0, -10.0, 10.0, -10.0, 10.0, 0]
+        view.layer.add(animation, forKey: nil)
     }
     
 }

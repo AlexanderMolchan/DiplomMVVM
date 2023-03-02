@@ -9,6 +9,7 @@ import UIKit
 
 class CreateEditAccountViewController: UIViewController {
     let viewModel: CreateEditViewModel
+    var dismissClosure: (() -> Void)?
     
     var contentView: CreateEditAccountViewControllerView {
         self.view as! CreateEditAccountViewControllerView
@@ -31,16 +32,56 @@ class CreateEditAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        addActions()
     }
     
     private func setupUI() {
         switch viewModel.controllerType {
-            case .create: contentView.titleLabel.text = "Создать новый аккаунт"
-            case .edit:   contentView.titleLabel.text = "Редактировать аккаунт"
+            case .create:
+                contentView.titleLabel.text = "Создать новый аккаунт"
+            case .edit:
+                contentView.titleLabel.text = "Редактировать аккаунт"
+                guard let doubleSumm = viewModel.currentAccount?.currentSumm,
+                      let isCreditAccount = viewModel.currentAccount?.isCreditAccount else { return }
+                contentView.nameField.text = viewModel.currentAccount?.name
+                contentView.summField.text = "\(Int(doubleSumm))"
+                contentView.switcher.isOn = isCreditAccount
         }
         contentView.summField.delegate = self
         contentView.nameField.delegate = self
     }
+    
+    private func addActions() {
+        contentView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
+        contentView.confirmButton.addTarget(self, action: #selector(confirmAction), for: .touchUpInside)
+    }
+    
+    @objc private func dismissAction() {
+        dismiss(animated: true)
+    }
+    
+    @objc private func confirmAction() {
+        guard !contentView.nameField.text.isEmptyOrNil,
+              let name = contentView.nameField.text else {
+            contentView.emptyFieldAnimation(field: contentView.nameField)
+            return
+        }
+        guard !contentView.summField.text.isEmptyOrNil,
+              let summFromField = contentView.summField.text,
+              let summ = Double(summFromField) else {
+            contentView.emptyFieldAnimation(field: contentView.summField)
+            return
+        }
+        switch viewModel.controllerType {
+            case .create:
+                viewModel.createAccount(name: name, summ: summ, isCredit: contentView.switcher.isOn)
+            case .edit:
+                viewModel.updateAccount(name: name, summ: summ, isCredit: contentView.switcher.isOn)
+        }
+        dismissClosure?()
+        dismiss(animated: true)
+    }
+    
 }
 
 extension CreateEditAccountViewController: UITextFieldDelegate {
