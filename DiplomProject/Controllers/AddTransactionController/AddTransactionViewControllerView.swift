@@ -186,7 +186,7 @@ class AddTransactionViewControllerView: UIView {
         let buttonWidth = (screenWidth - 100) / 3
         let device = Device.current
         switch device {
-            case .iPhone8, .iPhoneSE2, .iPhoneSE3, .simulator(.iPhoneSE3):
+            case .iPhone8, .iPhoneSE2, .iPhoneSE3, .simulator(.iPhoneSE3), .simulator(.iPad10):
                 button.addConstraint(NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: button, attribute: .width, multiplier: 1/2, constant: 20))
                 button.layer.cornerRadius = buttonWidth / 7
             default:
