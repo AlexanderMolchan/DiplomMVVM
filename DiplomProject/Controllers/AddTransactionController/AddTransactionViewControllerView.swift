@@ -27,14 +27,14 @@ class AddTransactionViewControllerView: UIView {
     var selectedSpendCategoryButton = UIButton()
     var selectedAccountTypeButton = UIButton()
     var controllerTypeSegmentControl = UISegmentedControl()
-    
-    let mainStack = UIStackView()
-    let firstButtonStack = UIStackView()
-    let secondButtonStack = UIStackView()
-    let thirdButtonStack = UIStackView()
-    let fourButtonStack = UIStackView()
-    let bottomStack = UIStackView()
     let cashLabel = UILabel()
+    
+    private let mainStack = UIStackView()
+    private let firstButtonStack = UIStackView()
+    private let secondButtonStack = UIStackView()
+    private let thirdButtonStack = UIStackView()
+    private let fourButtonStack = UIStackView()
+    private let bottomStack = UIStackView()
     
     var buttonsArray = [UIButton]()
     

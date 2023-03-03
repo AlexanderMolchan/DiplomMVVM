@@ -129,10 +129,4 @@ class AddTransactionViewModel {
     
 }
     
-enum ErrorTypeEnum {
-    case emptyField
-    case emptySecondField
-    case unselectedAccount
-    case unselectedCategory
-    case allIsGood
-}
+

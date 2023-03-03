@@ -41,7 +41,4 @@ class CreateEditViewModel {
     
 }
 
-enum ControllerType {
-    case edit
-    case create
-}
+

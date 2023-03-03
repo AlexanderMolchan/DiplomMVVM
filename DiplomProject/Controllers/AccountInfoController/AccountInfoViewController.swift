@@ -8,7 +8,7 @@
 import UIKit
 
 class AccountInfoViewController: UIViewController {
-    let viewModel: AccountInfoViewModel
+    private let viewModel: AccountInfoViewModel
     
     var contentView: AccountInfoViewControllerView {
         self.view as! AccountInfoViewControllerView
@@ -90,20 +90,14 @@ class AccountInfoViewController: UIViewController {
     }
     
     private func deleteAccount() {
-        let alert = UIAlertController(title: "Удалить текущий счет?", message: "Удалив текущий счет, вы удалите все транзакции, принадлежащие ему.", preferredStyle: .alert)
-        let okBtn = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+        showAlert(title: "Удалить текущий счет?", message: "Удалив текущий счет, вы удалите все транзакции, принадлежащие ему.") {
             self.viewModel.deleteCurrentAccount()
             self.navigationController?.popViewController(animated: true)
         }
-        let cancelBtn = UIAlertAction(title: "Отмена", style: .cancel)
-        alert.addAction(okBtn)
-        alert.addAction(cancelBtn)
-        present(alert, animated: true)
     }
     
     private func deleteTransactions() {
-        let alert = UIAlertController(title: "Удалить все транзакции?", message: "С данного счета будут удалены все транзакции.", preferredStyle: .alert)
-        let okBtn = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+        showAlert(title: "Удалить все транзакции?", message: "С данного счета будут удалены все транзакции.") {
             UIView.animate(withDuration: 0.25) { [weak self] in
                 guard let self else { return }
                 self.contentView.tableView.alpha = 0
@@ -113,7 +107,14 @@ class AccountInfoViewController: UIViewController {
                 self.animatedEmptyViewShow()
             }
         }
+    }
+    
+    private func showAlert(title: String, message: String, action: (() -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancelBtn = UIAlertAction(title: "Отмена", style: .cancel)
+        let okBtn = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+            action?()
+        }
         alert.addAction(okBtn)
         alert.addAction(cancelBtn)
         present(alert, animated: true)

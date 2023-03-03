@@ -9,14 +9,14 @@ import UIKit
 import SnapKit
 
 class CreateEditAccountViewControllerView: UIView {
-    
+    private let nameLabel = UILabel()
+    private let summLabel = UILabel()
+    private let messageLabel = UILabel()
+    private let isCreditOrNotLabel = UILabel()
+
     let titleLabel = UILabel()
-    let nameLabel = UILabel()
     let nameField = UITextField()
-    let summLabel = UILabel()
     let summField = UITextField()
-    let messageLabel = UILabel()
-    let isCreditOrNotLabel = UILabel()
     let switcher = UISwitch()
     var confirmButton = UIButton()
     var dismissButton = UIButton()
