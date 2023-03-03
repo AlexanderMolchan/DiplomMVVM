@@ -28,6 +28,7 @@ class AddTransactionViewControllerView: UIView {
     var selectedAccountTypeButton = UIButton()
     var controllerTypeSegmentControl = UISegmentedControl()
     let cashLabel = UILabel()
+    let errorLabel = UILabel()
     
     private let mainStack = UIStackView()
     private let firstButtonStack = UIStackView()
@@ -255,7 +256,6 @@ class AddTransactionViewControllerView: UIView {
     }
     
     func emptyFieldError() {
-        let errorLabel = UILabel()
         errorLabel.text = "Введите сумму!"
         errorLabel.alpha = 0
         errorLabel.font = UIFont(name: "Marker Felt", size: 20)
@@ -268,26 +268,30 @@ class AddTransactionViewControllerView: UIView {
             make.centerX.equalToSuperview()
         }
         UIView.animate(withDuration: 0.3) {
-            errorLabel.alpha = 0.77
+            self.errorLabel.alpha = 0.77
         } completion: { isFinish in
             guard isFinish else { return }
             UIView.animate(withDuration: 0.3) {
-                errorLabel.alpha = 0
+                self.errorLabel.alpha = 0
             } completion: { isFinish in
                 guard isFinish else { return }
                 UIView.animate(withDuration: 0.3) {
-                    errorLabel.alpha = 0.77
+                    self.errorLabel.alpha = 0.77
                 } completion: { isFinish in
                     guard isFinish else { return }
                     UIView.animate(withDuration: 0.3) {
-                        errorLabel.alpha = 0
+                        self.errorLabel.alpha = 0
                     } completion: { isFinish in
                         guard isFinish else { return }
-                        errorLabel.removeFromSuperview()
+                        self.errorLabel.removeFromSuperview()
                     }
                 }
             }
         }
+    }
+    
+    func removeErrorLabel() {
+        errorLabel.removeFromSuperview()
     }
     
     func accountError() {

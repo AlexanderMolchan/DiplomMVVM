@@ -42,6 +42,11 @@ class AddTransactionViewController: UIViewController {
         bindElements()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        contentView.removeErrorLabel()
+    }
+    
     private func invalidateCheck() {
         viewModel.accountInvalidatedCheck()
         viewModel.categoryInvalidatedCheck()
@@ -106,6 +111,7 @@ class AddTransactionViewController: UIViewController {
     @objc private func selectAccount() {
         let viewModel = SelectedAccountViewModel(controllerType: .account, controllerSubType: .choose, cashFlowType: viewModel.cashFlowType, realm: viewModel.realm)
         let selectedAccountVc = SelectedAccountViewController(viewModel: viewModel)
+        contentView.hapticFeedback()
         selectedAccountVc.nameChangeClosure = { account in
             self.viewModel.selectedAccount = account
         }
@@ -115,6 +121,7 @@ class AddTransactionViewController: UIViewController {
     @objc private func selectCategory() {
         let viewModel = SelectedAccountViewModel(controllerType: .spendCategory, controllerSubType: .choose, cashFlowType: viewModel.cashFlowType, realm: viewModel.realm)
         let selectedCategoryVc = SelectedAccountViewController(viewModel: viewModel)
+        contentView.hapticFeedback()
         selectedCategoryVc.categoryChangeClousure = { category in
             self.viewModel.selectedCategory = category
         }
@@ -137,6 +144,7 @@ class AddTransactionViewController: UIViewController {
     }
     
     @objc private func segmentChangedValue() {
+        contentView.hapticFeedback()
         switch contentView.controllerTypeSegmentControl.selectedSegmentIndex {
             case 0:
                 viewModel.cashFlowType = .spending
@@ -190,6 +198,7 @@ class AddTransactionViewController: UIViewController {
         
         contentView.cashLabel.layer.add(contentView.bounceAnimation, forKey: nil)
         sender.layer.add(contentView.bounceAnimation, forKey: nil)
+        contentView.removeErrorLabel()
         contentView.hapticFeedback()
     }
     
