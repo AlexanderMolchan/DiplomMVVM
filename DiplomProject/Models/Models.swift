@@ -55,12 +55,6 @@ class AccountModel: Object {
     
 }
 
-
-
-
-    
-
-
 class CashModel: Object {
     @objc dynamic var summ: Double = 0.0
     @objc private dynamic var accountTypeRawValue = AccountType.error.rawValue
