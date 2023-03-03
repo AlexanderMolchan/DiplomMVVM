@@ -104,7 +104,7 @@ class AddTransactionViewController: UIViewController {
     }
     
     @objc private func selectAccount() {
-        let viewModel = SelectedAccountViewModel(controllerType: .account, cashFlowType: viewModel.cashFlowType, realm: viewModel.realm)
+        let viewModel = SelectedAccountViewModel(controllerType: .account, controllerSubType: .choose, cashFlowType: viewModel.cashFlowType, realm: viewModel.realm)
         let selectedAccountVc = SelectedAccountViewController(viewModel: viewModel)
         selectedAccountVc.nameChangeClosure = { account in
             self.viewModel.selectedAccount = account
@@ -113,7 +113,7 @@ class AddTransactionViewController: UIViewController {
     }
     
     @objc private func selectCategory() {
-        let viewModel = SelectedAccountViewModel(controllerType: .spendCategory, cashFlowType: viewModel.cashFlowType, realm: viewModel.realm)
+        let viewModel = SelectedAccountViewModel(controllerType: .spendCategory, controllerSubType: .choose, cashFlowType: viewModel.cashFlowType, realm: viewModel.realm)
         let selectedCategoryVc = SelectedAccountViewController(viewModel: viewModel)
         selectedCategoryVc.categoryChangeClousure = { category in
             self.viewModel.selectedCategory = category

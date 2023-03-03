@@ -17,17 +17,24 @@ class TabBarViewModel {
     func setViewControllers() -> [UIViewController] {
         let addTransactionViewModel = AddTransactionViewModel(realm: realm)
         let walletViewModel = WalletViewModel(realm: realm)
+        let analyticsViewModel = AnalyticsViewModel(realm: realm)
+        let debtViewModel = DebtViewModel(realm: realm)
         let settingsViewModel = SettingsViewModel(realm: realm)
+        
         
         let addTransactionVc = UINavigationController(rootViewController: AddTransactionViewController(viewModel: addTransactionViewModel))
         let walletVc = UINavigationController(rootViewController: WalletViewController(viewModel: walletViewModel))
+        let analyticsVc = UINavigationController(rootViewController: AnalyticsViewController(viewModel: analyticsViewModel))
+        let debtVc = UINavigationController(rootViewController: DebtViewController(viewModel: debtViewModel))
         let settingsVc = UINavigationController(rootViewController: SettingsViewController(viewModel: settingsViewModel))
         
         addTransactionVc.tabBarItem = UITabBarItem(title: "Добавить", image: UIImage(systemName: "plus.circle"), tag: 0)
         walletVc.tabBarItem = UITabBarItem(title: "Кошелек", image: UIImage(systemName: "creditcard.circle"), tag: 1)
-        settingsVc.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gearshape.2"), tag: 2)
+        analyticsVc.tabBarItem = UITabBarItem(title: "Аналитика", image: UIImage(systemName: "chart.bar"), tag: 2)
+        debtVc.tabBarItem = UITabBarItem(title: "Долги", image: UIImage(systemName: "creditcard.trianglebadge.exclamationmark"), tag: 3)
+        settingsVc.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gearshape.2"), tag: 4)
         
-        let controllers = [addTransactionVc, walletVc, settingsVc]
+        let controllers = [addTransactionVc, walletVc, analyticsVc, debtVc, settingsVc]
         return controllers
     }
     

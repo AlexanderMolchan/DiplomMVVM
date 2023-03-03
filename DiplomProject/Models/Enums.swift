@@ -57,6 +57,7 @@ enum ErrorTypeEnum {
 enum ControllerType {
     case edit
     case create
+    case choose
 }
 
 // MARK: -

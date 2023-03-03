@@ -54,12 +54,17 @@ class SelectedAccountViewController: UIViewController {
                     make.edges.equalToSuperview()
                 }
             case .spendCategory:
-                emptyView.snp.makeConstraints { make in
-                    make.leading.trailing.equalToSuperview()
-                    make.top.equalToSuperview().inset(160)
+                if viewModel.controllerSubType == .choose {
+                    emptyView.snp.makeConstraints { make in
+                        make.leading.trailing.equalToSuperview()
+                        make.top.equalToSuperview().inset(160)
+                    }
+                } else {
+                    emptyView.snp.makeConstraints { make in
+                        make.edges.equalToSuperview()
+                    }
                 }
         }
-
     }
     
     private func tableViewSettings() {
@@ -96,15 +101,22 @@ extension SelectedAccountViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch viewModel.controllerType {
-            case .account:
-                let selectedAccount = viewModel.accountArray[indexPath.row]
-                nameChangeClosure?(selectedAccount)
-            case .spendCategory:
-                let selectedCategory = viewModel.cashFlowCategoryArray[indexPath.row]
-                categoryChangeClousure?(selectedCategory)
+        switch viewModel.controllerSubType {
+            case .choose:
+                switch viewModel.controllerType {
+                    case .account:
+                        let selectedAccount = viewModel.accountArray[indexPath.row]
+                        nameChangeClosure?(selectedAccount)
+                    case .spendCategory:
+                        let selectedCategory = viewModel.cashFlowCategoryArray[indexPath.row]
+                        categoryChangeClousure?(selectedCategory)
+                }
+                dismiss(animated: true)
+            case .edit:
+                tableView.deselectRow(at: indexPath, animated: true)
+            default: break
         }
-        dismiss(animated: true)
+
     }
     
 }

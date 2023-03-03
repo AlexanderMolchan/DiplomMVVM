@@ -46,6 +46,7 @@ class CreateEditAccountViewController: UIViewController {
                 contentView.nameField.text = viewModel.currentAccount?.name
                 contentView.summField.text = "\(Int(doubleSumm))"
                 contentView.switcher.isOn = isCreditAccount
+            default: break
         }
         contentView.nameField.delegate = self
     }
@@ -77,6 +78,7 @@ class CreateEditAccountViewController: UIViewController {
                 viewModel.createAccount(name: name, summ: summ, isCredit: contentView.switcher.isOn)
             case .edit:
                 viewModel.updateAccount(name: name, summ: summ, isCredit: contentView.switcher.isOn)
+            default: break
         }
         dismissClosure?()
         dismiss(animated: true)

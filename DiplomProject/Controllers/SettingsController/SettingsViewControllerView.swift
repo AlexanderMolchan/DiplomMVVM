@@ -13,7 +13,17 @@ class SettingsViewControllerView: UIView {
     var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.backgroundColor = .clear
+        tableView.isScrollEnabled = false
         return tableView
+    }()
+    
+    private var namedLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Marker Felt", size: 13)
+        label.textColor = .lightGray
+        label.textAlignment = .center
+        label.text = "© Developed by MolJ Inc."
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -32,11 +42,18 @@ class SettingsViewControllerView: UIView {
     
     private func addSubviews() {
         addSubview(tableView)
+        addSubview(namedLabel)
     }
     
     private func addConstraints() {
+        namedLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide).inset(10)
+        }
+        
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.leading.trailing.top.equalToSuperview()
+            make.bottom.equalTo(namedLabel.snp.top).inset(10)
         }
     }
     
