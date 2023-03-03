@@ -8,7 +8,7 @@
 import UIKit
 
 class CreateEditAccountViewController: UIViewController {
-    let viewModel: CreateEditViewModel
+    private let viewModel: CreateEditViewModel
     var dismissClosure: (() -> Void)?
     
     var contentView: CreateEditAccountViewControllerView {
@@ -86,10 +86,19 @@ class CreateEditAccountViewController: UIViewController {
         let alert = UIAlertController(title: "Счет с таким именем уже существует!", message: "Выберите другое имя.", preferredStyle: .alert)
         let okBtn = UIAlertAction(title: "Хорошо", style: .cancel)
         alert.addAction(okBtn)
-        let accauntNames = viewModel.realm.read(type: AccountModel.self).map { account in
+        
+        var accauntNames = viewModel.realm.read(type: AccountModel.self).map { account in
             return account.name.lowercased()
         }
         let lowerCasedName = name.lowercased()
+        let currentNameLowerCased = viewModel.currentAccount?.name.lowercased()
+        
+        switch viewModel.controllerType {
+            case .edit:
+                accauntNames = accauntNames.filter({ $0 != currentNameLowerCased })
+            default: break
+        }
+        
         if accauntNames.contains(lowerCasedName) {
             present(alert, animated: true)
             return true

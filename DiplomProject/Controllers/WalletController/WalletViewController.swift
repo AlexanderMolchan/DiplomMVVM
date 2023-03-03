@@ -8,7 +8,7 @@
 import UIKit
 
 class WalletViewController: UIViewController {
-    let viewModel: WalletViewModel
+    private let viewModel: WalletViewModel
     
     private var contentView: WalletViewControllerView {
         return self.view as! WalletViewControllerView

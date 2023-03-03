@@ -11,9 +11,9 @@ import SnapKit
 class WalletViewControllerView: UIView {
     
     let totalSummLabel = UILabel()
-    let commentLabel = UILabel()
     var tableView = UITableView()
-    let emptyView = EmptyView()
+    private let emptyView = EmptyView()
+    private let commentLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

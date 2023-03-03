@@ -57,20 +57,7 @@ class AccountModel: Object {
 
 
 
-enum AccountType: String {
-    case cash
-    case credit
-    case error
-    
-    var name: String {
-        switch self {
-            case .cash:         return "Наличные"
-            case .credit:       return "Кредитная карта"
-            case .error:        return "Ошибка"
-        }
-    }
-    
-}
+
     
 
 
@@ -129,24 +116,4 @@ class CashFlowCategory: Object {
         self.name = name
         self.isSpendingFlow = isSpendingFlow
     }
-}
-
-enum CashFlowType: String {
-    case spending
-    case incoming
-    case error
-    
-    var name: String {
-        switch self {
-            case .spending:     return "Расходы"
-            case .incoming:     return "Доходы"
-            case .error:        return "Ошибка"
-        }
-    }
-    
-}
-
-enum SelectedType {
-    case account
-    case spendCategory
 }

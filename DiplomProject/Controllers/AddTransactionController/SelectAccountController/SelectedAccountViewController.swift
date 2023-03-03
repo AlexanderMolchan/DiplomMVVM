@@ -9,10 +9,10 @@ import UIKit
 import SnapKit
 
 class SelectedAccountViewController: UIViewController {
-    let viewModel: SelectedAccountViewModel
+    private let viewModel: SelectedAccountViewModel
     
-    var tableView = UITableView()
-    let emptyView = EmptyView()
+    private var tableView = UITableView()
+    private let emptyView = EmptyView()
     var nameChangeClosure: ((AccountModel) -> ())?
     var categoryChangeClousure: ((CashFlowCategory) -> ())?
     

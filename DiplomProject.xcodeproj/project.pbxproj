@@ -18,6 +18,11 @@
 		40C960FF299D78DE004F8963 /* SelectedAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C960FE299D78DE004F8963 /* SelectedAccountViewModel.swift */; };
 		40C96101299D78F7004F8963 /* SelectedAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C96100299D78F7004F8963 /* SelectedAccountViewController.swift */; };
 		40C96104299D7A2C004F8963 /* SelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C96103299D7A2C004F8963 /* SelectedCell.swift */; };
+		40D50C4829B1627C00625F43 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D50C4729B1627C00625F43 /* SettingsViewModel.swift */; };
+		40D50C4A29B1628900625F43 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D50C4929B1628900625F43 /* SettingsViewController.swift */; };
+		40D50C4C29B1629900625F43 /* SettingsViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D50C4B29B1629900625F43 /* SettingsViewControllerView.swift */; };
+		40D50C4F29B167FA00625F43 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D50C4E29B167FA00625F43 /* Enums.swift */; };
+		40D50C5229B1724900625F43 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D50C5129B1724900625F43 /* SettingCell.swift */; };
 		40E1300529A06B2B00D2A366 /* WalletViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1300429A06B2B00D2A366 /* WalletViewControllerView.swift */; };
 		40E1300829A07E4300D2A366 /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1300729A07E4300D2A366 /* AccountInfoViewController.swift */; };
 		40E1300A29A07E6F00D2A366 /* AccountInfoViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1300929A07E6F00D2A366 /* AccountInfoViewControllerView.swift */; };
@@ -51,6 +56,11 @@
 		40C960FE299D78DE004F8963 /* SelectedAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedAccountViewModel.swift; sourceTree = "<group>"; };
 		40C96100299D78F7004F8963 /* SelectedAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedAccountViewController.swift; sourceTree = "<group>"; };
 		40C96103299D7A2C004F8963 /* SelectedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCell.swift; sourceTree = "<group>"; };
+		40D50C4729B1627C00625F43 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		40D50C4929B1628900625F43 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		40D50C4B29B1629900625F43 /* SettingsViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerView.swift; sourceTree = "<group>"; };
+		40D50C4E29B167FA00625F43 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		40D50C5129B1724900625F43 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		40E1300429A06B2B00D2A366 /* WalletViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewControllerView.swift; sourceTree = "<group>"; };
 		40E1300729A07E4300D2A366 /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
 		40E1300929A07E6F00D2A366 /* AccountInfoViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewControllerView.swift; sourceTree = "<group>"; };
@@ -89,9 +99,9 @@
 		4025631F29986C22000B6036 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				40C960F6299D7131004F8963 /* RealmManager */,
-				4025632029986C30000B6036 /* Listener.swift */,
+				40C960F7299D713E004F8963 /* RealmManager.swift */,
 				40C960F9299D717B004F8963 /* UserDefaults.swift */,
+				4025632029986C30000B6036 /* Listener.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -124,16 +134,9 @@
 			isa = PBXGroup;
 			children = (
 				40C960FB299D71A1004F8963 /* Models.swift */,
+				40D50C4E29B167FA00625F43 /* Enums.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		40C960F6299D7131004F8963 /* RealmManager */ = {
-			isa = PBXGroup;
-			children = (
-				40C960F7299D713E004F8963 /* RealmManager.swift */,
-			);
-			path = RealmManager;
 			sourceTree = "<group>";
 		};
 		40C960FD299D78C8004F8963 /* SelectAccountController */ = {
@@ -152,6 +155,25 @@
 				40C96103299D7A2C004F8963 /* SelectedCell.swift */,
 			);
 			path = SelectedCell;
+			sourceTree = "<group>";
+		};
+		40D50C4D29B1629F00625F43 /* SettingsController */ = {
+			isa = PBXGroup;
+			children = (
+				40D50C5029B1723900625F43 /* SettingCell */,
+				40D50C4729B1627C00625F43 /* SettingsViewModel.swift */,
+				40D50C4929B1628900625F43 /* SettingsViewController.swift */,
+				40D50C4B29B1629900625F43 /* SettingsViewControllerView.swift */,
+			);
+			path = SettingsController;
+			sourceTree = "<group>";
+		};
+		40D50C5029B1723900625F43 /* SettingCell */ = {
+			isa = PBXGroup;
+			children = (
+				40D50C5129B1724900625F43 /* SettingCell.swift */,
+			);
+			path = SettingCell;
 			sourceTree = "<group>";
 		};
 		40E1300629A07E2300D2A366 /* AccountInfoController */ = {
@@ -226,6 +248,7 @@
 				40ED78DD29967DAC00EF36FF /* WalletController */,
 				40E1300629A07E2300D2A366 /* AccountInfoController */,
 				40E1300F29A0861900D2A366 /* CreateEditController */,
+				40D50C4D29B1629F00625F43 /* SettingsController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -400,6 +423,8 @@
 				40E1300C29A07E9900D2A366 /* AccountInfoViewModel.swift in Sources */,
 				40C960FF299D78DE004F8963 /* SelectedAccountViewModel.swift in Sources */,
 				40ED78D329967B0800EF36FF /* TabBarViewModel.swift in Sources */,
+				40D50C5229B1724900625F43 /* SettingCell.swift in Sources */,
+				40D50C4C29B1629900625F43 /* SettingsViewControllerView.swift in Sources */,
 				40C960FA299D717B004F8963 /* UserDefaults.swift in Sources */,
 				40C96104299D7A2C004F8963 /* SelectedCell.swift in Sources */,
 				40E1301329A0866D00D2A366 /* CreateEditViewModel.swift in Sources */,
@@ -408,15 +433,18 @@
 				40ED78DA29967D8900EF36FF /* WalletViewController.swift in Sources */,
 				40E1300E29A0860200D2A366 /* CreateEditAccountViewController.swift in Sources */,
 				40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */,
+				40D50C4F29B167FA00625F43 /* Enums.swift in Sources */,
 				40256374299C515F000B6036 /* ViewControllerExtension.swift in Sources */,
 				40C96101299D78F7004F8963 /* SelectedAccountViewController.swift in Sources */,
 				40ED78DC29967D9900EF36FF /* WalletViewModel.swift in Sources */,
 				40ED78D129967AF300EF36FF /* TabBarControllerView.swift in Sources */,
 				40E1300829A07E4300D2A366 /* AccountInfoViewController.swift in Sources */,
+				40D50C4829B1627C00625F43 /* SettingsViewModel.swift in Sources */,
 				40A9F94F29B02BE100967122 /* EmptyView.swift in Sources */,
 				40E1300A29A07E6F00D2A366 /* AccountInfoViewControllerView.swift in Sources */,
 				40ED78BC29967A1E00EF36FF /* SceneDelegate.swift in Sources */,
 				40C960FC299D71A1004F8963 /* Models.swift in Sources */,
+				40D50C4A29B1628900625F43 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
