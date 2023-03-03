@@ -49,7 +49,7 @@ class SettingCell: UITableViewCell {
     }
     
     private func layoutElements() {
-        backgroundColor = .lightGray.withAlphaComponent(0.2)
+        backgroundColor = .lightGray.withAlphaComponent(0.15)
         contentView.addSubview(settingImage)
         contentView.addSubview(settingTitle)
         contentView.addSubview(statusSwitch)

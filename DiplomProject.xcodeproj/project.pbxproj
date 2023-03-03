@@ -11,6 +11,12 @@
 		4025632129986C31000B6036 /* Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025632029986C30000B6036 /* Listener.swift */; };
 		40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */; };
 		40256374299C515F000B6036 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256373299C515F000B6036 /* ViewControllerExtension.swift */; };
+		405448AB29B2141000143F4F /* DebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448AA29B2141000143F4F /* DebtViewController.swift */; };
+		405448AD29B2143300143F4F /* DebtViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448AC29B2143300143F4F /* DebtViewModel.swift */; };
+		405448AF29B2147000143F4F /* DebtViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448AE29B2147000143F4F /* DebtViewControllerView.swift */; };
+		405448B229B2176A00143F4F /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448B129B2176A00143F4F /* AnalyticsViewModel.swift */; };
+		405448B429B2177200143F4F /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448B329B2177200143F4F /* AnalyticsViewController.swift */; };
+		405448B629B2177D00143F4F /* AnalyticsViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448B529B2177D00143F4F /* AnalyticsViewControllerView.swift */; };
 		40A9F94F29B02BE100967122 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9F94E29B02BE100967122 /* EmptyView.swift */; };
 		40C960F8299D713E004F8963 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C960F7299D713E004F8963 /* RealmManager.swift */; };
 		40C960FA299D717B004F8963 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C960F9299D717B004F8963 /* UserDefaults.swift */; };
@@ -49,6 +55,12 @@
 		4025632029986C30000B6036 /* Listener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener.swift; sourceTree = "<group>"; };
 		40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewControllerView.swift; sourceTree = "<group>"; };
 		40256373299C515F000B6036 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		405448AA29B2141000143F4F /* DebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtViewController.swift; sourceTree = "<group>"; };
+		405448AC29B2143300143F4F /* DebtViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtViewModel.swift; sourceTree = "<group>"; };
+		405448AE29B2147000143F4F /* DebtViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtViewControllerView.swift; sourceTree = "<group>"; };
+		405448B129B2176A00143F4F /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
+		405448B329B2177200143F4F /* AnalyticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
+		405448B529B2177D00143F4F /* AnalyticsViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewControllerView.swift; sourceTree = "<group>"; };
 		40A9F94E29B02BE100967122 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		40C960F7299D713E004F8963 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		40C960F9299D717B004F8963 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -112,6 +124,26 @@
 				40256373299C515F000B6036 /* ViewControllerExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		405448A929B213FA00143F4F /* DebtController */ = {
+			isa = PBXGroup;
+			children = (
+				405448AC29B2143300143F4F /* DebtViewModel.swift */,
+				405448AA29B2141000143F4F /* DebtViewController.swift */,
+				405448AE29B2147000143F4F /* DebtViewControllerView.swift */,
+			);
+			path = DebtController;
+			sourceTree = "<group>";
+		};
+		405448B029B2175400143F4F /* AnalyticsController */ = {
+			isa = PBXGroup;
+			children = (
+				405448B129B2176A00143F4F /* AnalyticsViewModel.swift */,
+				405448B329B2177200143F4F /* AnalyticsViewController.swift */,
+				405448B529B2177D00143F4F /* AnalyticsViewControllerView.swift */,
+			);
+			path = AnalyticsController;
 			sourceTree = "<group>";
 		};
 		40B0171B29AED22500787616 /* CustomElements */ = {
@@ -248,6 +280,8 @@
 				40ED78DD29967DAC00EF36FF /* WalletController */,
 				40E1300629A07E2300D2A366 /* AccountInfoController */,
 				40E1300F29A0861900D2A366 /* CreateEditController */,
+				405448B029B2175400143F4F /* AnalyticsController */,
+				405448A929B213FA00143F4F /* DebtController */,
 				40D50C4D29B1629F00625F43 /* SettingsController */,
 			);
 			path = Controllers;
@@ -417,12 +451,15 @@
 			files = (
 				40ED78D629967D0500EF36FF /* AddTransactionViewController.swift in Sources */,
 				4025632129986C31000B6036 /* Listener.swift in Sources */,
+				405448B429B2177200143F4F /* AnalyticsViewController.swift in Sources */,
 				40E1301129A0864300D2A366 /* CreateEditAccountViewControllerView.swift in Sources */,
+				405448B229B2176A00143F4F /* AnalyticsViewModel.swift in Sources */,
 				40E1300529A06B2B00D2A366 /* WalletViewControllerView.swift in Sources */,
 				40ED78D829967D1700EF36FF /* AddTransactionViewModel.swift in Sources */,
 				40E1300C29A07E9900D2A366 /* AccountInfoViewModel.swift in Sources */,
 				40C960FF299D78DE004F8963 /* SelectedAccountViewModel.swift in Sources */,
 				40ED78D329967B0800EF36FF /* TabBarViewModel.swift in Sources */,
+				405448B629B2177D00143F4F /* AnalyticsViewControllerView.swift in Sources */,
 				40D50C5229B1724900625F43 /* SettingCell.swift in Sources */,
 				40D50C4C29B1629900625F43 /* SettingsViewControllerView.swift in Sources */,
 				40C960FA299D717B004F8963 /* UserDefaults.swift in Sources */,
@@ -439,9 +476,12 @@
 				40ED78DC29967D9900EF36FF /* WalletViewModel.swift in Sources */,
 				40ED78D129967AF300EF36FF /* TabBarControllerView.swift in Sources */,
 				40E1300829A07E4300D2A366 /* AccountInfoViewController.swift in Sources */,
+				405448AF29B2147000143F4F /* DebtViewControllerView.swift in Sources */,
 				40D50C4829B1627C00625F43 /* SettingsViewModel.swift in Sources */,
+				405448AD29B2143300143F4F /* DebtViewModel.swift in Sources */,
 				40A9F94F29B02BE100967122 /* EmptyView.swift in Sources */,
 				40E1300A29A07E6F00D2A366 /* AccountInfoViewControllerView.swift in Sources */,
+				405448AB29B2141000143F4F /* DebtViewController.swift in Sources */,
 				40ED78BC29967A1E00EF36FF /* SceneDelegate.swift in Sources */,
 				40C960FC299D71A1004F8963 /* Models.swift in Sources */,
 				40D50C4A29B1628900625F43 /* SettingsViewController.swift in Sources */,
@@ -592,6 +632,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 526TNP28LN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DiplomProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -619,6 +660,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 526TNP28LN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DiplomProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

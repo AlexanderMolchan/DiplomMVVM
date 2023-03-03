@@ -63,6 +63,21 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         contentView.tableView.deselectRow(at: indexPath, animated: true)
+        let type = viewModel.settingPoints[indexPath.section][indexPath.row]
+        switch type {
+            case .incomeTypes:
+                pushToEditVc(flowType: .incoming)
+            case .spendTypes:
+                pushToEditVc(flowType: .spending)
+            default: break
+        }
+    }
+    
+    private func pushToEditVc(flowType: CashFlowType) {
+        let editIncomeViewModel = SelectedAccountViewModel(controllerType: .spendCategory, controllerSubType: .edit, cashFlowType: flowType, realm: viewModel.realm)
+        let editFlowVc = SelectedAccountViewController(viewModel: editIncomeViewModel)
+        editFlowVc.title = flowType.name
+        navigationController?.pushViewController(editFlowVc, animated: true)
     }
     
 }

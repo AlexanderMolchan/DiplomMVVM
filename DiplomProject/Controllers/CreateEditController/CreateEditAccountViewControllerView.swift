@@ -13,7 +13,7 @@ class CreateEditAccountViewControllerView: UIView {
     private let summLabel = UILabel()
     private let messageLabel = UILabel()
     private let isCreditOrNotLabel = UILabel()
-
+    
     let titleLabel = UILabel()
     let nameField = UITextField()
     let summField = UITextField()
@@ -27,7 +27,7 @@ class CreateEditAccountViewControllerView: UIView {
         configurateUI()
         addTapGesture()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -50,7 +50,7 @@ class CreateEditAccountViewControllerView: UIView {
             make.top.equalTo(titleLabel).inset(60)
             make.leading.trailing.equalToSuperview().inset(universalInset)
         }
-
+        
         nameField.layer.borderWidth = 1
         nameField.layer.borderColor = UIColor.systemCyan.cgColor
         nameField.layer.cornerRadius = 10
@@ -109,7 +109,7 @@ class CreateEditAccountViewControllerView: UIView {
             make.centerY.equalTo(isCreditOrNotLabel.snp.centerY)
             make.trailing.equalToSuperview().inset(universalInset)
         }
-
+        
         
         dismissButton = UIButton(type: .system)
         dismissButton.setTitle("Отмена", for: .normal)
@@ -157,6 +157,7 @@ class CreateEditAccountViewControllerView: UIView {
     
     func emptyFieldAnimation(field: UITextField?) {
         guard let field else { return }
+        errorFeedback()
         shakeAnimation(view: field)
         UIView.animate(withDuration: 0.3) {
             field.layer.borderColor = UIColor.systemRed.cgColor
@@ -176,6 +177,11 @@ class CreateEditAccountViewControllerView: UIView {
         animation.duration = 0.8
         animation.values = [0, -10.0, 10.0, -10.0, 10.0, -10.0, 10.0, 0]
         view.layer.add(animation, forKey: nil)
+    }
+    
+    private func errorFeedback() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.error)
     }
     
 }
