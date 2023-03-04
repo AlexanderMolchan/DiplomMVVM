@@ -55,6 +55,7 @@ class AddTransactionViewController: UIViewController {
     private func controllerConfigurate() {
         view.backgroundColor = .white
         navigationSettings(title: "Добавить")
+        deleteAll(sender: contentView.deleteButton)
     }
     
     private func bindElements() {
@@ -132,11 +133,11 @@ class AddTransactionViewController: UIViewController {
     }
     
     @objc private func actionForDeleteButton(sender: UIButton) {
+ //       deleteAll(sender: sender)
         viewModel.deleteAction()
         contentView.cashLabel.layer.add(contentView.bounceAnimation, forKey: nil)
         sender.layer.add(contentView.bounceAnimation, forKey: nil)
         contentView.hapticFeedback()
-        deleteAll()
     }
     
     private func addSegmentAction() {
@@ -156,10 +157,10 @@ class AddTransactionViewController: UIViewController {
         }
     }
     
-    private func deleteAll() {
-        let longPressure = UILongPressGestureRecognizer(target: self, action: #selector(longPress(gesture: )))
+    private func deleteAll(sender: UIButton) {
+        let longPressure = UILongPressGestureRecognizer(target: self, action: #selector(longPress(gesture:)))
         longPressure.minimumPressDuration = 0.75
-        contentView.deleteButton.addGestureRecognizer(longPressure)
+        sender.addGestureRecognizer(longPressure)
     }
     
     @objc private func longPress(gesture: UILongPressGestureRecognizer) {
