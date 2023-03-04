@@ -101,6 +101,7 @@ class AddTransactionViewControllerView: UIView {
         zeroButton = setButtonWith(title: "0")
         deleteButton = setButtonWith(title: "")
         deleteButton.setImage(UIImage(systemName: "delete.left.fill"), for: .normal)
+        deleteButton.isEnabled = false
         
         firstButtonStack.addArrangedSubview(dotButton)
         firstButtonStack.addArrangedSubview(zeroButton)

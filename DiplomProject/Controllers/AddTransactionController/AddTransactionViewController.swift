@@ -39,7 +39,6 @@ class AddTransactionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         invalidateCheck()
-        bindElements()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,12 +61,22 @@ class AddTransactionViewController: UIViewController {
         viewModel.cashFieldText.bind { [weak self] text in
             self?.contentView.cashLabel.text = text
         }
+        
         viewModel.selectedAccountName.bind { [weak self] name in
             self?.contentView.selectedAccountTypeButton.setTitle(name ?? "Выберите аккаунт", for: .normal)
         }
         
         viewModel.selectedCategoryName.bind { [weak self] name in
             self?.contentView.selectedSpendCategoryButton.setTitle(name ?? "Категория", for: .normal)
+        }
+        
+        viewModel.actionButtonIsEnabled.bind { [weak self] enabled in
+            self?.contentView.buttonsArray.forEach { button in
+                button.isEnabled = enabled
+            }
+        }
+        viewModel.deleteButtonIsEnabled.bind { [weak self] enabled in
+            self?.contentView.deleteButton.isEnabled = enabled
         }
     }
     
@@ -82,13 +91,34 @@ class AddTransactionViewController: UIViewController {
         contentView.eightButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
         contentView.nineButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
         contentView.zeroButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
-        contentView.deleteButton.addTarget(self, action: #selector(actionForDeleteButton), for: .touchUpInside)
-        contentView.dotButton.addTarget(self, action: #selector(actionForDotButton), for: .touchUpInside)
-        contentView.deleteButton.isEnabled = false
+        contentView.dotButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
+        contentView.deleteButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
         
         contentView.selectedAccountTypeButton.addTarget(self, action: #selector(selectAccount), for: .touchUpInside)
         contentView.selectedSpendCategoryButton.addTarget(self, action: #selector(selectCategory), for: .touchUpInside)
         contentView.enterButton.addTarget(self, action: #selector(enterAction), for: .touchUpInside)
+    }
+    
+    @objc private func actionForButton(sender: UIButton) {
+        switch sender {
+            case contentView.oneButton:         viewModel.buttonAction(number: "1")
+            case contentView.twoButton:         viewModel.buttonAction(number: "2")
+            case contentView.threeButton:       viewModel.buttonAction(number: "3")
+            case contentView.fourButton:        viewModel.buttonAction(number: "4")
+            case contentView.fiveButton:        viewModel.buttonAction(number: "5")
+            case contentView.sixButton:         viewModel.buttonAction(number: "6")
+            case contentView.sevenButton:       viewModel.buttonAction(number: "7")
+            case contentView.eightButton:       viewModel.buttonAction(number: "8")
+            case contentView.nineButton:        viewModel.buttonAction(number: "9")
+            case contentView.zeroButton:        viewModel.buttonAction(number: "0")
+            case contentView.dotButton:         viewModel.actionForDotButton()
+            case contentView.deleteButton:      viewModel.deleteAction()
+            default: break
+        }
+        contentView.cashLabel.layer.add(contentView.bounceAnimation, forKey: nil)
+        sender.layer.add(contentView.bounceAnimation, forKey: nil)
+        contentView.removeErrorLabel()
+        contentView.hapticFeedback()
     }
     
     @objc private func enterAction() {
@@ -107,6 +137,20 @@ class AddTransactionViewController: UIViewController {
         }
         viewModel.enterAction()
         contentView.hapticFeedback()
+    }
+    
+    private func deleteAll(sender: UIButton) {
+        let longPressure = UILongPressGestureRecognizer(target: self, action: #selector(longPress(gesture:)))
+        longPressure.minimumPressDuration = 0.75
+        sender.addGestureRecognizer(longPressure)
+    }
+    
+    @objc private func longPress(gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            viewModel.clearAll()
+            contentView.hapticFeedback()
+            contentView.labelAnimate(subTupe: .fromRight)
+        }
     }
     
     @objc private func selectAccount() {
@@ -132,14 +176,6 @@ class AddTransactionViewController: UIViewController {
         navigationController?.present(selectedCategoryVc, animated: true)
     }
     
-    @objc private func actionForDeleteButton(sender: UIButton) {
- //       deleteAll(sender: sender)
-        viewModel.deleteAction()
-        contentView.cashLabel.layer.add(contentView.bounceAnimation, forKey: nil)
-        sender.layer.add(contentView.bounceAnimation, forKey: nil)
-        contentView.hapticFeedback()
-    }
-    
     private func addSegmentAction() {
         contentView.controllerTypeSegmentControl.addTarget(self, action: #selector(segmentChangedValue), for: .valueChanged)
     }
@@ -155,60 +191,6 @@ class AddTransactionViewController: UIViewController {
                 viewModel.selectedCategory = nil
             default: break
         }
-    }
-    
-    private func deleteAll(sender: UIButton) {
-        let longPressure = UILongPressGestureRecognizer(target: self, action: #selector(longPress(gesture:)))
-        longPressure.minimumPressDuration = 0.75
-        sender.addGestureRecognizer(longPressure)
-    }
-    
-    @objc private func longPress(gesture: UILongPressGestureRecognizer) {
-        if gesture.state == .began {
-            viewModel.clearAll()
-            contentView.hapticFeedback()
-            contentView.labelAnimate(subTupe: .fromRight)
-        }
-    }
-    
-    @objc private func actionForButton(sender: UIButton) {
-        viewModel.actionButtonIsEnabled.bind { [weak self] enabled in
-            self?.contentView.buttonsArray.forEach { button in
-                button.isEnabled = enabled
-            }
-        }
-        viewModel.deleteButtonIsEnabled.bind { [weak self] enabled in
-            self?.contentView.deleteButton.isEnabled = enabled
-        }
-        
-        var num = ""
-        switch sender {
-            case contentView.oneButton:         num = "1"
-            case contentView.twoButton:         num = "2"
-            case contentView.threeButton:       num = "3"
-            case contentView.fourButton:        num = "4"
-            case contentView.fiveButton:        num = "5"
-            case contentView.sixButton:         num = "6"
-            case contentView.sevenButton:       num = "7"
-            case contentView.eightButton:       num = "8"
-            case contentView.nineButton:        num = "9"
-            case contentView.zeroButton:        num = "0"
-            default: break
-        }
-        viewModel.buttonAction(number: num)
-        
-        contentView.cashLabel.layer.add(contentView.bounceAnimation, forKey: nil)
-        sender.layer.add(contentView.bounceAnimation, forKey: nil)
-        contentView.removeErrorLabel()
-        contentView.hapticFeedback()
-    }
-    
-    @objc private func actionForDotButton(sender: UIButton) {
-        viewModel.actionForDotButton()
-        contentView.cashLabel.layer.add(contentView.bounceAnimation, forKey: nil)
-        sender.layer.add(contentView.bounceAnimation, forKey: nil)
-        contentView.removeErrorLabel()
-        contentView.hapticFeedback()
     }
     
 }

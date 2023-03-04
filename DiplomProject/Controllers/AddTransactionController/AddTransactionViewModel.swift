@@ -61,12 +61,6 @@ class AddTransactionViewModel {
         }
     }
     
-    func clearAll() {
-        textForCashLabel.removeAll()
-        numbersCount = 0
-        addLimit()
-    }
-    
     func actionForDotButton() {
         if textForCashLabel.isEmpty {
             textForCashLabel += "0."
@@ -81,20 +75,6 @@ class AddTransactionViewModel {
             limitForDot = textForCashLabel.count + 2
             addNumbersCount(with: 1)
         }
-    }
-    
-    private func addNumbersCount(with num: Int) {
-        numbersCount += num
-        addLimit()
-    }
-    
-    private func addLimit() {
-        var limit = numbersCount < 11
-        if textForCashLabel.contains(".") {
-            limit = numbersCount < limitForDot
-        }
-        actionButtonIsEnabled.value = limit
-        deleteButtonIsEnabled.value = numbersCount > 0
     }
     
     func enterAction() {
@@ -113,6 +93,26 @@ class AddTransactionViewModel {
         }
     }
     
+    func clearAll() {
+        textForCashLabel.removeAll()
+        numbersCount = 0
+        addLimit()
+    }
+
+    private func addNumbersCount(with num: Int) {
+        numbersCount += num
+        addLimit()
+    }
+    
+    private func addLimit() {
+        var limit = numbersCount < 11
+        if textForCashLabel.contains(".") {
+            limit = numbersCount < limitForDot
+        }
+        actionButtonIsEnabled.value = limit
+        deleteButtonIsEnabled.value = numbersCount > 0
+    }
+
     func accountInvalidatedCheck() {
         guard let invalidAccount = selectedAccount?.isInvalidated else { return }
         if invalidAccount {
