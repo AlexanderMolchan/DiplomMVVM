@@ -45,6 +45,10 @@ class AccountModel: Object {
         return summ
     }
     
+    var currentSummString: String {
+        return String(format: "%.2f", currentSumm)
+    }
+    
     convenience init(name: String, creationgSumm: Double, isCreditAccount: Bool) {
         self.init()
         self.id = UUID().uuidString

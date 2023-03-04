@@ -16,7 +16,7 @@ class TabBarViewModel {
     
     func setViewControllers() -> [UIViewController] {
         let addTransactionViewModel = AddTransactionViewModel(realm: realm)
-        let walletViewModel = WalletViewModel(realm: realm)
+        let walletViewModel = WalletViewModel(realm: realm, type: .wallet)
         let analyticsViewModel = AnalyticsViewModel(realm: realm)
         let debtViewModel = DebtViewModel(realm: realm)
         let settingsViewModel = SettingsViewModel(realm: realm)

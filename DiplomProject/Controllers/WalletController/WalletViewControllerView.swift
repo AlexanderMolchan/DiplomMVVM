@@ -9,14 +9,16 @@ import UIKit
 import SnapKit
 
 class WalletViewControllerView: UIView {
+    private let controllerType: ControllerType
+    private let commentLabel = UILabel()
     
     let totalSummLabel = UILabel()
     var tableView = UITableView()
-    private let emptyView = EmptyView()
-    private let commentLabel = UILabel()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    let emptyView = EmptyView()
+
+    init(type: ControllerType) {
+        self.controllerType = type
+        super.init(frame: .zero)
         configurateUI()
     }
     
@@ -25,13 +27,26 @@ class WalletViewControllerView: UIView {
     }
     
     private func configurateUI() {
-        configurateLabels()
-        configurateTableView()
+        viewSettings()
+        layoutElements()
     }
     
-    private func configurateLabels() {
+    private func viewSettings() {
+        backgroundColor = .white
+        addSubview(tableView)
         addSubview(totalSummLabel)
         addSubview(commentLabel)
+    }
+    
+    private func layoutElements() {
+        switch controllerType {
+            case .account:
+                tableView = UITableView(frame: .zero, style: .plain)
+                commentLabel.text = "Сумма на текущем аккаунте"
+            default:
+                tableView = UITableView(frame: .zero, style: .insetGrouped)
+                commentLabel.text = "Общий баланс"
+        }
         
         totalSummLabel.font = UIFont(name: "Hiragino Maru Gothic ProN W4", size: 32)
         totalSummLabel.textAlignment = .center
@@ -44,15 +59,12 @@ class WalletViewControllerView: UIView {
         commentLabel.font = UIFont(name: "Marker Felt Thin", size: 17)
         commentLabel.textAlignment = .center
         commentLabel.textColor = .systemCyan
-        commentLabel.text = "Общий баланс"
+  
         commentLabel.snp.makeConstraints { make in
             make.top.equalTo(totalSummLabel.snp.bottom).offset(5)
             make.leading.trailing.equalToSuperview()
         }
-    }
-    
-    private func configurateTableView() {
-        tableView = UITableView(frame: .zero, style: .insetGrouped)
+        
         addSubview(tableView)
         tableView.backgroundColor = .white
         tableView.snp.makeConstraints { make in
@@ -63,7 +75,7 @@ class WalletViewControllerView: UIView {
     
     func addEmptyView() {
         addSubview(emptyView)
-        emptyView.setLabelsText(top: "У вас нет активных счетов.", bottom: "Создайте новые счета, и они будут отображаться здесь.")
+        emptyView.setLabelsText(top: controllerType.emptyViewTitle, bottom: controllerType.emptyViewMessage)
         emptyView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

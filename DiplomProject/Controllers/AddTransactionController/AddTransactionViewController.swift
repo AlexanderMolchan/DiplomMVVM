@@ -206,6 +206,7 @@ class AddTransactionViewController: UIViewController {
         viewModel.actionForDotButton()
         contentView.cashLabel.layer.add(contentView.bounceAnimation, forKey: nil)
         sender.layer.add(contentView.bounceAnimation, forKey: nil)
+        contentView.removeErrorLabel()
         contentView.hapticFeedback()
     }
     

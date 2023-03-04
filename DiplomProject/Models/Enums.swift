@@ -58,6 +58,24 @@ enum ControllerType {
     case edit
     case create
     case choose
+    case wallet
+    case account
+    
+    var emptyViewTitle: String {
+        switch self {
+            case .wallet:   return "У вас нет активных счетов."
+            case .account:  return "На данном счете нет транзакций."
+            default:        return "Title not found"
+        }
+    }
+    
+    var emptyViewMessage: String {
+        switch self {
+            case .wallet:   return "Создайте новые счета, и они будут отображаться здесь."
+            case .account:  return "Добавьте транзакции, чтобы они отображались здесь."
+            default:        return "Message not found"
+        }
+    }
 }
 
 // MARK: -
