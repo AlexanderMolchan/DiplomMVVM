@@ -33,7 +33,6 @@ class AddTransactionViewController: UIViewController {
         controllerConfigurate()
         addButtonsAction()
         bindElements()
-        addSegmentAction()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +74,7 @@ class AddTransactionViewController: UIViewController {
                 button.isEnabled = enabled
             }
         }
+        
         viewModel.deleteButtonIsEnabled.bind { [weak self] enabled in
             self?.contentView.deleteButton.isEnabled = enabled
         }
@@ -94,9 +94,16 @@ class AddTransactionViewController: UIViewController {
         contentView.dotButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
         contentView.deleteButton.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
         
+        contentView.controllerTypeSegmentControl.addTarget(self, action: #selector(segmentChangedValue), for: .valueChanged)
         contentView.selectedAccountTypeButton.addTarget(self, action: #selector(selectAccount), for: .touchUpInside)
         contentView.selectedSpendCategoryButton.addTarget(self, action: #selector(selectCategory), for: .touchUpInside)
         contentView.enterButton.addTarget(self, action: #selector(enterAction), for: .touchUpInside)
+    }
+    
+    private func deleteAll(sender: UIButton) {
+        let longPressure = UILongPressGestureRecognizer(target: self, action: #selector(longPress(gesture:)))
+        longPressure.minimumPressDuration = 0.75
+        sender.addGestureRecognizer(longPressure)
     }
     
     @objc private func actionForButton(sender: UIButton) {
@@ -139,12 +146,6 @@ class AddTransactionViewController: UIViewController {
         contentView.hapticFeedback()
     }
     
-    private func deleteAll(sender: UIButton) {
-        let longPressure = UILongPressGestureRecognizer(target: self, action: #selector(longPress(gesture:)))
-        longPressure.minimumPressDuration = 0.75
-        sender.addGestureRecognizer(longPressure)
-    }
-    
     @objc private func longPress(gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began {
             viewModel.clearAll()
@@ -174,10 +175,6 @@ class AddTransactionViewController: UIViewController {
         guard let sheet = selectedCategoryVc.sheetPresentationController else { return }
         sheet.detents = [.medium(), .large()]
         navigationController?.present(selectedCategoryVc, animated: true)
-    }
-    
-    private func addSegmentAction() {
-        contentView.controllerTypeSegmentControl.addTarget(self, action: #selector(segmentChangedValue), for: .valueChanged)
     }
     
     @objc private func segmentChangedValue() {
