@@ -133,6 +133,7 @@
 		405448B029B2175400143F4F /* AnalyticsController */ = {
 			isa = PBXGroup;
 			children = (
+				40DC238629B5571D002D10A6 /* AnalyticsGenericCell */,
 				405448B129B2176A00143F4F /* AnalyticsViewModel.swift */,
 				405448B329B2177200143F4F /* AnalyticsViewController.swift */,
 				405448B529B2177D00143F4F /* AnalyticsViewControllerView.swift */,
@@ -200,6 +201,13 @@
 				40D50C5129B1724900625F43 /* SettingCell.swift */,
 			);
 			path = SettingCell;
+			sourceTree = "<group>";
+		};
+		40DC238629B5571D002D10A6 /* AnalyticsGenericCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AnalyticsGenericCell;
 			sourceTree = "<group>";
 		};
 		40E1300F29A0861900D2A366 /* CreateEditController */ = {

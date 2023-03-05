@@ -29,10 +29,12 @@ class SelectedAccountViewController: UIViewController {
         super.viewDidLoad()
         tableViewSettings()
         emptyViewSettings()
+        setupCreateMenu()
     }
     
     private func emptyViewSettings() {
         emptyView.removeFromSuperview()
+        tableView.reloadData()
         switch viewModel.controllerType {
             case .account:
                 if viewModel.accountArray.isEmpty {
@@ -40,12 +42,12 @@ class SelectedAccountViewController: UIViewController {
                 }
             case .spendCategory:
                 if viewModel.cashFlowCategoryArray.isEmpty {
-                    createEmptyView(topTitle: "У вас нет категорий транзакций.", bottomTitle: "Перейдите в настройки, чтобы создать новые категории", type: .spendCategory)
+                    createEmptyView(topTitle: "У вас нет активных категорий.", bottomTitle: "Перейдите в настройки, чтобы создать новые категории.", type: .spendCategory)
                 }
         }
     }
     
-    private func createEmptyView(topTitle: String, bottomTitle: String, type: SelectedType) {
+    private func createEmptyView(topTitle: String, bottomTitle: String, type: AccountOrCategoryType) {
         emptyView.setLabelsText(top: topTitle, bottom: bottomTitle)
         view.addSubview(emptyView)
         switch type {
@@ -85,7 +87,8 @@ class SelectedAccountViewController: UIViewController {
     }
     
     private func updateCategory(at index: IndexPath) {
-        
+        let viewModel = CreateEditViewModel(realm: viewModel.realm, currentCategory: viewModel.cashFlowCategoryArray[index.row], controllerType: .edit, objectType: .spendCategory, categoryType: viewModel.cashFlowType)
+        pushToVcWith(model: viewModel)
     }
     
     private func deleteCategory(at indexPath: IndexPath) {
@@ -96,6 +99,33 @@ class SelectedAccountViewController: UIViewController {
                 self?.emptyViewSettings()
             }
         }
+    }
+    
+    @objc private func createCategory() {
+        let viewModel = CreateEditViewModel(realm: viewModel.realm, controllerType: .create, objectType: .spendCategory, categoryType: viewModel.cashFlowType)
+        pushToVcWith(model: viewModel)
+    }
+    
+    private func setupCreateMenu() {
+        switch viewModel.controllerSubType {
+            case .edit:
+                let createNewCategory = UIAction(title: "Создать новую категорию", image: UIImage(systemName: "plus.app")) { [weak self] _ in
+                    self?.createCategory()
+                }
+                let topMenu = UIMenu(title: "Дополнительно", options: .displayInline, children: [createNewCategory])
+                let rightButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), menu: topMenu)
+                navigationItem.rightBarButtonItem = rightButton
+            default: break
+        }
+    }
+    
+    private func pushToVcWith(model: CreateEditViewModel) {
+        let createEditVc = CreateEditAccountViewController(viewModel: model)
+        createEditVc.dismissClosure = {
+            self.viewModel.setupFlowData()
+            self.emptyViewSettings()
+        }
+        present(createEditVc, animated: true)
     }
     
 }
@@ -142,16 +172,20 @@ extension SelectedAccountViewController: UITableViewDelegate, UITableViewDataSou
 
 extension SelectedAccountViewController {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let identifier = "\(indexPath.row)" as NSString
-        return UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { _ in
-            let updateAction = UIAction(title: "Редактировать", image: UIImage(systemName: "square.and.pencil")) { [weak self] _ in
-                self?.updateCategory(at: indexPath)
-                
+        if viewModel.controllerSubType == .edit {
+            let identifier = "\(indexPath.row)" as NSString
+            return UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { _ in
+                let updateAction = UIAction(title: "Редактировать", image: UIImage(systemName: "square.and.pencil")) { [weak self] _ in
+                    self?.updateCategory(at: indexPath)
+                    
+                }
+                let deleteAction = UIAction(title: "Удалить", image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
+                    self?.deleteCategory(at: indexPath)
+                }
+                return UIMenu(children: [updateAction, deleteAction])
             }
-            let deleteAction = UIAction(title: "Удалить", image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
-                self?.deleteCategory(at: indexPath)
-            }
-            return UIMenu(children: [updateAction, deleteAction])
+        } else {
+            return nil
         }
     }
     

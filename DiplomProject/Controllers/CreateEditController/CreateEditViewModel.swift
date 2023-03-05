@@ -10,12 +10,18 @@ import Foundation
 class CreateEditViewModel {
     let realm: RealmManager
     var currentAccount: AccountModel?
+    var currentCategory: CashFlowCategory?
     var controllerType: ControllerType
+    var objectType: AccountOrCategoryType
+    var categoryType: CashFlowType?
     
-    init(realm: RealmManager, currentAccount: AccountModel? = nil, controllerType: ControllerType) {
+    init(realm: RealmManager, currentAccount: AccountModel? = nil, currentCategory: CashFlowCategory? = nil, controllerType: ControllerType, objectType: AccountOrCategoryType, categoryType: CashFlowType? = nil) {
         self.realm = realm
         self.currentAccount = currentAccount
+        self.currentCategory = currentCategory
         self.controllerType = controllerType
+        self.objectType = objectType
+        self.categoryType = categoryType
     }
     
     func createAccount(name: String, summ: Double, isCredit: Bool?) {
@@ -35,6 +41,20 @@ class CreateEditViewModel {
                 self.currentAccount?.name = name
                 self.currentAccount?.creationgSumm = newAccountSumm
                 self.currentAccount?.isCreditAccount = isCredit!
+            }
+        }
+    }
+    
+    func createCategory(name: String) {
+        let isSpendingCategory = categoryType == .spending
+        let newCategory = CashFlowCategory(name: name, isSpendingFlow: isSpendingCategory)
+        realm.write(object: newCategory)
+    }
+    
+    func updateCategory(name: String) {
+        realm.update { realm in
+            try? realm.write {
+                self.currentCategory?.name = name
             }
         }
     }

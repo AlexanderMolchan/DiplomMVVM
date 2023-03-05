@@ -136,7 +136,7 @@ class WalletViewController: UIViewController {
     }
     
     private func pushTo(_ type: ControllerType, popVc: Bool = false) {
-        let viewModel = CreateEditViewModel(realm: viewModel.realm, currentAccount: viewModel.currentAccount, controllerType: type)
+        let viewModel = CreateEditViewModel(realm: viewModel.realm, currentAccount: viewModel.currentAccount, controllerType: type, objectType: .account)
         let createEditVc = CreateEditAccountViewController(viewModel: viewModel)
         createEditVc.dismissClosure = {
             self.viewModel.setupDataSource()

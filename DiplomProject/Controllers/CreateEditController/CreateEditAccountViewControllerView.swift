@@ -152,6 +152,15 @@ class CreateEditAccountViewControllerView: UIView {
         summField.endEditing(true)
     }
     
+    func hideElements() {
+        summLabel.isHidden = true
+        summField.isHidden = true
+        messageLabel.isHidden = true
+        isCreditOrNotLabel.isHidden = true
+        switcher.isHidden = true
+        nameLabel.text = "Введите имя категории:"
+    }
+    
     // MARK: -
     // MARK: - Animations
     
