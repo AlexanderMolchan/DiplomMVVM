@@ -41,7 +41,7 @@ enum AccountType: String {
 // MARK: -
 // MARK: - Controller ENUMs
 
-enum SelectedType {
+enum AccountOrCategoryType {
     case account
     case spendCategory
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CreateEditAccountViewController: UIViewController {
     private let viewModel: CreateEditViewModel
@@ -38,14 +39,25 @@ class CreateEditAccountViewController: UIViewController {
     private func setupUI() {
         switch viewModel.controllerType {
             case .create:
-                contentView.titleLabel.text = "Создать новый аккаунт"
+                if viewModel.objectType == .account {
+                    contentView.titleLabel.text = "Создать новый аккаунт"
+                } else {
+                    contentView.titleLabel.text = "Создать новую категорию"
+                    contentView.hideElements()
+                }
             case .edit:
-                contentView.titleLabel.text = "Редактировать аккаунт"
-                guard let doubleSumm = viewModel.currentAccount?.currentSumm,
-                      let isCreditAccount = viewModel.currentAccount?.isCreditAccount else { return }
-                contentView.nameField.text = viewModel.currentAccount?.name
-                contentView.summField.text = "\(Int(doubleSumm))"
-                contentView.switcher.isOn = isCreditAccount
+                if viewModel.objectType == .account {
+                    contentView.titleLabel.text = "Редактировать аккаунт"
+                    guard let doubleSumm = viewModel.currentAccount?.currentSumm,
+                          let isCreditAccount = viewModel.currentAccount?.isCreditAccount else { return }
+                    contentView.nameField.text = viewModel.currentAccount?.name
+                    contentView.summField.text = "\(Int(doubleSumm))"
+                    contentView.switcher.isOn = isCreditAccount
+                } else {
+                    contentView.titleLabel.text = "Редактировать категорию"
+                    contentView.nameField.text = viewModel.currentCategory?.name
+                    contentView.hideElements()
+                }
             default: break
         }
         contentView.nameField.delegate = self
@@ -53,17 +65,22 @@ class CreateEditAccountViewController: UIViewController {
     
     private func addActions() {
         contentView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
-        contentView.confirmButton.addTarget(self, action: #selector(confirmAction), for: .touchUpInside)
+        switch viewModel.objectType {
+            case .account:
+                contentView.confirmButton.addTarget(self, action: #selector(confirmActionForAccount), for: .touchUpInside)
+            case .spendCategory:
+                contentView.confirmButton.addTarget(self, action: #selector(confirmActionForCategory), for: .touchUpInside)
+        }
     }
     
     @objc private func dismissAction() {
         dismiss(animated: true)
     }
     
-    @objc private func confirmAction() {
+    @objc private func confirmActionForAccount() {
         guard !contentView.nameField.text.isEmptyOrNil,
               let name = contentView.nameField.text,
-              !repeatedNameCheck(name: name) else {
+              !repeatedNameCheck(name: name, type: .account) else {
             contentView.emptyFieldAnimation(field: contentView.nameField)
             return
         }
@@ -84,31 +101,80 @@ class CreateEditAccountViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func repeatedNameCheck(name: String) -> Bool {
-        let alert = UIAlertController(title: "Счет с таким именем уже существует!", message: "Выберите другое имя.", preferredStyle: .alert)
-        let okBtn = UIAlertAction(title: "Хорошо", style: .cancel)
-        alert.addAction(okBtn)
-        
-        var accauntNames = viewModel.realm.read(type: AccountModel.self).map { account in
-            return account.name.lowercased()
+    @objc private func confirmActionForCategory() {
+        guard !contentView.nameField.text.isEmptyOrNil,
+              let name = contentView.nameField.text,
+        !repeatedNameCheck(name: name, type: .spendCategory) else {
+            contentView.emptyFieldAnimation(field: contentView.nameField)
+            return
         }
-        let lowerCasedName = name.lowercased()
-        let currentNameLowerCased = viewModel.currentAccount?.name.lowercased()
-        
         switch viewModel.controllerType {
-            case .edit:
-                accauntNames = accauntNames.filter({ $0 != currentNameLowerCased })
+            case .create: viewModel.createCategory(name: name)
+            case .edit:   viewModel.updateCategory(name: name)
             default: break
         }
-        
-        if accauntNames.contains(lowerCasedName) {
+        dismissClosure?()
+        dismiss(animated: true)
+    }
+    
+//    private func repeatedNameCheck(name: String) -> Bool {
+//        let alert = UIAlertController(title: "Счет с таким именем уже существует!", message: "Выберите другое имя.", preferredStyle: .alert)
+//        let okBtn = UIAlertAction(title: "Хорошо", style: .cancel)
+//        alert.addAction(okBtn)
+//
+//        var accauntNames = viewModel.realm.read(type: AccountModel.self).map { account in
+//            return account.name.lowercased()
+//        }
+//        let lowerCasedName = name.lowercased()
+//        let currentNameLowerCased = viewModel.currentAccount?.name.lowercased()
+//
+//        switch viewModel.controllerType {
+//            case .edit:
+//                accauntNames = accauntNames.filter({ $0 != currentNameLowerCased })
+//            default: break
+//        }
+//
+//        if accauntNames.contains(lowerCasedName) {
+//            present(alert, animated: true)
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+    
+    private func repeatedNameCheck(name: String, type: AccountOrCategoryType) -> Bool {
+        let alert = UIAlertController(title: "Такое имя уже существует!", message: "Выберите другое имя.", preferredStyle: .alert)
+        let okBtn = UIAlertAction(title: "Хорошо", style: .cancel)
+        alert.addAction(okBtn)
+        var allNames = [String]()
+        var lowerCasedName = String()
+        var currentName: String?
+        switch type {
+            case .account:
+                 allNames = viewModel.realm.read(type: AccountModel.self).map { account in
+                    return account.name.lowercased()
+                }
+                 lowerCasedName = name.lowercased()
+                 currentName = viewModel.currentAccount?.name.lowercased()
+            case .spendCategory:
+                allNames = viewModel.realm.read(type: CashFlowCategory.self).map { category in
+                    return category.name.lowercased()
+                }
+                lowerCasedName = name.lowercased()
+                currentName = viewModel.currentCategory?.name.lowercased()
+        }
+        switch viewModel.controllerType {
+            case .edit:
+                allNames = allNames.filter({ $0 != currentName })
+            default: break
+        }
+        if allNames.contains(lowerCasedName) {
             present(alert, animated: true)
             return true
         } else {
             return false
         }
     }
-    
 }
 
 extension CreateEditAccountViewController: UITextFieldDelegate {

@@ -9,6 +9,8 @@ import UIKit
 
 class DebtViewControllerView: UIView {
     
+    private let emptyView = EmptyView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configurateUI()
@@ -26,6 +28,11 @@ class DebtViewControllerView: UIView {
     
     private func layoutElements() {
         backgroundColor = .white
+        emptyView.setLabelsText(top: "Раздел временно недоступен.", bottom: "Следите за обновлениями.")
+        addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     private func makeConstraints() {
