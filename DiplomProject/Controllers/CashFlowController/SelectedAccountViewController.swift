@@ -65,6 +65,11 @@ class SelectedAccountViewController: UIViewController {
                     }
                 }
         }
+        emptyView.alpha = 0
+        UIView.animate(withDuration: 0.4) { [weak self] in
+            guard let self else { return }
+            self.emptyView.alpha = 1
+        }
     }
     
     private func tableViewSettings() {
@@ -78,6 +83,21 @@ class SelectedAccountViewController: UIViewController {
             make.leading.trailing.top.bottom.equalToSuperview()
         }
     }
+    
+    private func updateCategory(at index: IndexPath) {
+        
+    }
+    
+    private func deleteCategory(at indexPath: IndexPath) {
+        showAlert(title: "Удалить категорию?", message: "Удалив категорию \"\(viewModel.cashFlowCategoryArray[indexPath.row].name)\", вы удалите транзакции по этой категории.") { [weak self] in
+            self?.tableView.performBatchUpdates { [weak self] in
+                self?.viewModel.deleteCategoryFromRealm(indexPath: indexPath)
+                self?.tableView.deleteRows(at: [indexPath], with: .fade)
+                self?.emptyViewSettings()
+            }
+        }
+    }
+    
 }
 
 extension SelectedAccountViewController: UITableViewDelegate, UITableViewDataSource {
@@ -116,8 +136,40 @@ extension SelectedAccountViewController: UITableViewDelegate, UITableViewDataSou
                 tableView.deselectRow(at: indexPath, animated: true)
             default: break
         }
+    }
 
+}
+
+extension SelectedAccountViewController {
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let identifier = "\(indexPath.row)" as NSString
+        return UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { _ in
+            let updateAction = UIAction(title: "Редактировать", image: UIImage(systemName: "square.and.pencil")) { [weak self] _ in
+                self?.updateCategory(at: indexPath)
+                
+            }
+            let deleteAction = UIAction(title: "Удалить", image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
+                self?.deleteCategory(at: indexPath)
+            }
+            return UIMenu(children: [updateAction, deleteAction])
+        }
     }
     
+    
+    
+    // beautifull pop vc
+//    func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+//        guard
+//          let identifier = configuration.identifier as? String,
+//          let index = Int(identifier)
+//          else {
+//            return
+//        }
+//        animator.addCompletion {
+//            let vc = AddTransactionViewController(viewModel: AddTransactionViewModel(realm: self.viewModel.realm))
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
+//    }
+
 }
  

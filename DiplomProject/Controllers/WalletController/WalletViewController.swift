@@ -115,16 +115,16 @@ class WalletViewController: UIViewController {
     }
     
     private func accountMenu() {
-        let updateAccount = UIAction(title: "Редактировать счет", image: UIImage(systemName: "list.bullet.clipboard")) { _ in
-            self.pushTo(.edit, popVc: true)
+        let updateAccount = UIAction(title: "Редактировать счет", image: UIImage(systemName: "list.bullet.clipboard")) { [weak self] _ in
+            self?.pushTo(.edit, popVc: true)
         }
         
-        let deleteAccount = UIAction(title: "Удалить счет", image: UIImage(systemName: "delete.backward.fill"), attributes: .destructive) { _ in
-            self.deleteAccount()
+        let deleteAccount = UIAction(title: "Удалить счет", image: UIImage(systemName: "delete.backward.fill"), attributes: .destructive) { [weak self] _ in
+            self?.deleteAccount()
         }
         
-        let deleteAllTransactions = UIAction(title: "Удалить транзакции", image: UIImage(systemName: "delete.backward"), attributes: .destructive) { _ in
-            self.deleteTransactions()
+        let deleteAllTransactions = UIAction(title: "Удалить транзакции", image: UIImage(systemName: "delete.backward"), attributes: .destructive) { [weak self] _ in
+            self?.deleteTransactions()
         }
         
         let subMenu = UIMenu(options: .displayInline, children: [deleteAccount])
@@ -167,17 +167,6 @@ class WalletViewController: UIViewController {
                 self.animatedEmptyViewShow()
             }
         }
-    }
-    
-    private func showAlert(title: String, message: String, action: (() -> Void)?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let cancelBtn = UIAlertAction(title: "Отмена", style: .cancel)
-        let okBtn = UIAlertAction(title: "Удалить", style: .destructive) { _ in
-            action?()
-        }
-        alert.addAction(okBtn)
-        alert.addAction(cancelBtn)
-        present(alert, animated: true)
     }
     
     private func deleteFlows(indexPath: IndexPath) {
