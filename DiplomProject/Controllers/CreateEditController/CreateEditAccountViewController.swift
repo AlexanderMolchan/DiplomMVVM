@@ -117,38 +117,15 @@ class CreateEditAccountViewController: UIViewController {
         dismiss(animated: true)
     }
     
-//    private func repeatedNameCheck(name: String) -> Bool {
-//        let alert = UIAlertController(title: "Счет с таким именем уже существует!", message: "Выберите другое имя.", preferredStyle: .alert)
-//        let okBtn = UIAlertAction(title: "Хорошо", style: .cancel)
-//        alert.addAction(okBtn)
-//
-//        var accauntNames = viewModel.realm.read(type: AccountModel.self).map { account in
-//            return account.name.lowercased()
-//        }
-//        let lowerCasedName = name.lowercased()
-//        let currentNameLowerCased = viewModel.currentAccount?.name.lowercased()
-//
-//        switch viewModel.controllerType {
-//            case .edit:
-//                accauntNames = accauntNames.filter({ $0 != currentNameLowerCased })
-//            default: break
-//        }
-//
-//        if accauntNames.contains(lowerCasedName) {
-//            present(alert, animated: true)
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
-    
     private func repeatedNameCheck(name: String, type: AccountOrCategoryType) -> Bool {
         let alert = UIAlertController(title: "Такое имя уже существует!", message: "Выберите другое имя.", preferredStyle: .alert)
         let okBtn = UIAlertAction(title: "Хорошо", style: .cancel)
         alert.addAction(okBtn)
+        
         var allNames = [String]()
         var lowerCasedName = String()
         var currentName: String?
+        
         switch type {
             case .account:
                  allNames = viewModel.realm.read(type: AccountModel.self).map { account in
@@ -163,11 +140,13 @@ class CreateEditAccountViewController: UIViewController {
                 lowerCasedName = name.lowercased()
                 currentName = viewModel.currentCategory?.name.lowercased()
         }
+        
         switch viewModel.controllerType {
             case .edit:
                 allNames = allNames.filter({ $0 != currentName })
             default: break
         }
+        
         if allNames.contains(lowerCasedName) {
             present(alert, animated: true)
             return true

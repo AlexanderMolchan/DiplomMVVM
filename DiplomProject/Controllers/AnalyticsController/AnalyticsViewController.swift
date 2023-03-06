@@ -7,12 +7,22 @@
 
 import UIKit
 
+typealias AnalyticsCell = GenericCell<AnalyticsCardView>
+
 class AnalyticsViewController: UIViewController {
     private let viewModel: AnalyticsViewModel
+    let transitionManager = TransitionManager()
     
     private var contentView: AnalyticsViewControllerView {
         self.view as! AnalyticsViewControllerView
     }
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
+        return tableView
+    }()
     
     init(viewModel: AnalyticsViewModel) {
         self.viewModel = viewModel
@@ -33,7 +43,64 @@ class AnalyticsViewController: UIViewController {
         controllerConfigurate()
     }
     
-    private func controllerConfigurate() {
-        navigationSettings(title: "Аналитика")
+    private func configurateUI() {
+        view.backgroundColor = .white
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
+    
+    private func controllerConfigurate() {
+        viewModel.setupData()
+        configurateUI()
+        navigationSettings(title: "Аналитика")
+        tableViewSettings()
+    }
+    
+    private func tableViewSettings() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(AnalyticsCell.self, forCellReuseIdentifier: String(describing: AnalyticsCell.self))
+    }
+    
+}
+
+extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.accountArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AnalyticsCell.self), for: indexPath)
+        guard let cardCell = cell as? AnalyticsCell else { return cell }
+        
+        cardCell.mainView.viewSettings(account: viewModel.accountArray[indexPath.row], type: .card, totalSumm: viewModel.totalSumm)
+        return cardCell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 420
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentAccount = viewModel.accountArray[indexPath.row]
+        let presentedVc = AnalitycsDetailViewController(account: currentAccount, type: .full, totalSumm: viewModel.totalSumm)
+        presentedVc.modalPresentationStyle = .overFullScreen
+        presentedVc.modalPresentationCapturesStatusBarAppearance = true
+        presentedVc.transitioningDelegate = transitionManager
+        guard let cell = tableView.cellForRow(at: indexPath) as? AnalyticsCell else { return }
+        transitionManager.takeCard(card: cell.mainView, viewModel: viewModel)
+        
+        present(presentedVc, animated: true)
+        CFRunLoopWakeUp(CFRunLoopGetCurrent())
+    }
+    
+    func selectedCellCardView() -> AnalyticsCardView? {
+        guard let indexPath = tableView.indexPathForSelectedRow,
+              let cell = tableView.cellForRow(at: indexPath) as? AnalyticsCell else { return nil }
+        let cardView = cell.mainView
+        return cardView
+    }
+    
 }
