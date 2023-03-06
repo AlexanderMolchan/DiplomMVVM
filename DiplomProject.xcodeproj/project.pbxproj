@@ -297,13 +297,13 @@
 		40ED78CE29967ABC00EF36FF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				40DC238C29B579A0002D10A6 /* AnalyticsDetailsController */,
 				40ED78CF29967AC400EF36FF /* TabBarController */,
 				40ED78D429967CB200EF36FF /* AddTransactionController */,
 				40C960FD299D78C8004F8963 /* CashFlowController */,
 				40ED78DD29967DAC00EF36FF /* WalletController */,
 				40E1300F29A0861900D2A366 /* CreateEditController */,
 				405448B029B2175400143F4F /* AnalyticsController */,
+				40DC238C29B579A0002D10A6 /* AnalyticsDetailsController */,
 				405448A929B213FA00143F4F /* DebtController */,
 				40D50C4D29B1629F00625F43 /* SettingsController */,
 			);

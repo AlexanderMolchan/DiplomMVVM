@@ -43,6 +43,12 @@ class AnalyticsViewController: UIViewController {
         controllerConfigurate()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.setupData()
+        tableView.reloadData()
+    }
+    
     private func configurateUI() {
         view.backgroundColor = .white
         view.addSubview(tableView)
