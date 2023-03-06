@@ -30,7 +30,7 @@ class AnalyticsCardView: UIView, ChartViewDelegate {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Marker Felt", size: 24)
+        label.font = UIFont(name: "Marker Felt", size: 20)
         label.textColor = .black
         return label
     }()
@@ -116,11 +116,11 @@ class AnalyticsCardView: UIView, ChartViewDelegate {
         let labelInsets = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
         titleLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(labelInsets)
-            make.top.equalToSuperview().inset(25)
+            make.top.equalToSuperview().inset(45)
         }
         
         pieView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(30)
+            make.top.equalToSuperview().inset(50)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(300)
         }
