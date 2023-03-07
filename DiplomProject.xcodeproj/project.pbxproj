@@ -116,9 +116,9 @@
 			isa = PBXGroup;
 			children = (
 				40C960F7299D713E004F8963 /* RealmManager.swift */,
+				40DC238F29B58D80002D10A6 /* TransitionManager.swift */,
 				40C960F9299D717B004F8963 /* UserDefaults.swift */,
 				4025632029986C30000B6036 /* Listener.swift */,
-				40DC238F29B58D80002D10A6 /* TransitionManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
