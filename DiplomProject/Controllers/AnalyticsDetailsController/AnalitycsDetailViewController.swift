@@ -143,6 +143,7 @@ class AnalitycsDetailViewController: UIViewController, UIScrollViewDelegate {
     
     @objc private func closeViewController() {
         UIView.animate(withDuration: 0.2) {
+            self.scrollView.setContentOffset(.zero, animated: false)
             self.testLabel.alpha = 0
             self.dismissButton.alpha = 0
         } completion: { isFinish in
