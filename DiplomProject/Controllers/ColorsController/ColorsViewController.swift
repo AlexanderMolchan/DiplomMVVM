@@ -55,12 +55,19 @@ extension ColorsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = contentView.tableView.dequeueReusableCell(withIdentifier: ColorCell.id, for: indexPath)
         guard let colorCell = cell as? ColorCell else { return cell }
+        colorCell.isSelected = viewModel.selectedIndex == indexPath
         colorCell.set(color: viewModel.colorsArray[indexPath.row].color)
         return colorCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.selectedIndex = indexPath
         DefaultsManager.selectedColorIndex = indexPath.row
+        
+        contentView.tableView.performBatchUpdates {
+            contentView.tableView.reloadRows(at: [indexPath], with: .automatic)
+            contentView.tableView.reloadData()
+        }
         
         let alert = UIAlertController(title: "Цвет будет изменен после перезапуска.", message: "Перезапустить сейчас?", preferredStyle: .alert)
         let okBtn = UIAlertAction(title: "Да", style: .destructive) { _ in
@@ -72,6 +79,6 @@ extension ColorsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         alert.addAction(okBtn)
         alert.addAction(cnclBtn)
-        present(alert, animated: true)
+      //  present(alert, animated: true)
     }
 }
