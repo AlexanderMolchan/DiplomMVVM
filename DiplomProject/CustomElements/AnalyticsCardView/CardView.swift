@@ -177,7 +177,7 @@ class AnalyticsCardView: UIView, ChartViewDelegate {
     func addShadow() {
         shadowView.layer.cornerRadius = 20
         shadowView.layer.shadowColor = UIColor.black.cgColor
-        shadowView.layer.shadowOpacity = 0.2
+        shadowView.layer.shadowOpacity = 1
         shadowView.layer.shadowRadius = 10
         shadowView.layer.shadowOffset = CGSize(width: -1, height: 2)
     }

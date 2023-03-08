@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WalletViewController: UIViewController {
+class WalletViewController: BaseViewController {
     private let viewModel: WalletViewModel
     
     private var contentView: WalletViewControllerView {

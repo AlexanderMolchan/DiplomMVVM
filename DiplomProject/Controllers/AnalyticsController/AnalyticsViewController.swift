@@ -9,7 +9,7 @@ import UIKit
 
 typealias AnalyticsCell = GenericCell<AnalyticsCardView>
 
-class AnalyticsViewController: UIViewController {
+class AnalyticsViewController: BaseViewController {
     private let viewModel: AnalyticsViewModel
     let transitionManager = TransitionManager()
     
@@ -70,6 +70,18 @@ class AnalyticsViewController: UIViewController {
         tableView.register(AnalyticsCell.self, forCellReuseIdentifier: String(describing: AnalyticsCell.self))
     }
     
+    private func showNavBar() {
+        UIView.animate(withDuration: 0.25) {
+            self.navigationController?.navigationBar.alpha = 1
+        }
+    }
+    
+    private func hideNavBar() {
+        UIView.animate(withDuration: 0.25) {
+            self.navigationController?.navigationBar.alpha = 0
+        }
+    }
+    
 }
 
 extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -97,7 +109,12 @@ extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
         presentedVc.transitioningDelegate = transitionManager
         guard let cell = tableView.cellForRow(at: indexPath) as? AnalyticsCell else { return }
         transitionManager.takeCard(card: cell.mainView, viewModel: viewModel)
-        
+        tabBarController?.setTabBarHidden(true, animated: true)
+        hideNavBar()
+        presentedVc.tabbarOpenClousure = {
+            self.tabBarController?.setTabBarHidden(false, animated: true)
+            self.showNavBar()
+        }
         present(presentedVc, animated: true)
         CFRunLoopWakeUp(CFRunLoopGetCurrent())
     }

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SelectedAccountViewController: UIViewController {
+class SelectedAccountViewController: BaseViewController {
     private let viewModel: SelectedAccountViewModel
     
     private var tableView = UITableView()
@@ -125,6 +125,9 @@ class SelectedAccountViewController: UIViewController {
             self.viewModel.setupFlowData()
             self.emptyViewSettings()
         }
+        createEditVc.modalPresentationStyle = .pageSheet
+        guard let sheet = createEditVc.sheetPresentationController else { return }
+        sheet.detents = [.medium()]
         present(createEditVc, animated: true)
     }
     

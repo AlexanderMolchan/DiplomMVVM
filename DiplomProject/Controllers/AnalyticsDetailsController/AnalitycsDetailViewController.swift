@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class AnalitycsDetailViewController: UIViewController, UIScrollViewDelegate {
+class AnalitycsDetailViewController: BaseViewController, UIScrollViewDelegate {
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -63,6 +63,7 @@ class AnalitycsDetailViewController: UIViewController, UIScrollViewDelegate {
     var account: AccountModel
     var type: CardViewMode
     var totalSumm: Double
+    var tabbarOpenClousure: (() -> Void)?
     
     init(account: AccountModel, type: CardViewMode, totalSumm: Double) {
         self.account = account
@@ -148,7 +149,9 @@ class AnalitycsDetailViewController: UIViewController, UIScrollViewDelegate {
             self.dismissButton.alpha = 0
         } completion: { isFinish in
             guard isFinish else { return }
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true) {
+                self.tabbarOpenClousure?()
+            }
         }
     }
 }
