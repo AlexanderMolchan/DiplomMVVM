@@ -51,7 +51,7 @@ class AddTransactionViewController: BaseViewController {
     }
     
     private func controllerConfigurate() {
-        view.backgroundColor = .white
+        view.backgroundColor = defaultsBackgroundColor
         navigationSettings(title: "Добавить")
         deleteAll(sender: contentView.deleteButton)
     }

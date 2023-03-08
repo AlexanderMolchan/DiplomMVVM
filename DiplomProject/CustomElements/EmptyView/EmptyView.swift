@@ -26,7 +26,7 @@ class EmptyView: UIView {
     private func configurateUI() {
         addSubview(imageView)
         imageView.image = UIImage(systemName: "xmark.icloud")
-        imageView.tintColor = .systemCyan
+        imageView.tintColor = .defaultsColor
         imageView.contentMode = .scaleAspectFit
         imageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -35,7 +35,7 @@ class EmptyView: UIView {
         
         addSubview(topLabel)
         topLabel.font = UIFont(name: "Marker Felt Thin", size: 22)
-        topLabel.textColor = .systemCyan
+        topLabel.textColor = .defaultsColor
         topLabel.textAlignment = .center
         topLabel.numberOfLines = 0
         topLabel.text = "У вас нет аккаунтов"
@@ -46,7 +46,7 @@ class EmptyView: UIView {
         
         addSubview(bottomLabel)
         bottomLabel.font = UIFont(name: "Marker Felt Thin", size: 22)
-        bottomLabel.textColor = .systemCyan
+        bottomLabel.textColor = .defaultsColor
         bottomLabel.textAlignment = .center
         bottomLabel.numberOfLines = 0
         bottomLabel.text = "Перейдите в настройки, чтобы создать новые аккаунты и категории"

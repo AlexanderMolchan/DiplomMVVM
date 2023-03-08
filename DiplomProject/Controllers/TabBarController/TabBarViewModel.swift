@@ -9,7 +9,7 @@ import UIKit
 
 class TabBarViewModel {
     let realm: RealmManager
-    var testColor = UIColor()
+    var tabBarTintColor = UIColor()
     
     init(realm: RealmManager) {
         self.realm = realm
@@ -22,9 +22,7 @@ class TabBarViewModel {
         let debtViewModel = DebtViewModel(realm: realm)
         let settingsViewModel = SettingsViewModel(realm: realm)
         
-        let firstViewController = AddTransactionViewController(viewModel: addTransactionViewModel)
-        self.testColor = firstViewController.testTintColor
-        let addTransactionVc = UINavigationController(rootViewController: firstViewController)
+        let addTransactionVc = UINavigationController(rootViewController: AddTransactionViewController(viewModel: addTransactionViewModel))
         let walletVc = UINavigationController(rootViewController: WalletViewController(viewModel: walletViewModel))
         let analyticsVc = UINavigationController(rootViewController: AnalyticsViewController(viewModel: analyticsViewModel))
         let debtVc = UINavigationController(rootViewController: DebtViewController(viewModel: debtViewModel))

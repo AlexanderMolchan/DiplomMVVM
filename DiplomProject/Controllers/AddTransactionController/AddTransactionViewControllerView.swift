@@ -147,14 +147,14 @@ class AddTransactionViewControllerView: UIView {
         selectedSpendCategoryButton.backgroundColor = .white
         selectedSpendCategoryButton.alpha = 0.77
         selectedSpendCategoryButton.layer.borderWidth = 2
-        selectedSpendCategoryButton.layer.borderColor = UIColor.systemCyan.cgColor
+        selectedSpendCategoryButton.layer.borderColor = UIColor.defaultsColor.cgColor
         selectedSpendCategoryButton.layer.cornerRadius = 10
-        selectedSpendCategoryButton.tintColor = .systemCyan
+        selectedSpendCategoryButton.tintColor = .defaultsColor
         selectedSpendCategoryButton.setTitle("Категория", for: .normal)
         bottomStack.addArrangedSubview(selectedSpendCategoryButton)
         
         enterButton = UIButton(type: .system)
-        enterButton.backgroundColor = .systemCyan
+        enterButton.backgroundColor = .defaultsColor
         enterButton.alpha = 0.77
         enterButton.layer.cornerRadius = 10
         enterButton.tintColor = .white
@@ -165,7 +165,7 @@ class AddTransactionViewControllerView: UIView {
         selectedAccountTypeButton = UIButton(type: .system)
         selectedAccountTypeButton.backgroundColor = .clear
         selectedAccountTypeButton.setTitle("Выберите аккаунт", for: .normal)
-        selectedAccountTypeButton.tintColor = .systemCyan
+        selectedAccountTypeButton.tintColor = .defaultsColor
         selectedAccountTypeButton.titleLabel?.font = UIFont(name: "Marker felt", size: 18)
         selectedAccountTypeButton.alpha = 0.77
         addSubview(selectedAccountTypeButton)
@@ -175,11 +175,11 @@ class AddTransactionViewControllerView: UIView {
         let button = UIButton(type: .system)
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = UIFont(name: "Impact", size: 40)
-        button.tintColor = .systemCyan
+        button.tintColor = .defaultsColor
         button.backgroundColor = .white
         button.alpha = 0.77
         button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.systemCyan.cgColor
+        button.layer.borderColor = UIColor.defaultsColor.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
         if title.isEmpty {
             button.layer.borderWidth = 0
@@ -203,7 +203,7 @@ class AddTransactionViewControllerView: UIView {
         addSubview(cashLabel)
         cashLabel.font = UIFont(name: "Hiragino Maru Gothic ProN W4", size: 31)
         cashLabel.textAlignment = .center
-        cashLabel.textColor = .systemCyan
+        cashLabel.textColor = .defaultsColor
         cashLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
@@ -215,7 +215,10 @@ class AddTransactionViewControllerView: UIView {
         let items = ["Расход", "Доход"]
         controllerTypeSegmentControl = UISegmentedControl(items: items)
         controllerTypeSegmentControl.selectedSegmentIndex = 0
-        controllerTypeSegmentControl.selectedSegmentTintColor = .systemCyan
+        controllerTypeSegmentControl.selectedSegmentTintColor = .defaultsColor
+        if controllerTypeSegmentControl.selectedSegmentTintColor == .black {
+            controllerTypeSegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
+        }
         controllerTypeSegmentControl.alpha = 0.77
         addSubview(controllerTypeSegmentControl)
         let segmentInsets = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 25)
@@ -302,7 +305,7 @@ class AddTransactionViewControllerView: UIView {
         } completion: { isFinish in
             guard isFinish else { return }
             UIView.animate(withDuration: 0.5) {
-                self.selectedAccountTypeButton.tintColor = .systemCyan
+                self.selectedAccountTypeButton.tintColor = .defaultsColor
             }
         }
     }
@@ -316,9 +319,9 @@ class AddTransactionViewControllerView: UIView {
         } completion: { isFinish in
             guard isFinish else { return }
             UIView.animate(withDuration: 0.5) {
-                self.selectedSpendCategoryButton.layer.borderColor = UIColor.systemCyan.cgColor
+                self.selectedSpendCategoryButton.layer.borderColor = UIColor.defaultsColor.cgColor
                 self.selectedSpendCategoryButton.layer.borderWidth = 2
-                self.selectedSpendCategoryButton.tintColor = .systemCyan
+                self.selectedSpendCategoryButton.tintColor = .defaultsColor
             }
         }
     }

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1E4BA8B4C7ABBFDD334B6BEE /* Pods_DiplomProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82666C0AD362BF2983EDD3C4 /* Pods_DiplomProject.framework */; };
+		400EBD9A29B8CAA500BED1BB /* ColorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400EBD9929B8CAA500BED1BB /* ColorsViewModel.swift */; };
+		400EBD9C29B8CAB800BED1BB /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400EBD9B29B8CAB800BED1BB /* ColorsViewController.swift */; };
+		400EBD9E29B8CAE900BED1BB /* ColorsViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400EBD9D29B8CAE900BED1BB /* ColorsViewControllerView.swift */; };
+		400EBDA229B8D53A00BED1BB /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400EBDA129B8D53A00BED1BB /* ColorCell.swift */; };
 		401AC40029B7EA2C003EE1D7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401AC3FF29B7EA2C003EE1D7 /* BaseViewController.swift */; };
 		4025632129986C31000B6036 /* Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025632029986C30000B6036 /* Listener.swift */; };
 		40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */; };
@@ -55,6 +59,10 @@
 /* Begin PBXFileReference section */
 		0D22220D1061987A6C7D6BC1 /* Pods-DiplomProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiplomProject.debug.xcconfig"; path = "Target Support Files/Pods-DiplomProject/Pods-DiplomProject.debug.xcconfig"; sourceTree = "<group>"; };
 		1BCEA3B9967B63D600993E87 /* Pods-DiplomProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiplomProject.release.xcconfig"; path = "Target Support Files/Pods-DiplomProject/Pods-DiplomProject.release.xcconfig"; sourceTree = "<group>"; };
+		400EBD9929B8CAA500BED1BB /* ColorsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewModel.swift; sourceTree = "<group>"; };
+		400EBD9B29B8CAB800BED1BB /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
+		400EBD9D29B8CAE900BED1BB /* ColorsViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewControllerView.swift; sourceTree = "<group>"; };
+		400EBDA129B8D53A00BED1BB /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		401AC3FF29B7EA2C003EE1D7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4025632029986C30000B6036 /* Listener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener.swift; sourceTree = "<group>"; };
 		40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewControllerView.swift; sourceTree = "<group>"; };
@@ -114,6 +122,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		400EBD9F29B8CB0300BED1BB /* ColorsController */ = {
+			isa = PBXGroup;
+			children = (
+				400EBDA029B8D53100BED1BB /* ColorCell */,
+				400EBD9929B8CAA500BED1BB /* ColorsViewModel.swift */,
+				400EBD9B29B8CAB800BED1BB /* ColorsViewController.swift */,
+				400EBD9D29B8CAE900BED1BB /* ColorsViewControllerView.swift */,
+			);
+			path = ColorsController;
+			sourceTree = "<group>";
+		};
+		400EBDA029B8D53100BED1BB /* ColorCell */ = {
+			isa = PBXGroup;
+			children = (
+				400EBDA129B8D53A00BED1BB /* ColorCell.swift */,
+			);
+			path = ColorCell;
+			sourceTree = "<group>";
+		};
 		401AC3FE29B7EA1B003EE1D7 /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +344,7 @@
 				40DC238C29B579A0002D10A6 /* AnalyticsDetailsController */,
 				405448A929B213FA00143F4F /* DebtController */,
 				40D50C4D29B1629F00625F43 /* SettingsController */,
+				400EBD9F29B8CB0300BED1BB /* ColorsController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -493,10 +521,13 @@
 				40C960FF299D78DE004F8963 /* SelectedAccountViewModel.swift in Sources */,
 				40ED78D329967B0800EF36FF /* TabBarViewModel.swift in Sources */,
 				405448B629B2177D00143F4F /* AnalyticsViewControllerView.swift in Sources */,
+				400EBD9E29B8CAE900BED1BB /* ColorsViewControllerView.swift in Sources */,
 				40D50C5229B1724900625F43 /* SettingCell.swift in Sources */,
 				40D50C4C29B1629900625F43 /* SettingsViewControllerView.swift in Sources */,
 				40DC238E29B57A37002D10A6 /* AnalitycsDetailViewController.swift in Sources */,
+				400EBD9A29B8CAA500BED1BB /* ColorsViewModel.swift in Sources */,
 				40C960FA299D717B004F8963 /* UserDefaults.swift in Sources */,
+				400EBDA229B8D53A00BED1BB /* ColorCell.swift in Sources */,
 				40C96104299D7A2C004F8963 /* SelectedCell.swift in Sources */,
 				40DC238B29B5600F002D10A6 /* CardView.swift in Sources */,
 				40E1301329A0866D00D2A366 /* CreateEditViewModel.swift in Sources */,
@@ -517,6 +548,7 @@
 				405448AD29B2143300143F4F /* DebtViewModel.swift in Sources */,
 				40A9F94F29B02BE100967122 /* EmptyView.swift in Sources */,
 				405448AB29B2141000143F4F /* DebtViewController.swift in Sources */,
+				400EBD9C29B8CAB800BED1BB /* ColorsViewController.swift in Sources */,
 				40ED78BC29967A1E00EF36FF /* SceneDelegate.swift in Sources */,
 				40C960FC299D71A1004F8963 /* Models.swift in Sources */,
 				40D50C4A29B1628900625F43 /* SettingsViewController.swift in Sources */,

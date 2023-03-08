@@ -37,6 +37,7 @@ class CreateEditAccountViewController: BaseViewController {
     }
     
     private func setupUI() {
+        view.backgroundColor = defaultsBackgroundColor
         switch viewModel.controllerType {
             case .create:
                 if viewModel.objectType == .account {

@@ -126,3 +126,27 @@ enum SettingsEnum: CaseIterable {
         }
     }
 }
+
+enum TintColorEnum: CaseIterable {
+    case cyan
+    case magenta
+    case black
+    case green
+    case orange
+    case pink
+    case blue
+    case brown
+    
+    var color: UIColor {
+        switch self {
+            case .cyan:      return .systemCyan
+            case .magenta:   return .magenta
+            case .black:    return .black
+            case .green:     return .green
+            case .orange:    return .orange
+            case .pink :     return .systemPink
+            case .blue:      return .blue
+            case .brown:     return .brown
+        }
+    }
+}

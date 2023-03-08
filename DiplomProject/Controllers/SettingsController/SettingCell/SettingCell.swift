@@ -15,7 +15,7 @@ class SettingCell: UITableViewCell {
     private lazy var settingImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .systemCyan
+        imageView.tintColor = .defaultsColor
         return imageView
     }()
     
@@ -28,7 +28,7 @@ class SettingCell: UITableViewCell {
     private lazy var statusSwitch: UISwitch = {
         let switcher = UISwitch()
         switcher.isOn = false
-        switcher.onTintColor = .systemCyan
+        switcher.onTintColor = .defaultsColor
         return switcher
     }()
     

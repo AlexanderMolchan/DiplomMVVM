@@ -11,10 +11,10 @@ extension UIViewController {
     func navigationSettings(title: String) {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-        navigationController?.navigationBar.tintColor = .systemCyan
+        navigationController?.navigationBar.tintColor = .defaultsColor
         navigationItem.title = title
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemCyan, NSAttributedString.Key.font: UIFont(name: "Marker Felt", size: 35) as Any]
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemCyan, NSAttributedString.Key.font: UIFont(name: "Marker Felt", size: 20) as Any]
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.defaultsColor, NSAttributedString.Key.font: UIFont(name: "Marker Felt", size: 35) as Any]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.defaultsColor, NSAttributedString.Key.font: UIFont(name: "Marker Felt", size: 20) as Any]
     }
     
     func showAlert(title: String, message: String, action: (() -> Void)?) {
@@ -42,4 +42,8 @@ extension Optional where Wrapped == String {
     var isEmptyOrNil: Bool {
         return self?.isEmpty ?? true
     }
+}
+
+extension UIColor {
+    static let defaultsColor = TintColorEnum.allCases[DefaultsManager.selectedColorIndex].color
 }

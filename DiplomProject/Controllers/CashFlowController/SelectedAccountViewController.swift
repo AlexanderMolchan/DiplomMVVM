@@ -15,7 +15,7 @@ class SelectedAccountViewController: BaseViewController {
     private let emptyView = EmptyView()
     var nameChangeClosure: ((AccountModel) -> ())?
     var categoryChangeClousure: ((CashFlowCategory) -> ())?
-    
+
     init(viewModel: SelectedAccountViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -75,6 +75,7 @@ class SelectedAccountViewController: BaseViewController {
     }
     
     private func tableViewSettings() {
+        view.backgroundColor = defaultsBackgroundColor
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .insetGrouped)
         view.addSubview(tableView)
         tableView.backgroundColor = .white

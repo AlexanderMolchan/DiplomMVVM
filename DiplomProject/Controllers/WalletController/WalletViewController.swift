@@ -49,6 +49,7 @@ class WalletViewController: BaseViewController {
     }
     
     private func controllerConfigurate() {
+        view.backgroundColor = defaultsBackgroundColor
         switch viewModel.controllerType {
             case .wallet:
                 navigationSettings(title: "Кошелек")

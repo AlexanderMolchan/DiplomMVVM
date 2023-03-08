@@ -20,10 +20,9 @@ class CreateEditAccountViewControllerView: UIView {
     let switcher = UISwitch()
     var confirmButton = UIButton()
     var dismissButton = UIButton()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
         configurateUI()
         addTapGesture()
     }
@@ -34,7 +33,7 @@ class CreateEditAccountViewControllerView: UIView {
     
     private func configurateUI() {
         titleLabel.font = UIFont(name: "Marker Felt", size: 27)
-        titleLabel.textColor = .systemCyan
+        titleLabel.textColor = .defaultsColor
         titleLabel.textAlignment = .center
         addSubview(titleLabel)
         let universalInset = UIEdgeInsets(top: 20, left: 16, bottom: 0, right: 16)
@@ -43,7 +42,7 @@ class CreateEditAccountViewControllerView: UIView {
         }
         
         nameLabel.font = UIFont(name: "Marker Felt", size: 20)
-        nameLabel.textColor = .systemCyan
+        nameLabel.textColor = .defaultsColor
         nameLabel.text = "Введите имя аккаунта:"
         addSubview(nameLabel)
         nameLabel.snp.makeConstraints { make in
@@ -52,7 +51,7 @@ class CreateEditAccountViewControllerView: UIView {
         }
         
         nameField.layer.borderWidth = 1
-        nameField.layer.borderColor = UIColor.systemCyan.cgColor
+        nameField.layer.borderColor = UIColor.defaultsColor.cgColor
         nameField.layer.cornerRadius = 10
         nameField.addLeftAndRightView()
         addSubview(nameField)
@@ -63,7 +62,7 @@ class CreateEditAccountViewControllerView: UIView {
         }
         
         summLabel.font = UIFont(name: "Marker Felt", size: 20)
-        summLabel.textColor = .systemCyan
+        summLabel.textColor = .defaultsColor
         summLabel.text = "Введите сумму:"
         addSubview(summLabel)
         summLabel.snp.makeConstraints { make in
@@ -72,7 +71,7 @@ class CreateEditAccountViewControllerView: UIView {
         }
         
         summField.layer.borderWidth = 1
-        summField.layer.borderColor = UIColor.systemCyan.cgColor
+        summField.layer.borderColor = UIColor.defaultsColor.cgColor
         summField.layer.cornerRadius = 10
         summField.keyboardType = .numberPad
         summField.addLeftAndRightView()
@@ -94,7 +93,7 @@ class CreateEditAccountViewControllerView: UIView {
         }
         
         isCreditOrNotLabel.font = UIFont(name: "Marker Felt", size: 20)
-        isCreditOrNotLabel.textColor = .systemCyan
+        isCreditOrNotLabel.textColor = .defaultsColor
         isCreditOrNotLabel.text = "Безналичный аккаунт:"
         addSubview(isCreditOrNotLabel)
         isCreditOrNotLabel.snp.makeConstraints { make in
@@ -102,7 +101,7 @@ class CreateEditAccountViewControllerView: UIView {
             make.leading.equalToSuperview().inset(universalInset)
         }
         
-        switcher.onTintColor = .systemCyan
+        switcher.onTintColor = .defaultsColor
         switcher.thumbTintColor = .white
         addSubview(switcher)
         switcher.snp.makeConstraints { make in
@@ -129,10 +128,10 @@ class CreateEditAccountViewControllerView: UIView {
         confirmButton = UIButton(type: .system)
         confirmButton.setTitle("Сохранить", for: .normal)
         confirmButton.titleLabel?.font = UIFont(name: "Marker Felt", size: 27)
-        confirmButton.tintColor = .systemCyan
+        confirmButton.tintColor = .defaultsColor
         confirmButton.backgroundColor = .white
         confirmButton.layer.borderWidth = 2
-        confirmButton.layer.borderColor = UIColor.systemCyan.cgColor
+        confirmButton.layer.borderColor = UIColor.defaultsColor.cgColor
         confirmButton.layer.cornerRadius = 10
         
         addSubview(confirmButton)
@@ -174,7 +173,7 @@ class CreateEditAccountViewControllerView: UIView {
         } completion: { isFinish in
             guard isFinish else { return }
             UIView.animate(withDuration: 0.5) {
-                field.layer.borderColor = UIColor.systemCyan.cgColor
+                field.layer.borderColor = UIColor.defaultsColor.cgColor
                 field.layer.borderWidth = 1
             }
         }
