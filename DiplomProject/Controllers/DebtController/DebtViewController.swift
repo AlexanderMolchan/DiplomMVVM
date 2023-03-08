@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DebtViewController: UIViewController {
+class DebtViewController: BaseViewController {
     private let viewModel: DebtViewModel
     
     private var contentView: DebtViewControllerView {

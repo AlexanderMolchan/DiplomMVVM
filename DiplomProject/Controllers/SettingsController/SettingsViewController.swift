@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: BaseViewController {
     private let viewModel: SettingsViewModel
     
     private var contentView: SettingsViewControllerView {
@@ -53,6 +53,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.settingPoints.count
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.settingPoints[section].count
     }

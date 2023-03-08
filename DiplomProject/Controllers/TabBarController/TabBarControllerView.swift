@@ -39,6 +39,7 @@ class TabBarControllerView: UITabBarController {
     }
     
     private func tabBarSettings() {
+//        tabBar.tintColor = viewModel.testColor
         tabBar.tintColor = .systemCyan
         tabBar.unselectedItemTintColor = .lightGray
         tabBar.backgroundColor = .white

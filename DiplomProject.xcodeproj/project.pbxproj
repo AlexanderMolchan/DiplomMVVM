@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E4BA8B4C7ABBFDD334B6BEE /* Pods_DiplomProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82666C0AD362BF2983EDD3C4 /* Pods_DiplomProject.framework */; };
+		401AC40029B7EA2C003EE1D7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401AC3FF29B7EA2C003EE1D7 /* BaseViewController.swift */; };
 		4025632129986C31000B6036 /* Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025632029986C30000B6036 /* Listener.swift */; };
 		40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */; };
 		40256374299C515F000B6036 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256373299C515F000B6036 /* ViewControllerExtension.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		0D22220D1061987A6C7D6BC1 /* Pods-DiplomProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiplomProject.debug.xcconfig"; path = "Target Support Files/Pods-DiplomProject/Pods-DiplomProject.debug.xcconfig"; sourceTree = "<group>"; };
 		1BCEA3B9967B63D600993E87 /* Pods-DiplomProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiplomProject.release.xcconfig"; path = "Target Support Files/Pods-DiplomProject/Pods-DiplomProject.release.xcconfig"; sourceTree = "<group>"; };
+		401AC3FF29B7EA2C003EE1D7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4025632029986C30000B6036 /* Listener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener.swift; sourceTree = "<group>"; };
 		40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewControllerView.swift; sourceTree = "<group>"; };
 		40256373299C515F000B6036 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -112,6 +114,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		401AC3FE29B7EA1B003EE1D7 /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				401AC3FF29B7EA2C003EE1D7 /* BaseViewController.swift */,
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
 		4025631F29986C22000B6036 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +307,7 @@
 		40ED78CE29967ABC00EF36FF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				401AC3FE29B7EA1B003EE1D7 /* BaseViewController */,
 				40ED78CF29967AC400EF36FF /* TabBarController */,
 				40ED78D429967CB200EF36FF /* AddTransactionController */,
 				40C960FD299D78C8004F8963 /* CashFlowController */,
@@ -497,6 +508,7 @@
 				40D50C4F29B167FA00625F43 /* Enums.swift in Sources */,
 				40256374299C515F000B6036 /* ViewControllerExtension.swift in Sources */,
 				40C96101299D78F7004F8963 /* SelectedAccountViewController.swift in Sources */,
+				401AC40029B7EA2C003EE1D7 /* BaseViewController.swift in Sources */,
 				40ED78DC29967D9900EF36FF /* WalletViewModel.swift in Sources */,
 				40ED78D129967AF300EF36FF /* TabBarControllerView.swift in Sources */,
 				40DC238829B55DCD002D10A6 /* GenericCell.swift in Sources */,

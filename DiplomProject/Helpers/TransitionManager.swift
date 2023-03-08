@@ -169,7 +169,6 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
 }
 
 extension TransitionManager: UIViewControllerTransitioningDelegate {
-    
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition = .presentation
         return self
