@@ -34,6 +34,7 @@ class DebtViewController: BaseViewController {
     }
     
     private func controllerConfiguration() {
+        view.backgroundColor = defaultsBackgroundColor
         navigationSettings(title: "Долги")
     }
     

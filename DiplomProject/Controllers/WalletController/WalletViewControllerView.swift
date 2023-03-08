@@ -32,7 +32,6 @@ class WalletViewControllerView: UIView {
     }
     
     private func viewSettings() {
-        backgroundColor = .white
         addSubview(tableView)
         addSubview(totalSummLabel)
         addSubview(commentLabel)
@@ -50,7 +49,7 @@ class WalletViewControllerView: UIView {
         
         totalSummLabel.font = UIFont(name: "Hiragino Maru Gothic ProN W4", size: 32)
         totalSummLabel.textAlignment = .center
-        totalSummLabel.textColor = .systemCyan
+        totalSummLabel.textColor = .defaultsColor
         totalSummLabel.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(20)
             make.leading.trailing.equalToSuperview()
@@ -58,7 +57,7 @@ class WalletViewControllerView: UIView {
         
         commentLabel.font = UIFont(name: "Marker Felt Thin", size: 17)
         commentLabel.textAlignment = .center
-        commentLabel.textColor = .systemCyan
+        commentLabel.textColor = .defaultsColor
   
         commentLabel.snp.makeConstraints { make in
             make.top.equalTo(totalSummLabel.snp.bottom).offset(5)

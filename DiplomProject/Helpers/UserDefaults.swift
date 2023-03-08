@@ -19,4 +19,13 @@ class DefaultsManager {
         }
     }
     
+    static var selectedColorIndex : Int {
+        get {
+            defaults.value(forKey: #function) as? Int ?? 0
+        }
+        set {
+            defaults.set(newValue, forKey: #function)
+        }
+    }
+    
 }

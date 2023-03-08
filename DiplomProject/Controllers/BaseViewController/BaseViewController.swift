@@ -6,15 +6,30 @@
 //
 
 import UIKit
+import SnapKit
 
 class BaseViewController: UIViewController {
     
-    var testTintColor: UIColor = {
-        return UIColor.magenta
+    var defaultsBackgroundColor: UIColor = {
+        return .white
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configurateController()
+    }
+    
+    private func configurateController() {
+        setupLayout()
+        makeConstraints()
+    }
+
+    private func setupLayout() {
+
+    }
+    
+    private func makeConstraints() {
+
     }
     
 }

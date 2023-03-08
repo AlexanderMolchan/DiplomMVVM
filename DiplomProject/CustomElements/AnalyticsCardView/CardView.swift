@@ -154,7 +154,7 @@ class AnalyticsCardView: UIView, ChartViewDelegate {
         entries.append(secondPieChartEntry)
         
         let dataSets = PieChartDataSet(entries: entries, label: "Category")
-        let colors = [UIColor.lightGray, UIColor.systemCyan]
+        let colors = [UIColor.lightGray, UIColor.defaultsColor]
         dataSets.colors = colors
         let data = PieChartData(dataSet: dataSets)
         pieView.data = data
@@ -168,7 +168,7 @@ class AnalyticsCardView: UIView, ChartViewDelegate {
         data.setValueFont(.systemFont(ofSize: 11, weight: .heavy))
         data.setValueTextColor(.white)
         
-        pieView.centerAttributedText = NSAttributedString(string: "\(Int(currentSumm))", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemCyan, NSAttributedString.Key.font: UIFont(name: "Marker Felt", size: 20) as Any])
+        pieView.centerAttributedText = NSAttributedString(string: "\(Int(currentSumm))", attributes: [NSAttributedString.Key.foregroundColor: UIColor.defaultsColor, NSAttributedString.Key.font: UIFont(name: "Marker Felt", size: 20) as Any])
         pieView.holeColor = .clear
         pieView.drawEntryLabelsEnabled = false
         pieView.rotationEnabled = false

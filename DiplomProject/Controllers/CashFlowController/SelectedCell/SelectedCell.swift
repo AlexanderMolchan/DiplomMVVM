@@ -39,7 +39,7 @@ class SelectedCell: UITableViewCell {
         addSubview(cellLabel)
         addSubview(summLabel)
 
-        cellLabel.textColor = .systemCyan
+        cellLabel.textColor = .defaultsColor
         cellLabel.font = UIFont(name: "Chalkboard SE Bold", size: 18)
         cellLabel.snp.makeConstraints { make in
             make.leading.equalTo(cellImage.snp.trailing).offset(5)
@@ -49,7 +49,7 @@ class SelectedCell: UITableViewCell {
         cellLabel.adjustsFontForContentSizeCategory = true
         cellLabel.text = "Test text account"
         
-        summLabel.textColor = .systemCyan
+        summLabel.textColor = .defaultsColor
         summLabel.textAlignment = .right
         summLabel.font = UIFont(name: "Hiragino Sans W7", size: 15)
         summLabel.snp.makeConstraints { make in

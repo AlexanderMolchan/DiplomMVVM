@@ -38,7 +38,7 @@ class AnalitycsDetailViewController: BaseViewController, UIScrollViewDelegate {
     lazy var dismissButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "clear"), for: .normal)
-        button.tintColor = .systemCyan.withAlphaComponent(0.6)
+        button.tintColor = .defaultsColor.withAlphaComponent(0.6)
         button.addTarget(self, action: #selector(closeViewController), for: .touchUpInside)
         button.setPreferredSymbolConfiguration(.init(pointSize: 30), forImageIn: .normal)
         return button

@@ -35,7 +35,7 @@ class SettingsViewController: BaseViewController {
     }
     
     private func configurateVc() {
-        view.backgroundColor = .white
+        view.backgroundColor = defaultsBackgroundColor
         navigationSettings(title: "Настройки")
         viewModel.configureCells()
         contentView.tableView.reloadData()
@@ -70,6 +70,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 pushToEditVc(flowType: .incoming)
             case .spendTypes:
                 pushToEditVc(flowType: .spending)
+            case .chooseColor:
+                pushToColorsVc()
             default: break
         }
     }
@@ -79,6 +81,13 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         let editFlowVc = SelectedAccountViewController(viewModel: editIncomeViewModel)
         editFlowVc.title = flowType.name
         navigationController?.pushViewController(editFlowVc, animated: true)
+    }
+    
+    private func pushToColorsVc() {
+        let colorsViewModel = ColorsViewModel()
+        let colorsVc = ColorsViewController(viewModel: colorsViewModel)
+        colorsVc.title = SettingsEnum.chooseColor.title
+        navigationController?.pushViewController(colorsVc, animated: true)
     }
     
 }

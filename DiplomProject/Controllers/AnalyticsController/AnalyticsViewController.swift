@@ -50,7 +50,7 @@ class AnalyticsViewController: BaseViewController {
     }
     
     private func configurateUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = defaultsBackgroundColor
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

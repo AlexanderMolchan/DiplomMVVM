@@ -28,7 +28,6 @@ class DebtViewControllerView: UIView {
     }
     
     private func layoutElements() {
-        backgroundColor = .white
         emptyView.setLabelsText(top: "Раздел временно недоступен.", bottom: "Следите за обновлениями.")
         addSubview(emptyView)
         emptyView.snp.makeConstraints { make in
