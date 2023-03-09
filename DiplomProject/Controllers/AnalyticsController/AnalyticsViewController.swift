@@ -60,7 +60,8 @@ class AnalyticsViewController: BaseViewController {
     private func controllerConfigurate() {
         viewModel.setupData()
         configurateUI()
-        navigationSettings(title: "Аналитика")
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        //navigationSettings(title: "Аналитика")
         tableViewSettings()
     }
     
