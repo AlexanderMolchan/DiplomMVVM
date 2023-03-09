@@ -69,6 +69,7 @@ class SelectedCell: UITableViewCell {
         }
         cellLabel.text = "\(account.name)"
         summLabel.text = "\(Int(account.currentSumm))"
+        cellLabel.textColor = .defaultsColor
         if account.currentSumm > 0 {
             summLabel.textColor = .systemGreen
         } else {

@@ -113,7 +113,6 @@ extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
         hideNavBar()
         presentedVc.tabbarOpenClousure = {
             self.tabBarController?.setTabBarHidden(false, animated: true)
-            self.showNavBar()
         }
         present(presentedVc, animated: true)
         CFRunLoopWakeUp(CFRunLoopGetCurrent())

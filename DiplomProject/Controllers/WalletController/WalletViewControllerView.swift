@@ -12,6 +12,7 @@ class WalletViewControllerView: UIView {
     private let controllerType: ControllerType
     private let commentLabel = UILabel()
     
+    var contentColor: UIColor = .defaultsColor
     let totalSummLabel = UILabel()
     var tableView = UITableView()
     let emptyView = EmptyView()
@@ -49,7 +50,7 @@ class WalletViewControllerView: UIView {
         
         totalSummLabel.font = UIFont(name: "Hiragino Maru Gothic ProN W4", size: 32)
         totalSummLabel.textAlignment = .center
-        totalSummLabel.textColor = .defaultsColor
+        totalSummLabel.textColor = contentColor
         totalSummLabel.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(20)
             make.leading.trailing.equalToSuperview()
@@ -57,7 +58,7 @@ class WalletViewControllerView: UIView {
         
         commentLabel.font = UIFont(name: "Marker Felt Thin", size: 17)
         commentLabel.textAlignment = .center
-        commentLabel.textColor = .defaultsColor
+        commentLabel.textColor = contentColor
   
         commentLabel.snp.makeConstraints { make in
             make.top.equalTo(totalSummLabel.snp.bottom).offset(5)
@@ -74,6 +75,7 @@ class WalletViewControllerView: UIView {
     
     func addEmptyView() {
         addSubview(emptyView)
+        emptyView.emptyViewColor = contentColor
         emptyView.setLabelsText(top: controllerType.emptyViewTitle, bottom: controllerType.emptyViewMessage)
         emptyView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -83,6 +85,13 @@ class WalletViewControllerView: UIView {
     
     func removeEmptyView() {
         emptyView.removeFromSuperview()
+    }
+    
+    func updateColor() {
+
+        totalSummLabel.textColor = contentColor
+        commentLabel.textColor = contentColor
+        emptyView.updateColors()
     }
     
 }

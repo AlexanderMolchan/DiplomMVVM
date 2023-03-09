@@ -14,6 +14,8 @@ class EmptyView: UIView {
     private let topLabel = UILabel()
     private let bottomLabel = UILabel()
     
+    var emptyViewColor = UIColor.defaultsColor
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configurateUI()
@@ -26,7 +28,7 @@ class EmptyView: UIView {
     private func configurateUI() {
         addSubview(imageView)
         imageView.image = UIImage(systemName: "xmark.icloud")
-        imageView.tintColor = .defaultsColor
+        imageView.tintColor = emptyViewColor
         imageView.contentMode = .scaleAspectFit
         imageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -35,7 +37,7 @@ class EmptyView: UIView {
         
         addSubview(topLabel)
         topLabel.font = UIFont(name: "Marker Felt Thin", size: 22)
-        topLabel.textColor = .defaultsColor
+        topLabel.textColor = emptyViewColor
         topLabel.textAlignment = .center
         topLabel.numberOfLines = 0
         topLabel.text = "У вас нет аккаунтов"
@@ -46,7 +48,7 @@ class EmptyView: UIView {
         
         addSubview(bottomLabel)
         bottomLabel.font = UIFont(name: "Marker Felt Thin", size: 22)
-        bottomLabel.textColor = .defaultsColor
+        bottomLabel.textColor = emptyViewColor
         bottomLabel.textAlignment = .center
         bottomLabel.numberOfLines = 0
         bottomLabel.text = "Перейдите в настройки, чтобы создать новые аккаунты и категории"
@@ -59,6 +61,12 @@ class EmptyView: UIView {
     func setLabelsText(top: String, bottom: String) {
         topLabel.text = top
         bottomLabel.text = bottom
+    }
+    
+    func updateColors() {
+        imageView.tintColor = .defaultsColor
+        topLabel.textColor = .defaultsColor
+        bottomLabel.textColor = .defaultsColor
     }
     
 }

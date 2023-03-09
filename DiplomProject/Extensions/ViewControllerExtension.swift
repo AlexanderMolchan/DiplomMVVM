@@ -45,5 +45,10 @@ extension Optional where Wrapped == String {
 }
 
 extension UIColor {
-    static let defaultsColor = TintColorEnum.allCases[DefaultsManager.selectedColorIndex].color
+    static var defaultsColor = TintColorEnum.allCases[DefaultsManager.selectedColorIndex].color
+    
+    static func updateDefaultColor() {
+        defaultsColor = TintColorEnum.allCases[DefaultsManager.selectedColorIndex].color
+    }
+    
 }
