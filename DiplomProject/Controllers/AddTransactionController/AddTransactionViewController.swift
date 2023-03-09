@@ -45,6 +45,10 @@ class AddTransactionViewController: BaseViewController {
         contentView.removeErrorLabel()
     }
     
+    override func observerAction() {
+       
+    }
+    
     private func invalidateCheck() {
         viewModel.accountInvalidatedCheck()
         viewModel.categoryInvalidatedCheck()

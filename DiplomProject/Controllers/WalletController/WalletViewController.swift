@@ -42,6 +42,17 @@ class WalletViewController: BaseViewController {
         emptyViewSettings()
     }
     
+    override func observerAction() {
+        updateColorsForObserver()
+    }
+    
+    private func updateColorsForObserver() {
+        contentView.contentColor = .defaultsColor
+        contentView.updateColor()
+        contentView.tableView.reloadData()
+        controllerConfigurate()
+    }
+    
     private func bindElements() {
         viewModel.totalAccountSumm.bind { [weak self] summ in
             self?.contentView.totalSummLabel.text = summ

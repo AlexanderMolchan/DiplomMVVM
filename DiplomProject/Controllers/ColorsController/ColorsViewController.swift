@@ -63,22 +63,16 @@ extension ColorsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectedIndex = indexPath
         DefaultsManager.selectedColorIndex = indexPath.row
-        
+        UIColor.updateDefaultColor()
+        NotificationCenter.default.post(name: NSNotification.Name("colorChanged"), object: nil)
+
+//        tabBarController?.tabBar.tintColor = .defaultsColor
         contentView.tableView.performBatchUpdates {
             contentView.tableView.reloadRows(at: [indexPath], with: .automatic)
             contentView.tableView.reloadData()
         }
-        
-        let alert = UIAlertController(title: "Цвет будет изменен после перезапуска.", message: "Перезапустить сейчас?", preferredStyle: .alert)
-        let okBtn = UIAlertAction(title: "Да", style: .destructive) { _ in
-            fatalError()
-        }
-        
-        let cnclBtn = UIAlertAction(title: "Нет", style: .cancel) { _ in
-            self.navigationController?.popViewController(animated: true)
-        }
-        alert.addAction(okBtn)
-        alert.addAction(cnclBtn)
-      //  present(alert, animated: true)
     }
+    
+
+    
 }
