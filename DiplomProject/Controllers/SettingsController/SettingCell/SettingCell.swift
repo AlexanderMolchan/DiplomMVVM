@@ -27,7 +27,15 @@ class SettingCell: UITableViewCell {
     
     private lazy var statusSwitch: UISwitch = {
         let switcher = UISwitch()
-        switcher.isOn = false
+        switch type {
+            case .vibrations:
+                switcher.isOn = DefaultsManager.isHapticEnabled
+                switcher.addTarget(self, action: #selector(switchAction(sender:)), for: .valueChanged)
+            case .summFormat:
+                switcher.isOn = DefaultsManager.isSummInteger
+                switcher.addTarget(self, action: #selector(switchAction(sender:)), for: .valueChanged)
+            default: break
+        }
         switcher.onTintColor = .defaultsColor
         return switcher
     }()
@@ -86,10 +94,19 @@ class SettingCell: UITableViewCell {
         settingImage.image = type.image
         settingTitle.text = type.title
         statusSwitch.isHidden = !type.switchEnabled
-        statusSwitch.isOn = true
         if type == .deleteAllData {
             settingImage.tintColor = .systemRed
             settingTitle.textColor = .systemRed
+        }
+    }
+    
+    @objc private func switchAction(sender: UISwitch) {
+        switch type {
+            case .vibrations:
+                DefaultsManager.isHapticEnabled = sender.isOn
+            case .summFormat:
+                DefaultsManager.isSummInteger = sender.isOn
+            default: break
         }
     }
     

@@ -36,7 +36,8 @@ class WalletViewModel {
         accountArray.forEach { account in
             summ += account.currentSumm
         }
-        totalAccountSumm.value = "\(Int(summ))"
+        let stringSumm = String.formatSumm(summ: summ)
+        totalAccountSumm.value = stringSumm
     }
 
     private func setupAccountDataSource() {
@@ -77,5 +78,3 @@ class WalletViewModel {
     }
     
 }
-
-

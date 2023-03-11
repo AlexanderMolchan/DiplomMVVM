@@ -39,8 +39,10 @@ class TabBarViewModel {
     }
     
     func hapticFeedBack() {
-        let generator = UIImpactFeedbackGenerator()
-        generator.impactOccurred()
+        if DefaultsManager.isHapticEnabled {
+            let generator = UIImpactFeedbackGenerator()
+            generator.impactOccurred()
+        }
     }
     
     let bounceAnimation: CAKeyframeAnimation = {

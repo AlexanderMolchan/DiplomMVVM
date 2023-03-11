@@ -45,6 +45,13 @@ class ColorsViewController: BaseViewController {
         contentView.tableView.register(ColorCell.self, forCellReuseIdentifier: ColorCell.id)
     }
     
+    private func updateColors() {
+        UIColor.updateDefaultColor()
+        NotificationCenter.default.post(name: NSNotification.Name("colorChanged"), object: nil)
+        updateNavigationColors()
+        tabBarController?.tabBar.tintColor = .defaultsColor
+    }
+    
 }
 
 extension ColorsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -61,12 +68,9 @@ extension ColorsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectedIndex = indexPath
         DefaultsManager.selectedColorIndex = indexPath.row
-        UIColor.updateDefaultColor()
-        NotificationCenter.default.post(name: NSNotification.Name("colorChanged"), object: nil)
-
-//        tabBarController?.tabBar.tintColor = .defaultsColor
+        viewModel.selectedIndex = indexPath
+        updateColors()
         contentView.tableView.performBatchUpdates {
             contentView.tableView.reloadRows(at: [indexPath], with: .automatic)
             contentView.tableView.reloadData()

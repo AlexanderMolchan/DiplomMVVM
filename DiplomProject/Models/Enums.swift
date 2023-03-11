@@ -94,7 +94,7 @@ enum SettingsEnum: CaseIterable {
         switch self {
             case .incomeTypes:      return "Категории доходов"
             case .spendTypes:       return "Категории расходов"
-            case .summFormat:       return "Два знака после запятой"
+            case .summFormat:       return "Целые числа"
             case .vibrations:       return "Виброотклик"
             case .chooseColor:      return "Цвет оформления"
             case .chooseLanguage:   return "Язык"

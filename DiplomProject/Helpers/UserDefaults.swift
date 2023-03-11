@@ -13,17 +13,31 @@ class DefaultsManager {
     static var firstStart: Bool {
         get {
             defaults.value(forKey: #function) as? Bool ?? true
-        }
-        set {
+        } set {
             defaults.set(newValue, forKey: #function)
         }
     }
     
-    static var selectedColorIndex : Int {
+    static var selectedColorIndex: Int {
         get {
             defaults.value(forKey: #function) as? Int ?? 0
+        } set {
+            defaults.set(newValue, forKey: #function)
         }
-        set {
+    }
+    
+    static var isHapticEnabled: Bool {
+        get {
+            defaults.value(forKey: #function) as? Bool ?? true
+        } set {
+            defaults.set(newValue, forKey: #function)
+        }
+    }
+    
+    static var isSummInteger: Bool {
+        get {
+            defaults.value(forKey: #function) as? Bool ?? true
+        } set {
             defaults.set(newValue, forKey: #function)
         }
     }

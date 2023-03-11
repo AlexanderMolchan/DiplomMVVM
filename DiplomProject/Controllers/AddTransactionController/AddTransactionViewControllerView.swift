@@ -148,8 +148,8 @@ class AddTransactionViewControllerView: UIView {
         selectedSpendCategoryButton.alpha = 0.77
         selectedSpendCategoryButton.layer.borderWidth = 2
         selectedSpendCategoryButton.layer.borderColor = UIColor.defaultsColor.cgColor
-        selectedSpendCategoryButton.layer.cornerRadius = 10
         selectedSpendCategoryButton.tintColor = .defaultsColor
+        selectedSpendCategoryButton.layer.cornerRadius = 10
         selectedSpendCategoryButton.setTitle("Категория", for: .normal)
         bottomStack.addArrangedSubview(selectedSpendCategoryButton)
         
@@ -235,8 +235,10 @@ class AddTransactionViewControllerView: UIView {
     }
     
     func hapticFeedback() {
-        let generator = UIImpactFeedbackGenerator()
-        generator.impactOccurred()
+        if DefaultsManager.isHapticEnabled {
+            let generator = UIImpactFeedbackGenerator()
+            generator.impactOccurred()
+        }
     }
     
     // MARK: -
@@ -323,6 +325,25 @@ class AddTransactionViewControllerView: UIView {
                 self.selectedSpendCategoryButton.layer.borderWidth = 2
                 self.selectedSpendCategoryButton.tintColor = .defaultsColor
             }
+        }
+    }
+    
+    func updateColors() {
+        cashLabel.textColor = .defaultsColor
+        buttonsArray.forEach { button in
+            button.tintColor = .defaultsColor
+            button.layer.borderColor = UIColor.defaultsColor.cgColor
+        }
+        deleteButton.tintColor = .defaultsColor
+        selectedSpendCategoryButton.layer.borderColor = UIColor.defaultsColor.cgColor
+        selectedSpendCategoryButton.tintColor = .defaultsColor
+        selectedAccountTypeButton.tintColor = .defaultsColor
+        enterButton.backgroundColor = .defaultsColor
+        controllerTypeSegmentControl.selectedSegmentTintColor = .defaultsColor
+        if controllerTypeSegmentControl.selectedSegmentTintColor == .black {
+            controllerTypeSegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
+        } else {
+            controllerTypeSegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], for: .normal)
         }
     }
 

@@ -36,7 +36,11 @@ class DebtViewControllerView: UIView {
     }
     
     private func makeConstraints() {
-
+        
+    }
+    
+    func updateColors() {
+        emptyView.updateColors()
     }
     
 }
