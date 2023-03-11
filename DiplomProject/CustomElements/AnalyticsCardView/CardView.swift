@@ -207,5 +207,5 @@ class AnalyticsCardView: UIView, ChartViewDelegate {
         bottomLabel.text = currentAccount?.currentSummString
         pieChartSettings()
     }
-    
+
 }

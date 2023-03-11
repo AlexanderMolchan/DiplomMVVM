@@ -18,10 +18,12 @@ class AnalyticsViewModel {
     }
     
     func setupData() {
+        var summFromAllAccounts = Double()
         accountArray = realm.read(type: AccountModel.self)
         accountArray.forEach { account in
-            totalSumm += account.currentSumm
+            summFromAllAccounts += account.currentSumm
         }
+        totalSumm = summFromAllAccounts
     }
     
 }
