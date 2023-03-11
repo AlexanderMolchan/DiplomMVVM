@@ -33,6 +33,11 @@ class DebtViewController: BaseViewController {
         controllerConfiguration()
     }
     
+    override func observerAction() {
+        updateNavigationColors()
+        contentView.updateColors()
+    }
+    
     private func controllerConfiguration() {
         view.backgroundColor = defaultsBackgroundColor
         navigationSettings(title: "Долги")

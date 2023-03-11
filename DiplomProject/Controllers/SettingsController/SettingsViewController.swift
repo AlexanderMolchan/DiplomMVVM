@@ -34,6 +34,10 @@ class SettingsViewController: BaseViewController {
         tableViewSettings()
     }
     
+    override func observerAction() {
+        contentView.tableView.reloadData()
+    }
+    
     private func configurateVc() {
         view.backgroundColor = defaultsBackgroundColor
         navigationSettings(title: "Настройки")

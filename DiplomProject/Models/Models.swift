@@ -46,7 +46,7 @@ class AccountModel: Object {
     }
     
     var currentSummString: String {
-        return String(format: "%.2f", currentSumm)
+        return String.formatSumm(summ: currentSumm)
     }
     
     convenience init(name: String, creationgSumm: Double, isCreditAccount: Bool) {

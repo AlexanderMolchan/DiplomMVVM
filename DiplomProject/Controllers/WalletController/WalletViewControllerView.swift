@@ -88,7 +88,6 @@ class WalletViewControllerView: UIView {
     }
     
     func updateColor() {
-
         totalSummLabel.textColor = contentColor
         commentLabel.textColor = contentColor
         emptyView.updateColors()

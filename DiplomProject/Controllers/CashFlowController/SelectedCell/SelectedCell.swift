@@ -67,8 +67,9 @@ class SelectedCell: UITableViewCell {
                 cellImage.image = UIImage(systemName: "creditcard.circle")
             default: break
         }
+        let formattedSumm = String.formatSumm(summ: account.currentSumm)
+        summLabel.text = formattedSumm
         cellLabel.text = "\(account.name)"
-        summLabel.text = "\(Int(account.currentSumm))"
         cellLabel.textColor = .defaultsColor
         if account.currentSumm > 0 {
             summLabel.textColor = .systemGreen
@@ -100,7 +101,8 @@ class SelectedCell: UITableViewCell {
             default: break
         }
         cellLabel.text = flow.category?.name
-        summLabel.text = "\(flow.summ)"
+        let formattedSumm = String.formatSumm(summ: flow.summ)
+        summLabel.text = formattedSumm
     }
     
 }

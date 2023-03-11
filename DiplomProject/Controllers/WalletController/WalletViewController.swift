@@ -50,7 +50,7 @@ class WalletViewController: BaseViewController {
         contentView.contentColor = .defaultsColor
         contentView.updateColor()
         contentView.tableView.reloadData()
-        controllerConfigurate()
+        updateNavigationColors()
     }
     
     private func bindElements() {

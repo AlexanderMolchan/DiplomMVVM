@@ -46,7 +46,8 @@ class AddTransactionViewController: BaseViewController {
     }
     
     override func observerAction() {
-       
+        contentView.updateColors()
+        updateNavigationColors()
     }
     
     private func invalidateCheck() {

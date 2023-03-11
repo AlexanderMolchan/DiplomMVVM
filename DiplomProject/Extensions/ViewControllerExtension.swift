@@ -17,6 +17,12 @@ extension UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.defaultsColor, NSAttributedString.Key.font: UIFont(name: "Marker Felt", size: 20) as Any]
     }
     
+    func updateNavigationColors() {
+        navigationController?.navigationBar.tintColor = .defaultsColor
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.defaultsColor, NSAttributedString.Key.font: UIFont(name: "Marker Felt", size: 35) as Any]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.defaultsColor, NSAttributedString.Key.font: UIFont(name: "Marker Felt", size: 20) as Any]
+    }
+    
     func showAlert(title: String, message: String, action: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancelBtn = UIAlertAction(title: "Отмена", style: .cancel)
@@ -41,6 +47,14 @@ extension UITextField {
 extension Optional where Wrapped == String {
     var isEmptyOrNil: Bool {
         return self?.isEmpty ?? true
+    }
+}
+
+extension String {
+    static func formatSumm(summ: Double) -> String {
+        let integerSumm = String(format: "%0.0f", summ)
+        let doubleSumm = String(format: "%0.2f", summ)
+        return DefaultsManager.isSummInteger ? integerSumm : doubleSumm
     }
 }
 
