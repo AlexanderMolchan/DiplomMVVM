@@ -52,8 +52,7 @@ class SettingsViewControllerView: UIView {
         }
         
         tableView.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview()
-            make.bottom.equalTo(namedLabel.snp.top).inset(10)
+            make.edges.equalToSuperview()
         }
     }
     

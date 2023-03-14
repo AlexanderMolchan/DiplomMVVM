@@ -111,7 +111,6 @@ extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) as? AnalyticsCell else { return }
         transitionManager.takeCard(card: cell.mainView, viewModel: viewModel)
         tabBarController?.setTabBarHidden(true, animated: true)
-        hideNavBar()
         presentedVc.tabbarOpenClousure = {
             self.tabBarController?.setTabBarHidden(false, animated: true)
         }

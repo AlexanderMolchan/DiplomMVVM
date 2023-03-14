@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import DeviceKit
+
 
 class SettingCell: UITableViewCell {
     static let id = String(describing: SettingCell.self)
@@ -73,10 +75,16 @@ class SettingCell: UITableViewCell {
     }
     
     private func makeConstraints() {
+        let device = Device.current
         let elementInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         settingImage.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview().inset(elementInsets)
-            make.height.width.equalTo(40)
+            switch device {
+                case .iPhoneSE, .iPhoneSE2, .iPhoneSE3, .iPhone8, .simulator(.iPhoneSE3):
+                    make.height.width.equalTo(34)
+                default:
+                    make.height.width.equalTo(40)
+            }
         }
         
         settingTitle.snp.makeConstraints { make in

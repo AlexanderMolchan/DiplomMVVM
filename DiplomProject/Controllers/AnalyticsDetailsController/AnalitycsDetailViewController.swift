@@ -51,18 +51,25 @@ class AnalitycsDetailViewController: BaseViewController, UIScrollViewDelegate {
         return label
     }()
     
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        return tableView
+    }()
+    
     var viewsHidden: Bool = false {
         didSet {
             dismissButton.isHidden = viewsHidden
             cardView?.isHidden = viewsHidden
             testLabel.isHidden = viewsHidden
+            tableView.isHidden = viewsHidden
             view.backgroundColor = viewsHidden ? .clear : .white
         }
     }
+    
     private(set) var cardView: AnalyticsCardView?
-    var account: AccountModel
-    var type: CardViewMode
-    var totalSumm: Double
+    private var account: AccountModel
+    private var type: CardViewMode
+    private var totalSumm: Double
     var tabbarOpenClousure: (() -> Void)?
     
     init(account: AccountModel, type: CardViewMode, totalSumm: Double) {
@@ -76,22 +83,18 @@ class AnalitycsDetailViewController: BaseViewController, UIScrollViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func loadView() {
-        super.loadView()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurate()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     private func configurate() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(SelectedCell.self, forCellReuseIdentifier: SelectedCell.id)
         configurateScrollView()
         configurateCardView()
+        tableViewSettings()
         self.view.backgroundColor = .clear
     }
     
@@ -127,18 +130,36 @@ class AnalitycsDetailViewController: BaseViewController, UIScrollViewDelegate {
         view.bringSubviewToFront(dismissButton)
         testLabel.text = "sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslk jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflklksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkdsjsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds sdlkfj lksjdf lksjd flksdjf slkd jfdslkjf kldsjf lksdj fklsdjf lkdsjf lkjsdlk fjsdlkf jsdlkj flksdjflksdjf lksdj flkjsdlk fjsldkjf lkdjflksjdlksjf lkdsj flkdsjf lkds "
         testLabel.alpha = 0
-        scrollView.addSubview(testLabel)
-        testLabel.snp.makeConstraints { make in
+//        containerView.addSubview(testLabel)
+//        testLabel.snp.makeConstraints { make in
+//            make.top.equalTo(cardView.snp.bottom).offset(20)
+//            make.left.right.equalTo(containerView).inset(20)
+//            make.bottom.equalTo(containerView).offset(-20)
+//        }
+    }
+    
+    private func tableViewSettings() {
+        guard let cardView else { return }
+        
+        tableView.alpha = 0
+        
+        containerView.addSubview(tableView)
+        tableView.layer.cornerRadius = 20
+        tableView.backgroundColor = .systemGray5
+        tableView.snp.makeConstraints { make in
             make.top.equalTo(cardView.snp.bottom).offset(20)
             make.left.right.equalTo(containerView).inset(20)
             make.bottom.equalTo(containerView).offset(-20)
+            make.height.equalTo(300)
         }
     }
     
     func showElementsWithAnimate() {
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            guard let self else { return }
             self.testLabel.alpha = 1
             self.dismissButton.alpha = 1
+            self.tableView.alpha = 1
         }
     }
     
@@ -146,6 +167,7 @@ class AnalitycsDetailViewController: BaseViewController, UIScrollViewDelegate {
         UIView.animate(withDuration: 0.2) {
             self.scrollView.setContentOffset(.zero, animated: false)
             self.testLabel.alpha = 0
+            self.tableView.alpha = 0
             self.dismissButton.alpha = 0
         } completion: { isFinish in
             guard isFinish else { return }
@@ -154,4 +176,19 @@ class AnalitycsDetailViewController: BaseViewController, UIScrollViewDelegate {
             }
         }
     }
+}
+
+extension AnalitycsDetailViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return account.allCashFlows.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SelectedCell.id, for: indexPath)
+        guard let flowCell = cell as? SelectedCell else { return cell }
+        flowCell.set(flow: account.allCashFlows[indexPath.row])
+        
+        return flowCell
+    }
+    
 }

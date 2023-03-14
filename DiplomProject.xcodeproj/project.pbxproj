@@ -22,6 +22,7 @@
 		405448B229B2176A00143F4F /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448B129B2176A00143F4F /* AnalyticsViewModel.swift */; };
 		405448B429B2177200143F4F /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448B329B2177200143F4F /* AnalyticsViewController.swift */; };
 		405448B629B2177D00143F4F /* AnalyticsViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448B529B2177D00143F4F /* AnalyticsViewControllerView.swift */; };
+		406D98BC29C080C500B692D1 /* ColorCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406D98BB29C080C500B692D1 /* ColorCollectionCell.swift */; };
 		40A9F94F29B02BE100967122 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9F94E29B02BE100967122 /* EmptyView.swift */; };
 		40C960F8299D713E004F8963 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C960F7299D713E004F8963 /* RealmManager.swift */; };
 		40C960FA299D717B004F8963 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C960F9299D717B004F8963 /* UserDefaults.swift */; };
@@ -73,6 +74,7 @@
 		405448B129B2176A00143F4F /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
 		405448B329B2177200143F4F /* AnalyticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
 		405448B529B2177D00143F4F /* AnalyticsViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewControllerView.swift; sourceTree = "<group>"; };
+		406D98BB29C080C500B692D1 /* ColorCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionCell.swift; sourceTree = "<group>"; };
 		40A9F94E29B02BE100967122 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		40C960F7299D713E004F8963 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		40C960F9299D717B004F8963 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				400EBDA129B8D53A00BED1BB /* ColorCell.swift */,
+				406D98BB29C080C500B692D1 /* ColorCollectionCell.swift */,
 			);
 			path = ColorCell;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				40E1301129A0864300D2A366 /* CreateEditAccountViewControllerView.swift in Sources */,
 				405448B229B2176A00143F4F /* AnalyticsViewModel.swift in Sources */,
 				40E1300529A06B2B00D2A366 /* WalletViewControllerView.swift in Sources */,
+				406D98BC29C080C500B692D1 /* ColorCollectionCell.swift in Sources */,
 				40ED78D829967D1700EF36FF /* AddTransactionViewModel.swift in Sources */,
 				40C960FF299D78DE004F8963 /* SelectedAccountViewModel.swift in Sources */,
 				40ED78D329967B0800EF36FF /* TabBarViewModel.swift in Sources */,
