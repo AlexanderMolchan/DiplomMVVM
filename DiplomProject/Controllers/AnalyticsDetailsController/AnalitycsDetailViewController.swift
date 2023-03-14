@@ -53,6 +53,7 @@ class AnalitycsDetailViewController: BaseViewController, UIScrollViewDelegate {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.isScrollEnabled = false
         return tableView
     }()
     
@@ -140,9 +141,7 @@ class AnalitycsDetailViewController: BaseViewController, UIScrollViewDelegate {
     
     private func tableViewSettings() {
         guard let cardView else { return }
-        
         tableView.alpha = 0
-        
         containerView.addSubview(tableView)
         tableView.layer.cornerRadius = 20
         tableView.backgroundColor = .systemGray5
@@ -151,6 +150,13 @@ class AnalitycsDetailViewController: BaseViewController, UIScrollViewDelegate {
             make.left.right.equalTo(containerView).inset(20)
             make.bottom.equalTo(containerView).offset(-20)
             make.height.equalTo(300)
+        }
+    }
+    
+    private func remakeTableViewHeight() {
+        let contentSize = tableView.contentSize.height
+        tableView.snp.updateConstraints { make in
+            make.height.equalTo(Int(contentSize))
         }
     }
     
@@ -186,8 +192,9 @@ extension AnalitycsDetailViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SelectedCell.id, for: indexPath)
         guard let flowCell = cell as? SelectedCell else { return cell }
+        remakeTableViewHeight()
         flowCell.set(flow: account.allCashFlows[indexPath.row])
-        
+
         return flowCell
     }
     
