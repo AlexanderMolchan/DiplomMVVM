@@ -20,7 +20,7 @@ class SettingsViewModel {
         var sections = [[SettingsEnum]]()
         let firstSection: [SettingsEnum] = [.incomeTypes, .spendTypes]
         let secondSection: [SettingsEnum] = [.summFormat, .vibrations]
-        let thirdSection: [SettingsEnum] = [.chooseColor, .chooseLanguage]
+        let thirdSection: [SettingsEnum] = [.chooseColor, .chooseLanguage, .currency]
         let fourSection: [SettingsEnum] = [.deleteAllData]
         sections.append(firstSection)
         sections.append(secondSection)

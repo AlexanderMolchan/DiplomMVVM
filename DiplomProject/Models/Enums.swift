@@ -88,6 +88,7 @@ enum SettingsEnum: CaseIterable {
     case vibrations
     case chooseColor
     case chooseLanguage
+    case currency
     case deleteAllData
     
     var title: String {
@@ -98,6 +99,7 @@ enum SettingsEnum: CaseIterable {
             case .vibrations:       return "Виброотклик"
             case .chooseColor:      return "Цвет оформления"
             case .chooseLanguage:   return "Язык"
+            case .currency:         return "Курс валюты"
             case .deleteAllData:    return "Удалить все данные"
         }
     }
@@ -110,6 +112,7 @@ enum SettingsEnum: CaseIterable {
             case .vibrations:       return UIImage(systemName: "waveform.path")
             case .chooseColor:      return UIImage(systemName: "paintpalette")
             case .chooseLanguage:   return UIImage(systemName: "globe.europe.africa")
+            case .currency:         return UIImage(systemName: "atom")
             case .deleteAllData:    return UIImage(systemName: "trash.square")
         }
     }
@@ -122,6 +125,7 @@ enum SettingsEnum: CaseIterable {
             case .vibrations:       return true
             case .chooseColor:      return false
             case .chooseLanguage:   return false
+            case .currency:         return false
             case .deleteAllData:    return false
         }
     }
@@ -136,17 +140,25 @@ enum TintColorEnum: CaseIterable {
     case pink
     case blue
     case brown
+    case lightGray
+    case mint
+    case indigo
+    case purple
     
     var color: UIColor {
         switch self {
             case .cyan:      return .systemCyan
             case .magenta:   return .magenta
-            case .black:    return .black
-            case .green:     return .green
+            case .black:     return .black
+            case .green:     return .systemGreen
             case .orange:    return .orange
             case .pink :     return .systemPink
             case .blue:      return .blue
             case .brown:     return .brown
+            case .lightGray: return .lightGray
+            case .mint:      return .systemMint
+            case .indigo:    return .systemIndigo
+            case .purple:    return .systemPurple
         }
     }
 }

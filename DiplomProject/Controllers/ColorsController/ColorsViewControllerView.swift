@@ -17,6 +17,13 @@ class ColorsViewControllerView: UIView {
         return tableView
     }()
     
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return collectionView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configurateViews()
@@ -27,9 +34,15 @@ class ColorsViewControllerView: UIView {
     }
     
     private func configurateViews() {
-        addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+//        addSubview(tableView)
+//        tableView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//        }
+        
+        let collectionInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(collectionInsets)
         }
     }
     
