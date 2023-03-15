@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ColorCollectionCell: UICollectionViewCell {
+final class ColorCollectionCell: UICollectionViewCell {
     static let id = String(describing: ColorCollectionCell.self)
     
     private lazy var containerView: UIView = {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CreateEditViewModel {
+final class CreateEditViewModel {
     let realm: RealmManager
     var currentAccount: AccountModel?
     var currentCategory: CashFlowCategory?

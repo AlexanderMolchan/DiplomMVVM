@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class AnalyticsViewControllerView: UIView {
+final class AnalyticsViewControllerView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

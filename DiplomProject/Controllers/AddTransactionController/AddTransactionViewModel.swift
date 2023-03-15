@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AddTransactionViewModel {
+final class AddTransactionViewModel {
     let realm: RealmManager
     let cashFieldText: Dynamic<String?> = Dynamic(nil)
     let actionButtonIsEnabled: Dynamic<Bool> = Dynamic(true)

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SettingsViewControllerView: UIView {
+final class SettingsViewControllerView: UIView {
     
     var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SelectedCell: UITableViewCell {
+final class SelectedCell: UITableViewCell {
     static let id = String(describing: SelectedCell.self)
     
     let cellImage = UIImageView()

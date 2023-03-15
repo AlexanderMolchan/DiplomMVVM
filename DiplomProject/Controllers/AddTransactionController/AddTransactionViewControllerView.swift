@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import DeviceKit
 
-class AddTransactionViewControllerView: UIView {
+final class AddTransactionViewControllerView: UIView {
     
     var oneButton = UIButton()
     var twoButton = UIButton()

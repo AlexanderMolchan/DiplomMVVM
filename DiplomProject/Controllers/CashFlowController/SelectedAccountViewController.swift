@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SelectedAccountViewController: BaseViewController {
+final class SelectedAccountViewController: BaseViewController {
     private let viewModel: SelectedAccountViewModel
     
     private var tableView = UITableView()

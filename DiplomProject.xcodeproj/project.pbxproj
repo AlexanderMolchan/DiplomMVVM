@@ -11,11 +11,12 @@
 		400EBD9A29B8CAA500BED1BB /* ColorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400EBD9929B8CAA500BED1BB /* ColorsViewModel.swift */; };
 		400EBD9C29B8CAB800BED1BB /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400EBD9B29B8CAB800BED1BB /* ColorsViewController.swift */; };
 		400EBD9E29B8CAE900BED1BB /* ColorsViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400EBD9D29B8CAE900BED1BB /* ColorsViewControllerView.swift */; };
-		400EBDA229B8D53A00BED1BB /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400EBDA129B8D53A00BED1BB /* ColorCell.swift */; };
 		401AC40029B7EA2C003EE1D7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401AC3FF29B7EA2C003EE1D7 /* BaseViewController.swift */; };
 		4025632129986C31000B6036 /* Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025632029986C30000B6036 /* Listener.swift */; };
 		40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */; };
-		40256374299C515F000B6036 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256373299C515F000B6036 /* ViewControllerExtension.swift */; };
+		40256374299C515F000B6036 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256373299C515F000B6036 /* ViewController+Extension.swift */; };
+		405070EB29C131C000A0F361 /* Pometki.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405070EA29C131C000A0F361 /* Pometki.swift */; };
+		405070EE29C137B300A0F361 /* AnalitycsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405070ED29C137B300A0F361 /* AnalitycsCell.swift */; };
 		405448AB29B2141000143F4F /* DebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448AA29B2141000143F4F /* DebtViewController.swift */; };
 		405448AD29B2143300143F4F /* DebtViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448AC29B2143300143F4F /* DebtViewModel.swift */; };
 		405448AF29B2147000143F4F /* DebtViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448AE29B2147000143F4F /* DebtViewControllerView.swift */; };
@@ -63,11 +64,12 @@
 		400EBD9929B8CAA500BED1BB /* ColorsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewModel.swift; sourceTree = "<group>"; };
 		400EBD9B29B8CAB800BED1BB /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		400EBD9D29B8CAE900BED1BB /* ColorsViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewControllerView.swift; sourceTree = "<group>"; };
-		400EBDA129B8D53A00BED1BB /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		401AC3FF29B7EA2C003EE1D7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4025632029986C30000B6036 /* Listener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener.swift; sourceTree = "<group>"; };
 		40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewControllerView.swift; sourceTree = "<group>"; };
-		40256373299C515F000B6036 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		40256373299C515F000B6036 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		405070EA29C131C000A0F361 /* Pometki.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pometki.swift; sourceTree = "<group>"; };
+		405070ED29C137B300A0F361 /* AnalitycsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalitycsCell.swift; sourceTree = "<group>"; };
 		405448AA29B2141000143F4F /* DebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtViewController.swift; sourceTree = "<group>"; };
 		405448AC29B2143300143F4F /* DebtViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtViewModel.swift; sourceTree = "<group>"; };
 		405448AE29B2147000143F4F /* DebtViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtViewControllerView.swift; sourceTree = "<group>"; };
@@ -138,7 +140,6 @@
 		400EBDA029B8D53100BED1BB /* ColorCell */ = {
 			isa = PBXGroup;
 			children = (
-				400EBDA129B8D53A00BED1BB /* ColorCell.swift */,
 				406D98BB29C080C500B692D1 /* ColorCollectionCell.swift */,
 			);
 			path = ColorCell;
@@ -166,10 +167,18 @@
 		40256372299C5138000B6036 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				40256373299C515F000B6036 /* ViewControllerExtension.swift */,
+				40256373299C515F000B6036 /* ViewController+Extension.swift */,
 				40F5326329B602BE0051E89C /* TabBarController + Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		405070EC29C1379F00A0F361 /* AnalitycsCell */ = {
+			isa = PBXGroup;
+			children = (
+				405070ED29C137B300A0F361 /* AnalitycsCell.swift */,
+			);
+			path = AnalitycsCell;
 			sourceTree = "<group>";
 		};
 		405448A929B213FA00143F4F /* DebtController */ = {
@@ -275,7 +284,9 @@
 		40DC238C29B579A0002D10A6 /* AnalyticsDetailsController */ = {
 			isa = PBXGroup;
 			children = (
+				405070EC29C1379F00A0F361 /* AnalitycsCell */,
 				40DC238D29B57A37002D10A6 /* AnalitycsDetailViewController.swift */,
+				405070EA29C131C000A0F361 /* Pometki.swift */,
 			);
 			path = AnalyticsDetailsController;
 			sourceTree = "<group>";
@@ -522,6 +533,7 @@
 				40E1300529A06B2B00D2A366 /* WalletViewControllerView.swift in Sources */,
 				406D98BC29C080C500B692D1 /* ColorCollectionCell.swift in Sources */,
 				40ED78D829967D1700EF36FF /* AddTransactionViewModel.swift in Sources */,
+				405070EE29C137B300A0F361 /* AnalitycsCell.swift in Sources */,
 				40C960FF299D78DE004F8963 /* SelectedAccountViewModel.swift in Sources */,
 				40ED78D329967B0800EF36FF /* TabBarViewModel.swift in Sources */,
 				405448B629B2177D00143F4F /* AnalyticsViewControllerView.swift in Sources */,
@@ -531,17 +543,17 @@
 				40DC238E29B57A37002D10A6 /* AnalitycsDetailViewController.swift in Sources */,
 				400EBD9A29B8CAA500BED1BB /* ColorsViewModel.swift in Sources */,
 				40C960FA299D717B004F8963 /* UserDefaults.swift in Sources */,
-				400EBDA229B8D53A00BED1BB /* ColorCell.swift in Sources */,
 				40C96104299D7A2C004F8963 /* SelectedCell.swift in Sources */,
 				40DC238B29B5600F002D10A6 /* CardView.swift in Sources */,
 				40E1301329A0866D00D2A366 /* CreateEditViewModel.swift in Sources */,
+				405070EB29C131C000A0F361 /* Pometki.swift in Sources */,
 				40ED78BA29967A1E00EF36FF /* AppDelegate.swift in Sources */,
 				40C960F8299D713E004F8963 /* RealmManager.swift in Sources */,
 				40ED78DA29967D8900EF36FF /* WalletViewController.swift in Sources */,
 				40E1300E29A0860200D2A366 /* CreateEditAccountViewController.swift in Sources */,
 				40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */,
 				40D50C4F29B167FA00625F43 /* Enums.swift in Sources */,
-				40256374299C515F000B6036 /* ViewControllerExtension.swift in Sources */,
+				40256374299C515F000B6036 /* ViewController+Extension.swift in Sources */,
 				40C96101299D78F7004F8963 /* SelectedAccountViewController.swift in Sources */,
 				401AC40029B7EA2C003EE1D7 /* BaseViewController.swift in Sources */,
 				40ED78DC29967D9900EF36FF /* WalletViewModel.swift in Sources */,

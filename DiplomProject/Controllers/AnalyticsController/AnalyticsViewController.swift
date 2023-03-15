@@ -9,7 +9,7 @@ import UIKit
 
 typealias AnalyticsCell = GenericCell<AnalyticsCardView>
 
-class AnalyticsViewController: BaseViewController {
+final class AnalyticsViewController: BaseViewController {
     private let viewModel: AnalyticsViewModel
     let transitionManager = TransitionManager()
     

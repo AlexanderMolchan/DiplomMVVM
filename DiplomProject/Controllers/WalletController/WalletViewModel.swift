@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WalletViewModel {
+final class WalletViewModel {
     let realm: RealmManager
     let controllerType: ControllerType
     let currentAccount: AccountModel?

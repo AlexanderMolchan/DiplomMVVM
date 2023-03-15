@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ColorsViewController: BaseViewController {
+final class ColorsViewController: BaseViewController {
     private let viewModel: ColorsViewModel
     
     private var contentView: ColorsViewControllerView {
@@ -33,18 +33,11 @@ class ColorsViewController: BaseViewController {
         super.viewDidLoad()
         controllerConfigurate()
         collectionViewConfigurate()
-//        tableViewConfigurate()
     }
     
     private func controllerConfigurate() {
         view.backgroundColor = defaultsBackgroundColor
     }
-    
-//    private func tableViewConfigurate() {
-//        contentView.tableView.delegate = self
-//        contentView.tableView.dataSource = self
-//        contentView.tableView.register(ColorCell.self, forCellReuseIdentifier: ColorCell.id)
-//    }
     
     private func collectionViewConfigurate() {
         contentView.collectionView.dataSource = self
@@ -61,31 +54,6 @@ class ColorsViewController: BaseViewController {
     }
     
 }
-
-//extension ColorsViewController: UITableViewDataSource, UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.colorsArray.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = contentView.tableView.dequeueReusableCell(withIdentifier: ColorCell.id, for: indexPath)
-//        guard let colorCell = cell as? ColorCell else { return cell }
-//        colorCell.isSelected = viewModel.selectedIndex == indexPath
-//        colorCell.set(color: viewModel.colorsArray[indexPath.row].color)
-//        return colorCell
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        DefaultsManager.selectedColorIndex = indexPath.row
-//        viewModel.selectedIndex = indexPath
-//        updateColors()
-//        contentView.tableView.performBatchUpdates {
-//            contentView.tableView.reloadRows(at: [indexPath], with: .automatic)
-//            contentView.tableView.reloadData()
-//        }
-//    }
-//
-//}
 
 extension ColorsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -107,6 +75,7 @@ extension ColorsViewController: UICollectionViewDataSource, UICollectionViewDele
         updateColors()
         contentView.collectionView.reloadData()
     }
+    
 }
 
 extension ColorsViewController: UICollectionViewDelegateFlowLayout {
@@ -115,6 +84,5 @@ extension ColorsViewController: UICollectionViewDelegateFlowLayout {
         let itemWidth = (screenWidth - 20 - 60) / 3
         let itemHeight = itemWidth
         return CGSize(width: itemWidth, height: itemHeight)
-
     }
 }

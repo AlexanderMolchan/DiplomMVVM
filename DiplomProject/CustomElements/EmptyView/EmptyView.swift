@@ -8,8 +8,7 @@
 import UIKit
 import SnapKit
 
-class EmptyView: UIView {
-    
+final class EmptyView: UIView {
     private let imageView = UIImageView()
     private let topLabel = UILabel()
     private let bottomLabel = UILabel()

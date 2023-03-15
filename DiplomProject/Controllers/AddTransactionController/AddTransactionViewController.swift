@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddTransactionViewController: BaseViewController {
+final class AddTransactionViewController: BaseViewController {
     private let viewModel: AddTransactionViewModel
     
     private var contentView: AddTransactionViewControllerView {

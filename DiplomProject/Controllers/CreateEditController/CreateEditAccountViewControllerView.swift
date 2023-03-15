@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CreateEditAccountViewControllerView: UIView {
+final class CreateEditAccountViewControllerView: UIView {
     private let nameLabel = UILabel()
     private let summLabel = UILabel()
     private let messageLabel = UILabel()
