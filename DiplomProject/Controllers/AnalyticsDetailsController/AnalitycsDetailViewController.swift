@@ -260,14 +260,15 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
         guard let cardView else { return }
         let screen = UIScreen.main.bounds.width
         let containerWidth = (screen - 40) / 2
-        
         let containerInsets = UIEdgeInsets(top: 10, left: 15, bottom: -10, right: 15)
+        let labelInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+
         totalIncomeContainer.snp.makeConstraints { make in
             make.top.equalTo(cardView.snp.bottom).inset(containerInsets)
             make.leading.equalToSuperview().inset(containerInsets)
             make.width.equalTo(containerWidth)
         }
-        let labelInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        
         totalIncomeTitle.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview().inset(labelInsets)
         }
@@ -321,7 +322,6 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
             make.top.equalTo(averageSpendTitle.snp.bottom).inset(labelInsets)
             make.leading.trailing.bottom.equalToSuperview().inset(labelInsets)
         }
-        
     }
     
     private func createDataGroups() {
@@ -341,7 +341,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
     private func analitycsSettings() {
         var totalIncome = 0.0
         var totalSpend = 0.0
-        
+
         account.allCashFlows.forEach { cashFlow in
             switch cashFlow.cashFlow {
                 case .incoming:
@@ -403,6 +403,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
             }
         }
     }
+    
 }
 
 extension AnalitycsDetailViewController: UITableViewDataSource, UITableViewDelegate {

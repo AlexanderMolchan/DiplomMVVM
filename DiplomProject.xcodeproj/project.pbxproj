@@ -15,7 +15,6 @@
 		4025632129986C31000B6036 /* Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025632029986C30000B6036 /* Listener.swift */; };
 		40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */; };
 		40256374299C515F000B6036 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256373299C515F000B6036 /* ViewController+Extension.swift */; };
-		405070EB29C131C000A0F361 /* Pometki.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405070EA29C131C000A0F361 /* Pometki.swift */; };
 		405070EE29C137B300A0F361 /* AnalitycsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405070ED29C137B300A0F361 /* AnalitycsCell.swift */; };
 		405448AB29B2141000143F4F /* DebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448AA29B2141000143F4F /* DebtViewController.swift */; };
 		405448AD29B2143300143F4F /* DebtViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448AC29B2143300143F4F /* DebtViewModel.swift */; };
@@ -68,7 +67,6 @@
 		4025632029986C30000B6036 /* Listener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener.swift; sourceTree = "<group>"; };
 		40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewControllerView.swift; sourceTree = "<group>"; };
 		40256373299C515F000B6036 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
-		405070EA29C131C000A0F361 /* Pometki.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pometki.swift; sourceTree = "<group>"; };
 		405070ED29C137B300A0F361 /* AnalitycsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalitycsCell.swift; sourceTree = "<group>"; };
 		405448AA29B2141000143F4F /* DebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtViewController.swift; sourceTree = "<group>"; };
 		405448AC29B2143300143F4F /* DebtViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtViewModel.swift; sourceTree = "<group>"; };
@@ -286,7 +284,6 @@
 			children = (
 				405070EC29C1379F00A0F361 /* AnalitycsCell */,
 				40DC238D29B57A37002D10A6 /* AnalitycsDetailViewController.swift */,
-				405070EA29C131C000A0F361 /* Pometki.swift */,
 			);
 			path = AnalyticsDetailsController;
 			sourceTree = "<group>";
@@ -546,7 +543,6 @@
 				40C96104299D7A2C004F8963 /* SelectedCell.swift in Sources */,
 				40DC238B29B5600F002D10A6 /* CardView.swift in Sources */,
 				40E1301329A0866D00D2A366 /* CreateEditViewModel.swift in Sources */,
-				405070EB29C131C000A0F361 /* Pometki.swift in Sources */,
 				40ED78BA29967A1E00EF36FF /* AppDelegate.swift in Sources */,
 				40C960F8299D713E004F8963 /* RealmManager.swift in Sources */,
 				40ED78DA29967D8900EF36FF /* WalletViewController.swift in Sources */,
