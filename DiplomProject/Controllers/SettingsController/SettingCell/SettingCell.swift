@@ -10,7 +10,7 @@ import SnapKit
 import DeviceKit
 
 
-class SettingCell: UITableViewCell {
+final class SettingCell: UITableViewCell {
     static let id = String(describing: SettingCell.self)
     private(set) var type: SettingsEnum
     

@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class CreateEditAccountViewController: BaseViewController {
+final class CreateEditAccountViewController: BaseViewController {
     private let viewModel: CreateEditViewModel
     var dismissClosure: (() -> Void)?
     

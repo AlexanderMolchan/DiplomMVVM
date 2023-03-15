@@ -8,14 +8,7 @@
 import UIKit
 import SnapKit
 
-class ColorsViewControllerView: UIView {
-    
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.separatorStyle = .none
-        tableView.isScrollEnabled = false
-        return tableView
-    }()
+final class ColorsViewControllerView: UIView {
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -34,11 +27,6 @@ class ColorsViewControllerView: UIView {
     }
     
     private func configurateViews() {
-//        addSubview(tableView)
-//        tableView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
-        
         let collectionInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         addSubview(collectionView)
         collectionView.snp.makeConstraints { make in

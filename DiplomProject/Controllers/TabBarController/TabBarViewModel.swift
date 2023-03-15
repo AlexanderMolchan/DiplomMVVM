@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarViewModel {
+final class TabBarViewModel {
     let realm: RealmManager
     var tabBarTintColor = UIColor()
     

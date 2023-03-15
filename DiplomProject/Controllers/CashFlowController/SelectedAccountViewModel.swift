@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SelectedAccountViewModel {
+final class SelectedAccountViewModel {
     let realm: RealmManager
     var controllerType: AccountOrCategoryType
     var controllerSubType: ControllerType

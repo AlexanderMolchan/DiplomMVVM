@@ -18,7 +18,7 @@ enum ControllerTransitionType {
     var next: ControllerTransitionType { return self == .presentation ? .dismissal : .presentation }
 }
 
-class TransitionManager: NSObject {
+final class TransitionManager: NSObject {
     let transitionDuration: Double = 0.8
     let shrinkDuration: Double = 0.2
     var transition: ControllerTransitionType = .presentation
@@ -43,7 +43,6 @@ class TransitionManager: NSObject {
     
     var takkenCard: AnalyticsCardView?
     var viewModel: AnalyticsViewModel?
-    var topInset: Double?
     
     private func addEffects(to view: UIView) {
         blurView.frame = view.frame
@@ -66,7 +65,6 @@ class TransitionManager: NSObject {
         self.takkenCard = card
         self.viewModel = viewModel
     }
-    
 }
 
 extension TransitionManager: UIViewControllerAnimatedTransitioning {
@@ -79,6 +77,7 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
         containerView.subviews.forEach { view in
             view.removeFromSuperview()
         }
+        
         addEffects(to: containerView)
         
         let fromView = transitionContext.viewController(forKey: .from)
@@ -101,6 +100,7 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
             guard let detailView = toView as? AnalitycsDetailViewController else { return }
             containerView.addSubview(detailView.view)
             detailView.viewsHidden = true
+            
             moveAndConvertToCardView(card: cardViewCopy, container: containerView, yOriginToMoveTo: 0) {
                 detailView.viewsHidden = false
                 detailView.showElementsWithAnimate()
@@ -108,27 +108,30 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
                 takkenCard.isHidden = false
                 transitionContext.completeTransition(true)
             }
+            
         } else {
             guard let detailView = fromView as? AnalitycsDetailViewController,
                   let width = detailView.cardView?.frame.size.width,
                   let height = detailView.cardView?.frame.size.height else { return }
             detailView.viewsHidden = true
             cardViewCopy.frame = CGRect(x: 0, y: 0, width: width, height: height)
+            
             moveAndConvertToCardView(card: cardViewCopy, container: containerView, yOriginToMoveTo: absoluteViewFrame.origin.y) {
                 takkenCard.isHidden = false
                 transitionContext.completeTransition(true)
             }
+            
         }
     }
     
-    func shrinkAnimator(for card: AnalyticsCardView) -> UIViewPropertyAnimator {
+    private func shrinkAnimator(for card: AnalyticsCardView) -> UIViewPropertyAnimator {
         return UIViewPropertyAnimator(duration: shrinkDuration, curve: .easeOut) {
             card.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-            self.dimmingView.alpha = 0.05
+            self.dimmingView.alpha = 0.07
         }
     }
     
-    func expendAnimator(for card: AnalyticsCardView, in container: UIView, yOrigin: CGFloat) -> UIViewPropertyAnimator {
+    private func expendAnimator(for card: AnalyticsCardView, in container: UIView, yOrigin: CGFloat) -> UIViewPropertyAnimator {
         let springTiming = UISpringTimingParameters(dampingRatio: 0.75, initialVelocity: CGVector(dx: 0, dy: 4))
         let animator = UIViewPropertyAnimator(duration: transitionDuration - shrinkDuration, timingParameters: springTiming)
         
@@ -136,22 +139,24 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
             card.transform = .identity
             card.containerView.layer.cornerRadius = self.transition.next.cornerRadius
             card.frame.origin.y = yOrigin
-            
             self.blurView.alpha = self.transition.blurAlpha
             self.dimmingView.alpha = self.transition.dimAlpha
             self.whiteView.layer.cornerRadius = self.transition.next.cornerRadius
             container.layoutIfNeeded()
             self.whiteView.frame = self.transition == .presentation ? container.frame : card.containerView.frame
         }
+        
         return animator
     }
     
-    func moveAndConvertToCardView(card: AnalyticsCardView, container: UIView, yOriginToMoveTo: CGFloat, completion: @escaping (() -> Void)) {
+    private func moveAndConvertToCardView(card: AnalyticsCardView, container: UIView, yOriginToMoveTo: CGFloat, completion: @escaping (() -> Void)) {
         let shrinkAnimator = shrinkAnimator(for: card)
         let expendAnimator = expendAnimator(for: card, in: container, yOrigin: yOriginToMoveTo)
+        
         expendAnimator.addCompletion { _ in
             completion()
         }
+        
         if transition == .presentation {
             shrinkAnimator.addCompletion { _ in
                 card.layoutIfNeeded()

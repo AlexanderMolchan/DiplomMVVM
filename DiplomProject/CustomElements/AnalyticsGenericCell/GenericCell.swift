@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class GenericCell<T: UIView>: UITableViewCell {
+final class GenericCell<T: UIView>: UITableViewCell {
     var mainView = T()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

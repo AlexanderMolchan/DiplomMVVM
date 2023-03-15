@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarControllerView: UITabBarController {
+final class TabBarControllerView: UITabBarController {
     let viewModel: TabBarViewModel
     
     init(viewModel: TabBarViewModel) {

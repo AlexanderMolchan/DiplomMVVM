@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class WalletViewControllerView: UIView {
+final class WalletViewControllerView: UIView {
     private let controllerType: ControllerType
     private let commentLabel = UILabel()
     

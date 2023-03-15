@@ -8,8 +8,7 @@
 import UIKit
 import SnapKit
 
-class DebtViewControllerView: UIView {
-    
+final class DebtViewControllerView: UIView {
     private let emptyView = EmptyView()
     
     override init(frame: CGRect) {
@@ -30,13 +29,12 @@ class DebtViewControllerView: UIView {
     private func layoutElements() {
         emptyView.setLabelsText(top: "Раздел временно недоступен.", bottom: "Следите за обновлениями.")
         addSubview(emptyView)
-        emptyView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
     }
     
     private func makeConstraints() {
-        
+        emptyView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     func updateColors() {

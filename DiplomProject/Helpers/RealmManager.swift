@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class RealmManager {
+final class RealmManager {
     private let realm = try? Realm()
     
     func write<T: Object>(object: T) {

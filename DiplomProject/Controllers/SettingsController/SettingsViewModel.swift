@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SettingsViewModel {
+final class SettingsViewModel {
     let realm: RealmManager
     
     var settingPoints = [[SettingsEnum]]()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DefaultsManager {
+final class DefaultsManager {
     private static let defaults = UserDefaults.standard
     
     static var firstStart: Bool {

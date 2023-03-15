@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DebtViewModel {
+final class DebtViewModel {
     let realm: RealmManager
     
     init(realm: RealmManager) {

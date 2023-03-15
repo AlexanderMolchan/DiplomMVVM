@@ -14,7 +14,7 @@ enum CardViewMode {
     case full
 }
 
-class AnalyticsCardView: UIView, ChartViewDelegate {
+final class AnalyticsCardView: UIView, ChartViewDelegate {
     lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray.withAlphaComponent(0.2)
@@ -158,7 +158,6 @@ class AnalyticsCardView: UIView, ChartViewDelegate {
         dataSets.colors = colors
         let data = PieChartData(dataSet: dataSets)
         pieView.data = data
-        //       pieView.animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
         let pFormatter = NumberFormatter()
         pFormatter.numberStyle = .percent
         pFormatter.maximumFractionDigits = 1
@@ -172,21 +171,6 @@ class AnalyticsCardView: UIView, ChartViewDelegate {
         pieView.holeColor = .clear
         pieView.drawEntryLabelsEnabled = false
         pieView.rotationEnabled = false
-    }
-    
-    func addShadow() {
-        shadowView.layer.cornerRadius = 20
-        shadowView.layer.shadowColor = UIColor.black.cgColor
-        shadowView.layer.shadowOpacity = 1
-        shadowView.layer.shadowRadius = 10
-        shadowView.layer.shadowOffset = CGSize(width: -1, height: 2)
-    }
-    
-    func removeShadow() {
-        shadowView.layer.shadowColor = UIColor.clear.cgColor
-        shadowView.layer.opacity = 0
-        shadowView.layer.shadowRadius = 0
-        shadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
     }
     
     private func setupViews() {

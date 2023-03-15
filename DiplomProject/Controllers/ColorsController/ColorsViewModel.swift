@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ColorsViewModel {
+final class ColorsViewModel {
     var colorsArray = TintColorEnum.allCases
     var selectedIndex = IndexPath(row: DefaultsManager.selectedColorIndex, section: 0)
 }

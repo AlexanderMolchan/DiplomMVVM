@@ -17,18 +17,12 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserverForColorChange()
-        configurateController()
     }
     
     deinit {
         removeObserverForColorChange()
     }
-    
-    private func configurateController() {
-        setupLayout()
-        makeConstraints()
-    }
-    
+
     func addObserverForColorChange() {
         NotificationCenter.default.addObserver(self, selector: #selector(observerAction), name: NSNotification.Name("colorChanged"), object: nil)
     }
@@ -39,14 +33,6 @@ class BaseViewController: UIViewController {
     
     @objc func observerAction() {
         
-    }
-
-    private func setupLayout() {
-
-    }
-    
-    private func makeConstraints() {
-
     }
     
 }

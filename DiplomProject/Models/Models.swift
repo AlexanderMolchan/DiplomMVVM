@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class AccountModel: Object {
+final class AccountModel: Object {
     @objc dynamic var id = ""
     @objc dynamic var name: String = ""
     @objc dynamic var creationgSumm: Double = 0.0
@@ -59,7 +59,7 @@ class AccountModel: Object {
     
 }
 
-class CashModel: Object {
+final class CashModel: Object {
     @objc dynamic var summ: Double = 0.0
     @objc private dynamic var accountTypeRawValue = AccountType.error.rawValue
     @objc private dynamic var cashFlowType = CashFlowType.error.rawValue
@@ -101,7 +101,7 @@ class CashModel: Object {
     
 }
 
-class CashFlowCategory: Object {
+final class CashFlowCategory: Object {
     @objc dynamic var name: String = ""
     @objc private dynamic var isSpendingFlow: Bool = true
     

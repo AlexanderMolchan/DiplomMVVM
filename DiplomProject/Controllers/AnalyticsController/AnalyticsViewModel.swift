@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AnalyticsViewModel {
+final class AnalyticsViewModel {
     let realm: RealmManager
     
     var accountArray = [AccountModel]()
