@@ -40,13 +40,13 @@ final class AnalyticsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        controllerConfigurate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.setupData()
         tableView.reloadData()
+        controllerConfigurate()
     }
     
     private func configurateUI() {
@@ -60,9 +60,8 @@ final class AnalyticsViewController: BaseViewController {
     private func controllerConfigurate() {
         viewModel.setupData()
         configurateUI()
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        //navigationSettings(title: "Аналитика")
         tableViewSettings()
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func tableViewSettings() {

@@ -19,21 +19,21 @@ final class AnalitycsCell: UITableViewCell {
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Chalkboard SE", size: 25)
+        label.font = UIFont(name: "Chalkboard SE", size: 23)
         label.textColor = .defaultsColor
         return label
     }()
     
     private lazy var totalSpendLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Chalkboard SE", size: 17)
+        label.font = UIFont(name: "Chalkboard SE", size: 14)
         label.text = "Всего расходов:"
         return label
     }()
     
     private lazy var totalIncomeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Chalkboard SE", size: 17)
+        label.font = UIFont(name: "Chalkboard SE", size: 14)
         label.text = "Всего доходов:"
         return label
     }()

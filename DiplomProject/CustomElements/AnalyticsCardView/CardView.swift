@@ -30,8 +30,15 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Marker Felt", size: 20)
-        label.textColor = .black
+        label.font = UIFont(name: "Marker Felt", size: 23)
+        label.textColor = .defaultsColor
+        return label
+    }()
+    
+    private lazy var typeLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Marker Felt", size: 14)
+        label.textColor = .lightGray
         return label
     }()
     
@@ -43,7 +50,10 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
     
     private lazy var bottomContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray.withAlphaComponent(0.3)
+        view.backgroundColor = .lightGray.withAlphaComponent(0.2)
+        view.layer.cornerRadius = 10
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        view.clipsToBounds = true
         return view
     }()
     
@@ -99,6 +109,7 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
         self.addSubview(containerView)
         containerView.addSubview(pieView)
         containerView.addSubview(titleLabel)
+        containerView.addSubview(typeLabel)
         containerView.addSubview(bottomContainer)
         bottomContainer.addSubview(bottomLabel)
     }
@@ -113,10 +124,15 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
             make.edges.equalToSuperview()
         }
         
-        let labelInsets = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
+        let labelInsets = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 16)
         titleLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(labelInsets)
             make.top.equalToSuperview().inset(45)
+        }
+        
+        typeLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(labelInsets)
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
         }
         
         pieView.snp.makeConstraints { make in
@@ -188,6 +204,8 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
             default: break
         }
         titleLabel.text = currentAccount?.name
+        titleLabel.textColor = .defaultsColor
+        typeLabel.text = currentAccount?.type.name
         bottomLabel.text = currentAccount?.currentSummString
         pieChartSettings()
     }
