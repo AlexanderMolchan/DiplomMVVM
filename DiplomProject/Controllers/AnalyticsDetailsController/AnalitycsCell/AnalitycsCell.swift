@@ -20,7 +20,6 @@ final class AnalitycsCell: UITableViewCell {
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Chalkboard SE", size: 23)
-        label.textColor = .defaultsColor
         return label
     }()
     

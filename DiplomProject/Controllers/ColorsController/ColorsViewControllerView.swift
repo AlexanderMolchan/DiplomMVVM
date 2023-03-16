@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 final class ColorsViewControllerView: UIView {
-    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical

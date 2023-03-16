@@ -44,9 +44,15 @@ final class AnalyticsViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.setupData()
-        tableView.reloadData()
         controllerConfigurate()
+        tableView.reloadData()
+    }
+    
+    private func controllerConfigurate() {
+        viewModel.setupData()
+        configurateUI()
+        tableViewSettings()
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func configurateUI() {
@@ -55,13 +61,6 @@ final class AnalyticsViewController: BaseViewController {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-    }
-    
-    private func controllerConfigurate() {
-        viewModel.setupData()
-        configurateUI()
-        tableViewSettings()
-        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func tableViewSettings() {
@@ -94,6 +93,7 @@ extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cardCell = cell as? AnalyticsCell else { return cell }
         
         cardCell.mainView.viewSettings(account: viewModel.accountArray[indexPath.row], type: .card, totalSumm: viewModel.totalSumm)
+        cardCell.mainView.animateChart()
         return cardCell
     }
     
@@ -103,7 +103,7 @@ extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentAccount = viewModel.accountArray[indexPath.row]
-        let presentedVc = AnalitycsDetailViewController(account: currentAccount, type: .full, totalSumm: viewModel.totalSumm)
+        let presentedVc = AnalitycsDetailViewController(account: currentAccount, type: .full, totalSumm: viewModel.totalSumm, realm: viewModel.realm)
         presentedVc.modalPresentationStyle = .overFullScreen
         presentedVc.modalPresentationCapturesStatusBarAppearance = true
         presentedVc.transitioningDelegate = transitionManager

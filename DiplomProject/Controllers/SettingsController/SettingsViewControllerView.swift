@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 final class SettingsViewControllerView: UIView {
-    
     var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.backgroundColor = .clear
