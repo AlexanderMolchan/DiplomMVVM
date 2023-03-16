@@ -175,7 +175,7 @@ final class WalletViewController: BaseViewController {
             } completion: { isFinish in
                 guard isFinish else { return }
                 self.viewModel.deleteAllTransactions()
-                self.contentView.totalSummLabel.text = "\(self.viewModel.currentAccount?.currentSumm ?? 0.0)"
+                self.contentView.totalSummLabel.text = "\(String.formatSumm(summ: self.viewModel.currentAccount?.currentSumm ?? 0.0))"
                 self.animatedEmptyViewShow()
             }
         }

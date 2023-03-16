@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class BaseViewController: UIViewController {
-    
     var defaultsBackgroundColor: UIColor = {
         return .white
     }()

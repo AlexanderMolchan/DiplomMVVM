@@ -76,7 +76,6 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Chalkboard SE", size: 25)
-        label.textColor = .defaultsColor
         label.text = "0.0"
         return label
     }()
@@ -92,7 +91,6 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Chalkboard SE", size: 25)
-        label.textColor = .defaultsColor
         label.text = "0.0"
 
         return label
@@ -109,7 +107,6 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Chalkboard SE", size: 23)
-        label.textColor = .defaultsColor
         label.text = "0.0"
         return label
     }()
@@ -126,7 +123,6 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Chalkboard SE", size: 23)
-        label.textColor = .defaultsColor
         label.text = "0.0"
 
         return label
@@ -140,10 +136,24 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
         return label
     }()
     
+    private lazy var stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 10
+        return stack
+    }()
+    
+    private lazy var categoryCountLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Chalkboard SE", size: 23)
+        return label
+    }()
+    
     private(set) var cardView: AnalyticsCardView?
     private var account: AccountModel
     private var type: CardViewMode
     private var totalSumm: Double
+    private var realm: RealmManager
     private var groupedAccountFlows = [[CashModel]]()
     var tabbarOpenClousure: (() -> Void)?
     
@@ -156,10 +166,11 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
         }
     }
     
-    init(account: AccountModel, type: CardViewMode, totalSumm: Double) {
+    init(account: AccountModel, type: CardViewMode, totalSumm: Double, realm: RealmManager) {
         self.account = account
         self.type = type
         self.totalSumm = totalSumm
+        self.realm = realm
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -184,6 +195,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
         layoutAnalitycsSubviews()
         makeAnalitycsConstraints()
         analitycsSettings()
+        stackSubviewsInsert()
         tableViewSettings()
     }
     
@@ -219,18 +231,78 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
         view.bringSubviewToFront(dismissButton)
     }
     
+    private func stackSubviewsInsert() {
+        var categoryArray = realm.read(type: CashFlowCategory.self).filter({ $0.type == .spending })
+        categoryArray = categoryArray.sorted { firstFlow, secondFlow in
+            account.spending.filter({ $0.category?.name == firstFlow.name }).count > account.spending.filter({ $0.category?.name == secondFlow.name }).count
+        }
+        guard !categoryArray.isEmpty else { return }
+        containerView.addSubview(stackView)
+        stackView.alpha = 0
+        let stackInsets = UIEdgeInsets(top: 10, left: 15, bottom: -20, right: 15)
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(averageSpendContainer.snp.bottom).inset(stackInsets)
+            make.leading.trailing.equalToSuperview().inset(stackInsets)
+        }
+        categoryArray.forEach { category in
+            let flowsCount = account.spending.filter({ $0.category?.name == category.name }).count
+            let allCategoryFlowsCount = account.spending.count
+            let label = UILabel()
+            label.font = UIFont(name: "Marker Felt Thin", size: 17)
+            
+            
+            let categoryString = "\(category.name): "
+            let categoryAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "Marker Felt", size: 19) as Any, .foregroundColor: UIColor.black]
+            let categoryAttributedString = NSMutableAttributedString(string: categoryString, attributes: categoryAttributes)
+            let countOfTransactionsString = "\(flowsCount)"
+            let attributedCount = NSMutableAttributedString(string: countOfTransactionsString, attributes: categoryAttributes)
+            
+            let commentString = "количество транзакций - "
+            let commentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "Marker Felt", size: 15) as Any, .foregroundColor: UIColor.lightGray]
+            let commentAttributedString = NSMutableAttributedString(string: commentString, attributes: commentAttributes)
+            let attributedString = NSMutableAttributedString(attributedString: categoryAttributedString)
+            attributedString.append(commentAttributedString)
+            attributedString.append(attributedCount)
+            
+            
+
+            
+            
+            label.attributedText = attributedString
+            let progress = UIProgressView()
+            if account.spending.isEmpty {
+                progress.setProgress(0.0, animated: true)
+            } else {
+                progress.setProgress(Float(flowsCount)/Float(allCategoryFlowsCount), animated: true)
+            }
+            progress.trackTintColor = .systemGray4
+            progress.progressTintColor = .defaultsColor
+            stackView.addArrangedSubview(label)
+            stackView.addArrangedSubview(progress)
+        }
+    }
+    
     private func tableViewSettings() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(AnalitycsCell.self, forCellReuseIdentifier: AnalitycsCell.id)
-        
         tableView.alpha = 0
         containerView.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.top.equalTo(averageSpendContainer.snp.bottom).offset(5)
-            make.left.right.equalTo(containerView).inset(10)
-            make.bottom.equalTo(containerView).offset(-20)
-            make.height.equalTo(100)
+        
+        if containerView.subviews.contains(stackView) {
+            tableView.snp.makeConstraints { make in
+                make.top.equalTo(stackView.snp.bottom).offset(20)
+                make.left.right.equalTo(containerView).inset(10)
+                make.bottom.equalTo(containerView).offset(-20)
+                make.height.equalTo(100)
+            }
+        } else {
+            tableView.snp.makeConstraints { make in
+                make.top.equalTo(averageSpendContainer.snp.bottom).offset(5)
+                make.left.right.equalTo(containerView).inset(10)
+                make.bottom.equalTo(containerView).offset(-20)
+                make.height.equalTo(100)
+            }
         }
     }
     
@@ -384,6 +456,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
             self.totalSpendContainer.alpha = 1
             self.averageIncomeContainer.alpha = 1
             self.averageSpendContainer.alpha = 1
+            self.stackView.alpha = 1
         }
     }
     
@@ -396,6 +469,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
             self.totalSpendContainer.alpha = 0
             self.averageIncomeContainer.alpha = 0
             self.averageSpendContainer.alpha = 0
+            self.stackView.alpha = 0
         } completion: { isFinish in
             guard isFinish else { return }
             self.dismiss(animated: true) {
