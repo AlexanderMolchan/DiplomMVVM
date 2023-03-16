@@ -252,7 +252,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
             
             
             let categoryString = "\(category.name): "
-            let categoryAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "Marker Felt", size: 19) as Any, .foregroundColor: UIColor.black]
+            let categoryAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "Chalkboard SE", size: 19) as Any, .foregroundColor: UIColor.black]
             let categoryAttributedString = NSMutableAttributedString(string: categoryString, attributes: categoryAttributes)
             let countOfTransactionsString = "\(flowsCount)"
             let attributedCount = NSMutableAttributedString(string: countOfTransactionsString, attributes: categoryAttributes)
@@ -264,10 +264,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
             attributedString.append(commentAttributedString)
             attributedString.append(attributedCount)
             
-            
 
-            
-            
             label.attributedText = attributedString
             let progress = UIProgressView()
             if account.spending.isEmpty {
