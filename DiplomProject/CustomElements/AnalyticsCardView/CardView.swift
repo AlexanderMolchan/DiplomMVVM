@@ -42,15 +42,23 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
         return label
     }()
     
-    private lazy var lineChartView: LineChartView  = {
+    private lazy var lineChartView: LineChartView = {
         let lineView = LineChartView()
         lineView.contentMode = .scaleAspectFit
         return lineView
     }()
     
+    private lazy var emptyView: EmptyView = {
+        let view = EmptyView()
+        view.setForCardView(top: "Недостаточно данных.", bottom: "График будет построен после 2 дней учета.")
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
     var type: CardViewMode?
     var currentAccount: AccountModel?
     var totalSumm: Double?
+    private var groupedAccountFlows = [[CashModel]]()
     
     init() {
         super.init(frame: .zero)
@@ -74,17 +82,7 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
     }
     
     func updateLayout(for type: CardViewMode) {
-        switch type {
-            case .card:
-                let containerInsets = UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
-                containerView.snp.remakeConstraints { make in
-                    make.edges.equalToSuperview().inset(containerInsets)
-                }
-            case .full:
-                containerView.snp.remakeConstraints { make in
-                    make.edges.equalToSuperview()
-                }
-        }
+        transitionConstraintsRemake(type: type)
     }
     
     func animateChart() {
@@ -100,6 +98,25 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
         containerView.addSubview(typeLabel)
     }
     
+    private func emptyViewSettings() {
+        if groupedAccountFlows.count < 2 {
+            containerView.addSubview(emptyView)
+            lineChartView.alpha = 0
+            emptyView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview().offset(30)
+            }
+        } else {
+            emptyView.removeFromSuperview()
+            lineChartView.alpha = 1
+        }
+    }
+    
+    private func animatedEmptyConstraintRemake(type: CardViewMode?) {
+        if containerView.subviews.contains(emptyView) {
+        }
+    }
+    
     private func makeConstraints() {
         let containerInsets = UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
         containerView.snp.makeConstraints { make in
@@ -113,69 +130,65 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
         let labelInsets = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
         titleLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(labelInsets)
-            make.top.equalToSuperview().inset(45)
+            make.top.equalToSuperview().inset(25)
         }
         
         typeLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(labelInsets)
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
+            make.bottom.equalTo(lineChartView.snp.top).inset(-20)
         }
         
         lineChartView.snp.makeConstraints { make in
-            make.top.equalTo(typeLabel).inset(20)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(20)
         }
     }
     
-//    private func pieChartSettings() {
-//        pieView.delegate = self
-//
-//        guard let totalSumm,
-//              let currentSumm = currentAccount?.currentSumm
-//        else { return }
-//
-    //    guard let totalSumm,
-    //              let currentSumm = currentAccount?.currentSumm
-    //
-//        let partFromAll = (currentSumm * 100) / totalSumm
-//        let otherPart = 100.0 - partFromAll
-//
-//        var entries = [ChartDataEntry]()
-//        let pieChartEntry = PieChartDataEntry(value: otherPart)
-//        let secondPieChartEntry = PieChartDataEntry(value: partFromAll)
-//        entries.append(pieChartEntry)
-//        entries.append(secondPieChartEntry)
-//
-//        let dataSets = PieChartDataSet(entries: entries, label: "Category")
-//        let colors = [UIColor.lightGray, UIColor.defaultsColor]
-//        dataSets.colors = colors
-//        let data = PieChartData(dataSet: dataSets)
-//        pieView.data = data
-//        let pFormatter = NumberFormatter()
-//        pFormatter.numberStyle = .percent
-//        pFormatter.maximumFractionDigits = 1
-//        pFormatter.multiplier = 1
-//        pFormatter.percentSymbol = " %"
-//        data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
-//        data.setValueFont(.systemFont(ofSize: 11, weight: .heavy))
-//        data.setValueTextColor(.white)
-//
-//        pieView.centerAttributedText = NSAttributedString(string: "\(Int(currentSumm))", attributes: [NSAttributedString.Key.foregroundColor: UIColor.defaultsColor, NSAttributedString.Key.font: UIFont(name: "Marker Felt", size: 20) as Any])
-//        pieView.holeColor = .clear
-//        pieView.drawEntryLabelsEnabled = false
-//        pieView.rotationEnabled = false
-//    }
+    private func createDataGroups() {
+        groupedAccountFlows.removeAll()
+        guard let currentAccount else { return }
+        let accountFlows = currentAccount.allCashFlows
+        let groupedFlows = Dictionary.init(grouping: accountFlows) { element in
+            return element.stringDate
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let sortedKeys = groupedFlows.keys.sorted { dateFormatter.date(from: $0) ?? Date.now < dateFormatter.date(from: $1) ?? Date.now }
+        sortedKeys.forEach { key in
+            guard let values = groupedFlows[key] else { return }
+            groupedAccountFlows.append(values)
+        }
+    }
     
     private func lineChartSettings() {
         lineChartView.delegate = self
         lineChartView.setScaleEnabled(false)
-        lineChartView.legend.form = .circle
         lineChartView.legend.enabled = false
 
-        let incomeEntryes = [ChartDataEntry(x: 1, y: 3), ChartDataEntry(x: 2, y: 4), ChartDataEntry(x: 3, y: 3), ChartDataEntry(x: 4, y: 7), ChartDataEntry(x: 5, y: 1), ChartDataEntry(x: 6, y: 10)]
-        
-        let spendEntryes = [ChartDataEntry(x: 1, y: 4), ChartDataEntry(x: 2, y: 1), ChartDataEntry(x: 3, y: 6), ChartDataEntry(x: 4, y: 2), ChartDataEntry(x: 5, y: 8), ChartDataEntry(x: 6, y: 1)]
+        var incomeEntryes = [ChartDataEntry]()
+        var spendEntryes = [ChartDataEntry]()
+        var dateArray = [String]()
+        groupedAccountFlows.enumerated().forEach { index, group in
+            var incomeSumm = 0.0
+            var spendSumm = 0.0
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM"
+            dateArray.append(dateFormatter.string(from: group.first?.date ?? Date.now))
+            group.forEach { cashModel in
+                switch cashModel.cashFlow {
+                    case .incoming: incomeSumm += cashModel.summ
+                    case .spending: spendSumm += cashModel.summ
+                    default: break
+                }
+            }
+            let incomeEntry = ChartDataEntry(x: Double(index), y: incomeSumm)
+            let spendEntry = ChartDataEntry(x: Double(index), y: spendSumm)
+            incomeEntryes.append(incomeEntry)
+            spendEntryes.append(spendEntry)
+        }
+        lineChartView.xAxis.labelPosition = .bottom
+        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dateArray)
         
         let incomeDataSet = LineChartDataSet(entries: incomeEntryes)
         incomeDataSet.drawCirclesEnabled = false
@@ -187,6 +200,7 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
         incomeDataSet.highlightColor = .black
         incomeDataSet.drawCircleHoleEnabled = false
         incomeDataSet.lineDashLengths = [5, 5]
+        incomeDataSet.setColor(.defaultsColor)
         
         let spendDataSet = LineChartDataSet(entries: spendEntryes)
         spendDataSet.drawCirclesEnabled = false
@@ -198,33 +212,51 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
         spendDataSet.highlightColor = .black
         spendDataSet.drawCircleHoleEnabled = false
         spendDataSet.lineDashLengths = [5, 5]
+        spendDataSet.setColor(.defaultsColor)
+        
         let dataSets = [incomeDataSet, spendDataSet]
         let data = LineChartData(dataSets: dataSets)
-
         data.setDrawValues(false)
         lineChartView.data = data
-        
-        
-        
     }
     
-    private func setupViews() {
+    private func transitionConstraintsRemake(type: CardViewMode?) {
         switch type {
             case .card:
                 let containerInsets = UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
                 containerView.snp.remakeConstraints { make in
                     make.edges.equalToSuperview().inset(containerInsets)
                 }
+                titleLabel.snp.updateConstraints { make in
+                    make.top.equalToSuperview().inset(25)
+                }
+                typeLabel.snp.updateConstraints { make in
+                make.bottom.equalTo(lineChartView.snp.top).inset(-20)
+                }
                 containerView.layer.cornerRadius = 20
             case .full:
                 containerView.snp.remakeConstraints { make in
                     make.edges.equalToSuperview()
                 }
+                titleLabel.snp.updateConstraints { make in
+                    make.top.equalToSuperview().inset(45)
+                }
+                typeLabel.snp.updateConstraints { make in
+                make.bottom.equalTo(lineChartView.snp.top)
+                }
             default: break
         }
+        animatedEmptyConstraintRemake(type: type)
+    }
+    
+    private func setupViews() {
+        transitionConstraintsRemake(type: self.type)
         titleLabel.text = currentAccount?.name
-        titleLabel.textColor = .defaultsColor
         typeLabel.text = currentAccount?.type.name
+        titleLabel.textColor = .defaultsColor
+        emptyView.updateColors()
+        createDataGroups()
+        emptyViewSettings()
         lineChartSettings()
     }
 

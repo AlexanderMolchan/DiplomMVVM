@@ -12,7 +12,6 @@ final class EmptyView: UIView {
     private let imageView = UIImageView()
     private let topLabel = UILabel()
     private let bottomLabel = UILabel()
-    
     var emptyViewColor = UIColor.defaultsColor
     
     override init(frame: CGRect) {
@@ -60,6 +59,17 @@ final class EmptyView: UIView {
     func setLabelsText(top: String, bottom: String) {
         topLabel.text = top
         bottomLabel.text = bottom
+    }
+    
+    func setForCardView(top: String, bottom: String) {
+        topLabel.text = top
+        bottomLabel.text = bottom
+        topLabel.font = UIFont(name: "Marker Felt Thin", size: 17)
+        bottomLabel.font = UIFont(name: "Marker Felt Thin", size: 17)
+        imageView.image = UIImage(systemName: "chart.pie")
+        imageView.snp.updateConstraints { make in
+            make.height.width.equalTo(155)
+        }
     }
     
     func updateColors() {
