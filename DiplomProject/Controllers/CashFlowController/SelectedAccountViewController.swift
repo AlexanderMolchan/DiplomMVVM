@@ -12,7 +12,7 @@ final class SelectedAccountViewController: BaseViewController {
     private let viewModel: SelectedAccountViewModel
     
     private var tableView = UITableView()
-    private let emptyView = EmptyView()
+    private lazy var emptyView = EmptyView()
     var nameChangeClosure: ((AccountModel) -> ())?
     var categoryChangeClousure: ((CashFlowCategory) -> ())?
 

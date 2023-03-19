@@ -115,3 +115,26 @@ final class CashFlowCategory: Object {
         self.isSpendingFlow = isSpendingFlow
     }
 }
+
+final class DebtModel: Object {
+    @objc dynamic var debterName: String = ""
+    @objc dynamic var summ: Double = 0.0
+    @objc dynamic var returnDate: Date = Date()
+    @objc dynamic var notificationDate: Date? = Date()
+    @objc dynamic var id = ""
+    
+    var stringDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        return dateFormatter.string(from: self.returnDate)
+    }
+
+    convenience init(debter: String, summ: Double, returnDate: Date, notificationDate: Date? = nil) {
+        self.init()
+        self.id = UUID().uuidString
+        self.debterName = debter
+        self.summ = summ
+        self.returnDate = returnDate
+        self.notificationDate = notificationDate
+    }
+}

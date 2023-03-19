@@ -9,7 +9,12 @@ import UIKit
 import SnapKit
 
 final class DebtViewControllerView: UIView {
-    private let emptyView = EmptyView()
+    private lazy var emptyView = EmptyView()
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        return tableView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,17 +32,30 @@ final class DebtViewControllerView: UIView {
     }
     
     private func layoutElements() {
-        emptyView.setLabelsText(top: "Раздел временно недоступен.", bottom: "Следите за обновлениями.")
-        addSubview(emptyView)
+        addSubview(tableView)
     }
     
     private func makeConstraints() {
-        emptyView.snp.makeConstraints { make in
+        tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
     
-    func updateColors() {
+    func addEmptyView() {
+        addSubview(emptyView)
+        emptyView.emptyViewColor = .defaultsColor
+        emptyView.setLabelsText(top: "У вас нет записей о долгах.", bottom: "Создайте новые записи, и они будут отображены здесь.")
+        emptyView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        bringSubviewToFront(emptyView)
+    }
+    
+    func removeEmptyView() {
+        emptyView.removeFromSuperview()
+    }
+    
+    func updateColor() {
         emptyView.updateColors()
     }
     

@@ -23,6 +23,12 @@
 		405448B429B2177200143F4F /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448B329B2177200143F4F /* AnalyticsViewController.swift */; };
 		405448B629B2177D00143F4F /* AnalyticsViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448B529B2177D00143F4F /* AnalyticsViewControllerView.swift */; };
 		406D98BC29C080C500B692D1 /* ColorCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406D98BB29C080C500B692D1 /* ColorCollectionCell.swift */; };
+		40A2587E29C72FC500B6E3CA /* AnalyticsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2587D29C72FC500B6E3CA /* AnalyticsDetailViewModel.swift */; };
+		40A2588129C740AB00B6E3CA /* DebtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2588029C740AB00B6E3CA /* DebtCell.swift */; };
+		40A2588329C7466400B6E3CA /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2588229C7466400B6E3CA /* NotificationManager.swift */; };
+		40A2588629C747C900B6E3CA /* CreateDebtViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2588529C747C900B6E3CA /* CreateDebtViewModel.swift */; };
+		40A2588829C747DA00B6E3CA /* CreateDebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2588729C747DA00B6E3CA /* CreateDebtViewController.swift */; };
+		40A2588A29C747F500B6E3CA /* CreateDebtViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2588929C747F500B6E3CA /* CreateDebtViewControllerView.swift */; };
 		40A9F94F29B02BE100967122 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9F94E29B02BE100967122 /* EmptyView.swift */; };
 		40C960F8299D713E004F8963 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C960F7299D713E004F8963 /* RealmManager.swift */; };
 		40C960FA299D717B004F8963 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C960F9299D717B004F8963 /* UserDefaults.swift */; };
@@ -75,6 +81,12 @@
 		405448B329B2177200143F4F /* AnalyticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
 		405448B529B2177D00143F4F /* AnalyticsViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewControllerView.swift; sourceTree = "<group>"; };
 		406D98BB29C080C500B692D1 /* ColorCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionCell.swift; sourceTree = "<group>"; };
+		40A2587D29C72FC500B6E3CA /* AnalyticsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsDetailViewModel.swift; sourceTree = "<group>"; };
+		40A2588029C740AB00B6E3CA /* DebtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtCell.swift; sourceTree = "<group>"; };
+		40A2588229C7466400B6E3CA /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		40A2588529C747C900B6E3CA /* CreateDebtViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDebtViewModel.swift; sourceTree = "<group>"; };
+		40A2588729C747DA00B6E3CA /* CreateDebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDebtViewController.swift; sourceTree = "<group>"; };
+		40A2588929C747F500B6E3CA /* CreateDebtViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDebtViewControllerView.swift; sourceTree = "<group>"; };
 		40A9F94E29B02BE100967122 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		40C960F7299D713E004F8963 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		40C960F9299D717B004F8963 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -158,6 +170,7 @@
 				40DC238F29B58D80002D10A6 /* TransitionManager.swift */,
 				40C960F9299D717B004F8963 /* UserDefaults.swift */,
 				4025632029986C30000B6036 /* Listener.swift */,
+				40A2588229C7466400B6E3CA /* NotificationManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -182,6 +195,7 @@
 		405448A929B213FA00143F4F /* DebtController */ = {
 			isa = PBXGroup;
 			children = (
+				40A2587F29C740A000B6E3CA /* DebtCell */,
 				405448AC29B2143300143F4F /* DebtViewModel.swift */,
 				405448AA29B2141000143F4F /* DebtViewController.swift */,
 				405448AE29B2147000143F4F /* DebtViewControllerView.swift */,
@@ -197,6 +211,24 @@
 				405448B529B2177D00143F4F /* AnalyticsViewControllerView.swift */,
 			);
 			path = AnalyticsController;
+			sourceTree = "<group>";
+		};
+		40A2587F29C740A000B6E3CA /* DebtCell */ = {
+			isa = PBXGroup;
+			children = (
+				40A2588029C740AB00B6E3CA /* DebtCell.swift */,
+			);
+			path = DebtCell;
+			sourceTree = "<group>";
+		};
+		40A2588429C747B300B6E3CA /* CreateDebtController */ = {
+			isa = PBXGroup;
+			children = (
+				40A2588529C747C900B6E3CA /* CreateDebtViewModel.swift */,
+				40A2588729C747DA00B6E3CA /* CreateDebtViewController.swift */,
+				40A2588929C747F500B6E3CA /* CreateDebtViewControllerView.swift */,
+			);
+			path = CreateDebtController;
 			sourceTree = "<group>";
 		};
 		40B0171B29AED22500787616 /* CustomElements */ = {
@@ -283,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				405070EC29C1379F00A0F361 /* AnalitycsCell */,
+				40A2587D29C72FC500B6E3CA /* AnalyticsDetailViewModel.swift */,
 				40DC238D29B57A37002D10A6 /* AnalitycsDetailViewController.swift */,
 			);
 			path = AnalyticsDetailsController;
@@ -354,6 +387,7 @@
 				405448B029B2175400143F4F /* AnalyticsController */,
 				40DC238C29B579A0002D10A6 /* AnalyticsDetailsController */,
 				405448A929B213FA00143F4F /* DebtController */,
+				40A2588429C747B300B6E3CA /* CreateDebtController */,
 				40D50C4D29B1629F00625F43 /* SettingsController */,
 				400EBD9F29B8CB0300BED1BB /* ColorsController */,
 			);
@@ -524,6 +558,7 @@
 				40ED78D629967D0500EF36FF /* AddTransactionViewController.swift in Sources */,
 				4025632129986C31000B6036 /* Listener.swift in Sources */,
 				405448B429B2177200143F4F /* AnalyticsViewController.swift in Sources */,
+				40A2588629C747C900B6E3CA /* CreateDebtViewModel.swift in Sources */,
 				40F5326429B602BE0051E89C /* TabBarController + Extension.swift in Sources */,
 				40E1301129A0864300D2A366 /* CreateEditAccountViewControllerView.swift in Sources */,
 				405448B229B2176A00143F4F /* AnalyticsViewModel.swift in Sources */,
@@ -537,11 +572,13 @@
 				400EBD9E29B8CAE900BED1BB /* ColorsViewControllerView.swift in Sources */,
 				40D50C5229B1724900625F43 /* SettingCell.swift in Sources */,
 				40D50C4C29B1629900625F43 /* SettingsViewControllerView.swift in Sources */,
+				40A2588829C747DA00B6E3CA /* CreateDebtViewController.swift in Sources */,
 				40DC238E29B57A37002D10A6 /* AnalitycsDetailViewController.swift in Sources */,
 				400EBD9A29B8CAA500BED1BB /* ColorsViewModel.swift in Sources */,
 				40C960FA299D717B004F8963 /* UserDefaults.swift in Sources */,
 				40C96104299D7A2C004F8963 /* SelectedCell.swift in Sources */,
 				40DC238B29B5600F002D10A6 /* CardView.swift in Sources */,
+				40A2587E29C72FC500B6E3CA /* AnalyticsDetailViewModel.swift in Sources */,
 				40E1301329A0866D00D2A366 /* CreateEditViewModel.swift in Sources */,
 				40ED78BA29967A1E00EF36FF /* AppDelegate.swift in Sources */,
 				40C960F8299D713E004F8963 /* RealmManager.swift in Sources */,
@@ -554,13 +591,16 @@
 				401AC40029B7EA2C003EE1D7 /* BaseViewController.swift in Sources */,
 				40ED78DC29967D9900EF36FF /* WalletViewModel.swift in Sources */,
 				40ED78D129967AF300EF36FF /* TabBarControllerView.swift in Sources */,
+				40A2588129C740AB00B6E3CA /* DebtCell.swift in Sources */,
 				40DC238829B55DCD002D10A6 /* GenericCell.swift in Sources */,
 				405448AF29B2147000143F4F /* DebtViewControllerView.swift in Sources */,
 				40D50C4829B1627C00625F43 /* SettingsViewModel.swift in Sources */,
 				405448AD29B2143300143F4F /* DebtViewModel.swift in Sources */,
 				40A9F94F29B02BE100967122 /* EmptyView.swift in Sources */,
+				40A2588A29C747F500B6E3CA /* CreateDebtViewControllerView.swift in Sources */,
 				405448AB29B2141000143F4F /* DebtViewController.swift in Sources */,
 				400EBD9C29B8CAB800BED1BB /* ColorsViewController.swift in Sources */,
+				40A2588329C7466400B6E3CA /* NotificationManager.swift in Sources */,
 				40ED78BC29967A1E00EF36FF /* SceneDelegate.swift in Sources */,
 				40C960FC299D71A1004F8963 /* Models.swift in Sources */,
 				40D50C4A29B1628900625F43 /* SettingsViewController.swift in Sources */,
