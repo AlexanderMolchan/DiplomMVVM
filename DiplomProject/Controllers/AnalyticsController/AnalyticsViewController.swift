@@ -17,13 +17,6 @@ final class AnalyticsViewController: BaseViewController {
         self.view as! AnalyticsViewControllerView
     }
     
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = .white
-        return tableView
-    }()
-    
     init(viewModel: AnalyticsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -45,42 +38,39 @@ final class AnalyticsViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         controllerConfigurate()
-        tableView.reloadData()
+        contentView.tableView.reloadData()
+    }
+    
+    override func observerAction() {
+        contentView.updateColor()
     }
     
     private func controllerConfigurate() {
         viewModel.setupData()
         configurateUI()
+        emptyViewSettings()
         tableViewSettings()
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func configurateUI() {
         view.backgroundColor = defaultsBackgroundColor
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
     }
     
     private func tableViewSettings() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(AnalyticsCell.self, forCellReuseIdentifier: String(describing: AnalyticsCell.self))
+        contentView.tableView.dataSource = self
+        contentView.tableView.delegate = self
+        contentView.tableView.register(AnalyticsCell.self, forCellReuseIdentifier: String(describing: AnalyticsCell.self))
     }
     
-    private func showNavBar() {
-        UIView.animate(withDuration: 0.25) {
-            self.navigationController?.navigationBar.alpha = 1
+    private func emptyViewSettings() {
+        if viewModel.accountArray.isEmpty {
+            contentView.addEmptyView()
+        } else {
+            contentView.removeEmptyView()
         }
     }
-    
-    private func hideNavBar() {
-        UIView.animate(withDuration: 0.25) {
-            self.navigationController?.navigationBar.alpha = 0
-        }
-    }
-    
+
 }
 
 extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -103,7 +93,9 @@ extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentAccount = viewModel.accountArray[indexPath.row]
-        let presentedVc = AnalitycsDetailViewController(account: currentAccount, type: .full, totalSumm: viewModel.totalSumm, realm: viewModel.realm)
+        let detailViewModel = AnalyticsDetailViewModel(account: currentAccount, type: .full, totalSumm: viewModel.totalSumm, realm: viewModel.realm)
+        
+        let presentedVc = AnalitycsDetailViewController(viewModel: detailViewModel)
         presentedVc.modalPresentationStyle = .overFullScreen
         presentedVc.modalPresentationCapturesStatusBarAppearance = true
         presentedVc.transitioningDelegate = transitionManager
@@ -118,8 +110,8 @@ extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func selectedCellCardView() -> AnalyticsCardView? {
-        guard let indexPath = tableView.indexPathForSelectedRow,
-              let cell = tableView.cellForRow(at: indexPath) as? AnalyticsCell else { return nil }
+        guard let indexPath = contentView.tableView.indexPathForSelectedRow,
+              let cell = contentView.tableView.cellForRow(at: indexPath) as? AnalyticsCell else { return nil }
         let cardView = cell.mainView
         return cardView
     }

@@ -12,10 +12,10 @@ final class WalletViewControllerView: UIView {
     private let controllerType: ControllerType
     private let commentLabel = UILabel()
     
+    lazy var tableView = UITableView()
+    lazy var emptyView = EmptyView()
     var contentColor: UIColor = .defaultsColor
     let totalSummLabel = UILabel()
-    var tableView = UITableView()
-    let emptyView = EmptyView()
 
     init(type: ControllerType) {
         self.controllerType = type

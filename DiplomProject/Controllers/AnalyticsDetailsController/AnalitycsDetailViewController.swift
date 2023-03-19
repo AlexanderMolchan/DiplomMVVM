@@ -9,11 +9,13 @@ import UIKit
 import SnapKit
 
 final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDelegate {
+    private let viewModel: AnalyticsDetailViewModel
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
     
-    lazy private var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: .zero)
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
@@ -23,12 +25,12 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
         return scrollView
     }()
     
-    lazy private var containerView: UIView = {
+    private lazy var containerView: UIView = {
         let view = UIView()
         return view
     }()
     
-    lazy private var dismissButton: UIButton = {
+    private lazy var dismissButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "clear"), for: .normal)
         button.tintColor = .defaultsColor.withAlphaComponent(0.6)
@@ -37,7 +39,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
         return button
     }()
     
-    lazy private var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.isScrollEnabled = false
         tableView.separatorStyle = .none
@@ -150,13 +152,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
     }()
     
     private(set) var cardView: AnalyticsCardView?
-    private var account: AccountModel
-    private var type: CardViewMode
-    private var totalSumm: Double
-    private var realm: RealmManager
-    private var groupedAccountFlows = [[CashModel]]()
-    var tabbarOpenClousure: (() -> Void)?
-    
+        
     var viewsHidden: Bool = false {
         didSet {
             dismissButton.isHidden = viewsHidden
@@ -166,11 +162,10 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
         }
     }
     
-    init(account: AccountModel, type: CardViewMode, totalSumm: Double, realm: RealmManager) {
-        self.account = account
-        self.type = type
-        self.totalSumm = totalSumm
-        self.realm = realm
+    var tabbarOpenClousure: (() -> Void)?
+    
+    init(viewModel: AnalyticsDetailViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -191,7 +186,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
     private func configurate() {
         configurateScrollView()
         configurateCardView()
-        createDataGroups()
+        viewModel.createDataGroups()
         layoutAnalitycsSubviews()
         makeAnalitycsConstraints()
         analitycsSettings()
@@ -213,7 +208,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
     
     private func configurateCardView() {
         cardView = AnalyticsCardView()
-        cardView?.viewSettings(account: account, type: type, totalSumm: totalSumm)
+        cardView?.viewSettings(account: viewModel.account, type: viewModel.type, totalSumm: viewModel.totalSumm)
         guard let cardView else { return }
         scrollView.addSubview(cardView)
         cardView.snp.makeConstraints { make in
@@ -232,9 +227,9 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
     }
     
     private func stackSubviewsInsert() {
-        var categoryArray = realm.read(type: CashFlowCategory.self).filter({ $0.type == .spending })
+        var categoryArray = viewModel.realm.read(type: CashFlowCategory.self).filter({ $0.type == .spending })
         categoryArray = categoryArray.sorted { firstFlow, secondFlow in
-            account.spending.filter({ $0.category?.name == firstFlow.name }).count > account.spending.filter({ $0.category?.name == secondFlow.name }).count
+            viewModel.account.spending.filter({ $0.category?.name == firstFlow.name }).count > viewModel.account.spending.filter({ $0.category?.name == secondFlow.name }).count
         }
         guard !categoryArray.isEmpty else { return }
         containerView.addSubview(stackView)
@@ -245,8 +240,8 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
             make.leading.trailing.equalToSuperview().inset(stackInsets)
         }
         categoryArray.forEach { category in
-            let flowsCount = account.spending.filter({ $0.category?.name == category.name }).count
-            let allCategoryFlowsCount = account.spending.count
+            let flowsCount = viewModel.account.spending.filter({ $0.category?.name == category.name }).count
+            let allCategoryFlowsCount = viewModel.account.spending.count
             let label = UILabel()
             label.font = UIFont(name: "Marker Felt Thin", size: 17)
             
@@ -267,7 +262,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
 
             label.attributedText = attributedString
             let progress = UIProgressView()
-            if account.spending.isEmpty {
+            if viewModel.account.spending.isEmpty {
                 progress.setProgress(0.0, animated: true)
             } else {
                 progress.setProgress(Float(flowsCount)/Float(allCategoryFlowsCount), animated: true)
@@ -392,26 +387,12 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
             make.leading.trailing.bottom.equalToSuperview().inset(labelInsets)
         }
     }
-    
-    private func createDataGroups() {
-        let accountFlows = account.allCashFlows
-        let groupedFlows = Dictionary.init(grouping: accountFlows) { element in
-            return element.stringDate
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        let sortedKeys = groupedFlows.keys.sorted { dateFormatter.date(from: $0) ?? Date.now > dateFormatter.date(from: $1) ?? Date.now }
-        sortedKeys.forEach { key in
-            guard let values = groupedFlows[key] else { return }
-            groupedAccountFlows.append(values)
-        }
-    }
-    
+
     private func analitycsSettings() {
         var totalIncome = 0.0
         var totalSpend = 0.0
 
-        account.allCashFlows.forEach { cashFlow in
+        viewModel.account.allCashFlows.forEach { cashFlow in
             switch cashFlow.cashFlow {
                 case .incoming:
                     totalIncome += cashFlow.summ
@@ -426,9 +407,9 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
         totalIncomeTitle.text = totalIncomeSumm
         totalSpendTitle.text = totalSpendSumm
         
-        if !groupedAccountFlows.isEmpty {
-            let averageIncome = String.formatSumm(summ: totalIncome / Double(groupedAccountFlows.count))
-            let averageSpend = String.formatSumm(summ: totalSpend / Double(groupedAccountFlows.count))
+        if !viewModel.groupedAccountFlows.isEmpty {
+            let averageIncome = String.formatSumm(summ: totalIncome / Double(viewModel.groupedAccountFlows.count))
+            let averageSpend = String.formatSumm(summ: totalSpend / Double(viewModel.groupedAccountFlows.count))
             averageIncomeTitle.text = averageIncome
             averageSpendTitle.text = averageSpend
         } else {
@@ -479,13 +460,13 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
 
 extension AnalitycsDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupedAccountFlows.count
+        return viewModel.groupedAccountFlows.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AnalitycsCell.id, for: indexPath)
         guard let totalCell = cell as? AnalitycsCell else { return cell }
-        totalCell.set(group: groupedAccountFlows[indexPath.row])
+        totalCell.set(group: viewModel.groupedAccountFlows[indexPath.row])
 
         return totalCell
     }
