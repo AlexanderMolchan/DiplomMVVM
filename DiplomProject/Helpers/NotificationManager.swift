@@ -5,7 +5,7 @@
 //  Created by Александр Молчан on 19.03.23.
 //
 
-import Foundation
+import UIKit
 import UserNotifications
 
 final class NotificationManager {
@@ -19,14 +19,12 @@ final class NotificationManager {
         }
     }
     
-    func checkNotificationStatus() {
+    func checkNotificationStatus(denied: (() -> Void)?) {
         notificationCenter.getNotificationSettings { settings in
-            if settings.authorizationStatus == .authorized {
-                print(1)
-            } else if settings.authorizationStatus == .notDetermined {
-                print(2)
+            if settings.authorizationStatus == .notDetermined {
+                self.requestNotifications()
             } else if settings.authorizationStatus == .denied {
-                print(3)
+                denied?()
             }
         }
     }

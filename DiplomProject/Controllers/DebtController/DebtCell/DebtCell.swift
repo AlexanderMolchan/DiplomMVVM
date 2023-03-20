@@ -13,12 +13,21 @@ final class DebtCell: UITableViewCell {
     
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Chalkboard SE", size: 16)
+        label.font = UIFont(name: "Chalkboard SE", size: 18)
+        label.numberOfLines = 0
+        label.textColor = .defaultsColor
         return label
     }()
     
     private lazy var returnLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "Chalkboard SE", size: 14)
+        return label
+    }()
+    
+    private lazy var reminderLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Chalkboard SE", size: 14)
         return label
     }()
     
@@ -36,9 +45,10 @@ final class DebtCell: UITableViewCell {
         contentView.addSubview(mainLabel)
         contentView.addSubview(returnLabel)
         mainLabel.text = "\(debt.debterName) должен \(debt.summ)"
-        returnLabel.text = debt.stringDate
+        returnLabel.text = "Дата возврата: \(debt.stringDate)"
+        reminderLabel.text = "Дата напоминания: "
         
-        let labelInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        let labelInset = UIEdgeInsets(top: 5, left: 16, bottom: 5, right: 16)
         mainLabel.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview().inset(labelInset)
         }
@@ -46,6 +56,21 @@ final class DebtCell: UITableViewCell {
             make.top.equalTo(mainLabel.snp.bottom).inset(-5)
             make.leading.trailing.bottom.equalToSuperview().inset(labelInset)
         }
+        
+        guard let notificationDate = debt.notificationDate else { return }
+        contentView.addSubview(reminderLabel)
+        returnLabel.snp.remakeConstraints { make in
+            make.top.equalTo(mainLabel.snp.bottom).inset(-5)
+            make.leading.trailing.equalToSuperview().inset(labelInset)
+        }
+        reminderLabel.snp.makeConstraints { make in
+            make.top.equalTo(returnLabel.snp.bottom).inset(-5)
+            make.leading.trailing.bottom.equalToSuperview().inset(labelInset)
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let stringNotificationDate = dateFormatter.string(from: notificationDate)
+        reminderLabel.text? += stringNotificationDate
     }
     
 }

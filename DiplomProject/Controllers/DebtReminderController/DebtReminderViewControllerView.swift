@@ -45,6 +45,7 @@ final class DebtReminderViewControllerView: UIView {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.defaultsColor.cgColor
         field.layer.cornerRadius = 10
+        field.keyboardType = .numberPad
         field.addLeftAndRightView()
         return field
     }()
@@ -80,11 +81,21 @@ final class DebtReminderViewControllerView: UIView {
         return switcher
     }()
     
-    lazy var reminderPicker: UIDatePicker = {
+    lazy var reminderPickerDate: UIDatePicker = {
         let picker = UIDatePicker()
         picker.alpha = 0
-        picker.datePickerMode = .dateAndTime
-        picker.preferredDatePickerStyle = .wheels
+        picker.datePickerMode = .date
+        picker.preferredDatePickerStyle = .compact
+        picker.tintColor = .defaultsColor
+        picker.minimumDate = .now
+        return picker
+    }()
+    
+    lazy var reminderPickerTime: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.alpha = 0
+        picker.datePickerMode = .time
+        picker.preferredDatePickerStyle = .compact
         picker.tintColor = .defaultsColor
         picker.minimumDate = .now
         return picker
@@ -110,6 +121,22 @@ final class DebtReminderViewControllerView: UIView {
         button.layer.borderColor = UIColor.systemRed.cgColor
         button.layer.cornerRadius = 10
         return button
+    }()
+    
+    private lazy var reminderDateLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Marker Felt", size: 17)
+        label.textColor = .defaultsColor
+        label.alpha = 0
+        return label
+    }()
+    
+    private lazy var reminderTimeLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Marker Felt", size: 17)
+        label.textColor = .defaultsColor
+        label.alpha = 0
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -138,9 +165,12 @@ final class DebtReminderViewControllerView: UIView {
         addSubview(returnDatePicker)
         addSubview(reminderLabel)
         addSubview(reminderSwitcher)
-        addSubview(reminderPicker)
+        addSubview(reminderPickerDate)
+        addSubview(reminderPickerTime)
         addSubview(confirmButton)
         addSubview(dismissButton)
+        addSubview(reminderDateLabel)
+        addSubview(reminderTimeLabel)
     }
     
     private func assignTexts() {
@@ -149,6 +179,8 @@ final class DebtReminderViewControllerView: UIView {
         summLabel.text = "Введите сумму возврата:"
         returnDateLabel.text = "Укажите дату возврата:"
         reminderLabel.text = "Создать напоминание:"
+        reminderDateLabel.text = "Укажите дату:"
+        reminderTimeLabel.text = "Укажите время:"
         confirmButton.setTitle("Сохранить", for: .normal)
         dismissButton.setTitle("Отмена", for: .normal)
     }
@@ -201,9 +233,24 @@ final class DebtReminderViewControllerView: UIView {
             make.trailing.equalToSuperview().inset(universalInset)
         }
         
-        reminderPicker.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(reminderLabel).inset(40)
+        reminderPickerDate.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(universalInset)
+            make.top.equalTo(reminderLabel.snp.bottom).offset(20)
+        }
+        
+        reminderPickerTime.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(universalInset)
+            make.top.equalTo(reminderPickerDate.snp.bottom).offset(20)
+        }
+        
+        reminderDateLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(reminderPickerDate)
+            make.leading.equalToSuperview().inset(universalInset)
+        }
+        
+        reminderTimeLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(reminderPickerTime)
+            make.leading.equalToSuperview().inset(universalInset)
         }
         
         dismissButton.snp.makeConstraints { make in
@@ -233,9 +280,15 @@ final class DebtReminderViewControllerView: UIView {
     func animatedPicker(show: Bool) {
         UIView.animate(withDuration: 0.3) { [weak self] in
             if show {
-                self?.reminderPicker.alpha = 1
+                self?.reminderPickerDate.alpha = 1
+                self?.reminderPickerTime.alpha = 1
+                self?.reminderDateLabel.alpha = 1
+                self?.reminderTimeLabel.alpha = 1
             } else {
-                self?.reminderPicker.alpha = 0
+                self?.reminderPickerDate.alpha = 0
+                self?.reminderPickerTime.alpha = 0
+                self?.reminderDateLabel.alpha = 0
+                self?.reminderTimeLabel.alpha = 0
             }
         }
     }

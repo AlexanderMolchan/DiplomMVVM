@@ -35,6 +35,9 @@ final class DebtReminderViewController: BaseViewController {
     }
     
     private func configurateViewController() {
+        NotificationManager().checkNotificationStatus(denied: { [weak self] in
+            self?.showNotificationsAlert()
+        })
         view.backgroundColor = defaultsBackgroundColor
         addTargets()
     }
@@ -43,6 +46,7 @@ final class DebtReminderViewController: BaseViewController {
         contentView.reminderSwitcher.addTarget(self, action: #selector(showPicker), for: .valueChanged)
         contentView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         contentView.confirmButton.addTarget(self, action: #selector(confirmAction), for: .touchUpInside)
+        contentView.debtNameField.delegate = self
     }
     
     @objc private func showPicker(sender: UISwitch) {
@@ -66,11 +70,36 @@ final class DebtReminderViewController: BaseViewController {
             return
         }
         let dateOfReturn = contentView.returnDatePicker.date
-        let dateOfReminder = contentView.reminderSwitcher.isOn ? contentView.reminderPicker.date : nil
+        let remindeDate = contentView.reminderPickerDate.date
+        let remindeTime = contentView.reminderPickerTime.date
+        let dateOfReminder = contentView.reminderSwitcher.isOn ? combine(date: remindeDate, time: remindeTime) : nil
+     
         let model = DebtModel(debter: name, summ: summ, returnDate: dateOfReturn, notificationDate: dateOfReminder)
         viewModel.writeObjectToRealm(object: model)
         dismissClosure?()
         dismiss(animated: true)
+    }
+    
+    private func combine(date: Date, time: Date) -> Date? {
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.day, .month, .year], from: date)
+        let timeComponents = calendar.dateComponents([.hour, .minute, .second], from: time)
+        var newComponents = DateComponents()
+        newComponents.timeZone = .current
+        newComponents.day = dateComponents.day
+        newComponents.month = dateComponents.month
+        newComponents.year = dateComponents.year
+        newComponents.hour = timeComponents.hour
+        newComponents.minute = timeComponents.minute
+        newComponents.second = timeComponents.second
+        return calendar.date(from: newComponents)
+    }
+    
+    private func showNotificationsAlert() {
+        let alert = UIAlertController(title: "Уведомления запрещены.", message: "Перейдите в настройки, чтобы разрешить допуск уведомлений.", preferredStyle: .alert)
+        let okBtn = UIAlertAction(title: "Понятно", style: .default)
+        alert.addAction(okBtn)
+        present(alert, animated: true)
     }
 
 }
