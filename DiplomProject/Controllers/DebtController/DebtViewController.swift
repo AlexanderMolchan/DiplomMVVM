@@ -79,17 +79,18 @@ final class DebtViewController: BaseViewController {
         let addNewAccount = UIAction(title: "Создать новую запись", image: UIImage(systemName: "plus.app")) { _ in
             self.createDebt()
         }
-
         let topMenu = UIMenu(children: [addNewAccount])
-        
-        
         let rightButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), menu: topMenu)
         navigationItem.rightBarButtonItem = rightButton
     }
     
     private func createDebt() {
-        viewModel.saveDebt(debt: DebtModel(debter: "Random", summ: 15, returnDate: Date.now))
-        updateData()
+        let reminderViewModel = DebtReminderViewModel(realm: viewModel.realm)
+        let reminderVc = DebtReminderViewController(viewModel: reminderViewModel)
+        reminderVc.dismissClosure = { [weak self] in
+            self?.updateData()
+        }
+        navigationController?.present(reminderVc, animated: true)
     }
     
 }

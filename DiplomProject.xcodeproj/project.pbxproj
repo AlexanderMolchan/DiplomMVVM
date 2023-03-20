@@ -26,9 +26,6 @@
 		40A2587E29C72FC500B6E3CA /* AnalyticsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2587D29C72FC500B6E3CA /* AnalyticsDetailViewModel.swift */; };
 		40A2588129C740AB00B6E3CA /* DebtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2588029C740AB00B6E3CA /* DebtCell.swift */; };
 		40A2588329C7466400B6E3CA /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2588229C7466400B6E3CA /* NotificationManager.swift */; };
-		40A2588629C747C900B6E3CA /* CreateDebtViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2588529C747C900B6E3CA /* CreateDebtViewModel.swift */; };
-		40A2588829C747DA00B6E3CA /* CreateDebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2588729C747DA00B6E3CA /* CreateDebtViewController.swift */; };
-		40A2588A29C747F500B6E3CA /* CreateDebtViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2588929C747F500B6E3CA /* CreateDebtViewControllerView.swift */; };
 		40A9F94F29B02BE100967122 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9F94E29B02BE100967122 /* EmptyView.swift */; };
 		40C960F8299D713E004F8963 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C960F7299D713E004F8963 /* RealmManager.swift */; };
 		40C960FA299D717B004F8963 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C960F9299D717B004F8963 /* UserDefaults.swift */; };
@@ -49,6 +46,9 @@
 		40E1300E29A0860200D2A366 /* CreateEditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1300D29A0860200D2A366 /* CreateEditAccountViewController.swift */; };
 		40E1301129A0864300D2A366 /* CreateEditAccountViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1301029A0864300D2A366 /* CreateEditAccountViewControllerView.swift */; };
 		40E1301329A0866D00D2A366 /* CreateEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1301229A0866D00D2A366 /* CreateEditViewModel.swift */; };
+		40E526AC29C8520B00FF194B /* DebtReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E526AB29C8520B00FF194B /* DebtReminderViewModel.swift */; };
+		40E526AE29C8521900FF194B /* DebtReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E526AD29C8521900FF194B /* DebtReminderViewController.swift */; };
+		40E526B029C8522400FF194B /* DebtReminderViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E526AF29C8522400FF194B /* DebtReminderViewControllerView.swift */; };
 		40ED78BA29967A1E00EF36FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78B929967A1E00EF36FF /* AppDelegate.swift */; };
 		40ED78BC29967A1E00EF36FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ED78BB29967A1E00EF36FF /* SceneDelegate.swift */; };
 		40ED78C129967A1E00EF36FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40ED78BF29967A1E00EF36FF /* Main.storyboard */; };
@@ -84,9 +84,6 @@
 		40A2587D29C72FC500B6E3CA /* AnalyticsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsDetailViewModel.swift; sourceTree = "<group>"; };
 		40A2588029C740AB00B6E3CA /* DebtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtCell.swift; sourceTree = "<group>"; };
 		40A2588229C7466400B6E3CA /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		40A2588529C747C900B6E3CA /* CreateDebtViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDebtViewModel.swift; sourceTree = "<group>"; };
-		40A2588729C747DA00B6E3CA /* CreateDebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDebtViewController.swift; sourceTree = "<group>"; };
-		40A2588929C747F500B6E3CA /* CreateDebtViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDebtViewControllerView.swift; sourceTree = "<group>"; };
 		40A9F94E29B02BE100967122 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		40C960F7299D713E004F8963 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		40C960F9299D717B004F8963 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -107,6 +104,9 @@
 		40E1300D29A0860200D2A366 /* CreateEditAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEditAccountViewController.swift; sourceTree = "<group>"; };
 		40E1301029A0864300D2A366 /* CreateEditAccountViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEditAccountViewControllerView.swift; sourceTree = "<group>"; };
 		40E1301229A0866D00D2A366 /* CreateEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEditViewModel.swift; sourceTree = "<group>"; };
+		40E526AB29C8520B00FF194B /* DebtReminderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtReminderViewModel.swift; sourceTree = "<group>"; };
+		40E526AD29C8521900FF194B /* DebtReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtReminderViewController.swift; sourceTree = "<group>"; };
+		40E526AF29C8522400FF194B /* DebtReminderViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtReminderViewControllerView.swift; sourceTree = "<group>"; };
 		40ED78B629967A1E00EF36FF /* DiplomProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiplomProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40ED78B929967A1E00EF36FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40ED78BB29967A1E00EF36FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -221,16 +221,6 @@
 			path = DebtCell;
 			sourceTree = "<group>";
 		};
-		40A2588429C747B300B6E3CA /* CreateDebtController */ = {
-			isa = PBXGroup;
-			children = (
-				40A2588529C747C900B6E3CA /* CreateDebtViewModel.swift */,
-				40A2588729C747DA00B6E3CA /* CreateDebtViewController.swift */,
-				40A2588929C747F500B6E3CA /* CreateDebtViewControllerView.swift */,
-			);
-			path = CreateDebtController;
-			sourceTree = "<group>";
-		};
 		40B0171B29AED22500787616 /* CustomElements */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +321,16 @@
 			path = CreateEditController;
 			sourceTree = "<group>";
 		};
+		40E526AA29C851EB00FF194B /* DebtReminderController */ = {
+			isa = PBXGroup;
+			children = (
+				40E526AB29C8520B00FF194B /* DebtReminderViewModel.swift */,
+				40E526AD29C8521900FF194B /* DebtReminderViewController.swift */,
+				40E526AF29C8522400FF194B /* DebtReminderViewControllerView.swift */,
+			);
+			path = DebtReminderController;
+			sourceTree = "<group>";
+		};
 		40ED78AD29967A1E00EF36FF = {
 			isa = PBXGroup;
 			children = (
@@ -387,7 +387,7 @@
 				405448B029B2175400143F4F /* AnalyticsController */,
 				40DC238C29B579A0002D10A6 /* AnalyticsDetailsController */,
 				405448A929B213FA00143F4F /* DebtController */,
-				40A2588429C747B300B6E3CA /* CreateDebtController */,
+				40E526AA29C851EB00FF194B /* DebtReminderController */,
 				40D50C4D29B1629F00625F43 /* SettingsController */,
 				400EBD9F29B8CB0300BED1BB /* ColorsController */,
 			);
@@ -558,7 +558,6 @@
 				40ED78D629967D0500EF36FF /* AddTransactionViewController.swift in Sources */,
 				4025632129986C31000B6036 /* Listener.swift in Sources */,
 				405448B429B2177200143F4F /* AnalyticsViewController.swift in Sources */,
-				40A2588629C747C900B6E3CA /* CreateDebtViewModel.swift in Sources */,
 				40F5326429B602BE0051E89C /* TabBarController + Extension.swift in Sources */,
 				40E1301129A0864300D2A366 /* CreateEditAccountViewControllerView.swift in Sources */,
 				405448B229B2176A00143F4F /* AnalyticsViewModel.swift in Sources */,
@@ -571,8 +570,9 @@
 				405448B629B2177D00143F4F /* AnalyticsViewControllerView.swift in Sources */,
 				400EBD9E29B8CAE900BED1BB /* ColorsViewControllerView.swift in Sources */,
 				40D50C5229B1724900625F43 /* SettingCell.swift in Sources */,
+				40E526B029C8522400FF194B /* DebtReminderViewControllerView.swift in Sources */,
 				40D50C4C29B1629900625F43 /* SettingsViewControllerView.swift in Sources */,
-				40A2588829C747DA00B6E3CA /* CreateDebtViewController.swift in Sources */,
+				40E526AC29C8520B00FF194B /* DebtReminderViewModel.swift in Sources */,
 				40DC238E29B57A37002D10A6 /* AnalitycsDetailViewController.swift in Sources */,
 				400EBD9A29B8CAA500BED1BB /* ColorsViewModel.swift in Sources */,
 				40C960FA299D717B004F8963 /* UserDefaults.swift in Sources */,
@@ -584,6 +584,7 @@
 				40C960F8299D713E004F8963 /* RealmManager.swift in Sources */,
 				40ED78DA29967D8900EF36FF /* WalletViewController.swift in Sources */,
 				40E1300E29A0860200D2A366 /* CreateEditAccountViewController.swift in Sources */,
+				40E526AE29C8521900FF194B /* DebtReminderViewController.swift in Sources */,
 				40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */,
 				40D50C4F29B167FA00625F43 /* Enums.swift in Sources */,
 				40256374299C515F000B6036 /* ViewController+Extension.swift in Sources */,
@@ -597,7 +598,6 @@
 				40D50C4829B1627C00625F43 /* SettingsViewModel.swift in Sources */,
 				405448AD29B2143300143F4F /* DebtViewModel.swift in Sources */,
 				40A9F94F29B02BE100967122 /* EmptyView.swift in Sources */,
-				40A2588A29C747F500B6E3CA /* CreateDebtViewControllerView.swift in Sources */,
 				405448AB29B2141000143F4F /* DebtViewController.swift in Sources */,
 				400EBD9C29B8CAB800BED1BB /* ColorsViewController.swift in Sources */,
 				40A2588329C7466400B6E3CA /* NotificationManager.swift in Sources */,
