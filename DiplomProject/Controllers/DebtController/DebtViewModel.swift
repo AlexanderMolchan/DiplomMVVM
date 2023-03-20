@@ -8,8 +8,7 @@
 import Foundation
 
 final class DebtViewModel {
-    private let realm: RealmManager
-    
+    let realm: RealmManager
     var debtArray = [DebtModel]()
     
     init(realm: RealmManager) {
