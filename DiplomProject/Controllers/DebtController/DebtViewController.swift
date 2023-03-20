@@ -104,6 +104,10 @@ extension DebtViewController: UITableViewDataSource, UITableViewDelegate {
         return DebtCell(debt: viewModel.debtArray[indexPath.row])
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        contentView.tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             contentView.tableView.performBatchUpdates {

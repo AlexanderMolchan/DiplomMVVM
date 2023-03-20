@@ -76,6 +76,12 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 pushToEditVc(flowType: .spending)
             case .chooseColor:
                 pushToColorsVc()
+            case .chooseLanguage:
+                changeLanguage()
+            case .currency:
+                pushToCurrencyVc()
+            case .deleteAllData:
+                deleteAllAlert()
             default: break
         }
     }
@@ -92,6 +98,25 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         let colorsVc = ColorsViewController(viewModel: colorsViewModel)
         colorsVc.title = SettingsEnum.chooseColor.title
         navigationController?.pushViewController(colorsVc, animated: true)
+    }
+    
+    private func pushToCurrencyVc() {
+        
+    }
+    
+    private func changeLanguage() {
+        
+    }
+    
+    private func deleteAllAlert() {
+        let alert = UIAlertController(title: "Удалить все данные?", message: "Восстановить данные будет невозможно!", preferredStyle: .alert)
+        let okBtn = UIAlertAction(title: "Подтвердить", style: .destructive) { [weak self] _ in
+            self?.viewModel.deleteAllData()
+        }
+        let cancelBtn = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(okBtn)
+        alert.addAction(cancelBtn)
+        present(alert, animated: true)
     }
     
 }

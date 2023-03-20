@@ -29,4 +29,22 @@ final class SettingsViewModel {
         settingPoints = sections
     }
     
+    func deleteAllData() {
+        realm.read(type: AccountModel.self).forEach { account in
+            account.allCashFlows.forEach { flow in
+                self.realm.delete(object: flow)
+            }
+            self.realm.delete(object: account)
+        }
+        
+        realm.read(type: CashFlowCategory.self).forEach { type in
+            self.realm.delete(object: type)
+        }
+        
+        realm.read(type: DebtModel.self).forEach { debt in
+            NotificationManager().removePushFor(debt)
+            self.realm.delete(object: debt)
+        }
+    }
+    
 }

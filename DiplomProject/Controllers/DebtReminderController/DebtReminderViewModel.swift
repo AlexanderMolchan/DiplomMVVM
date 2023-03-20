@@ -16,5 +16,9 @@ final class DebtReminderViewModel {
     
     func writeObjectToRealm(object: DebtModel) {
         realm.write(object: object)
+        if let _ = object.notificationDate {
+            NotificationManager().createPushFor(object)
+        }
     }
+    
 }

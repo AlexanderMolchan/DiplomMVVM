@@ -25,6 +25,7 @@ final class DebtViewModel {
     
     func deleteElementFromRealmAt(indexPath: IndexPath) {
         let objectForDelete = debtArray[indexPath.row]
+        NotificationManager().removePushFor(objectForDelete)
         realm.delete(object: objectForDelete)
         getData()
     }
