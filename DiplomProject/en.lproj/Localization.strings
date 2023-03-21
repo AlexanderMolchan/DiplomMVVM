@@ -1,0 +1,23 @@
+/* 
+  Localization.strings
+  DiplomProject
+
+  Created by Александр Молчан on 21.03.23.
+  
+*/
+
+"settings.title" = "Settings";
+"settings.income" = "Income categories";
+"settings.spend" = "Expense categories";
+"settings.summFormat" = "Integers";
+"settings.vibrations" = "Haptic Feedback";
+"settings.colors" = "Decoration color";
+"settings.language" = "Language";
+"settings.currency" = "Currency rate";
+"settings.deleteAll" = "Delete all data";
+"settings.alertCancel" = "Cancel";
+"settings.alertConfirm" = "Confirm";
+"settings.deleteAllTitle" = "Delete all data?";
+"settings.deleteAllMessage" = "Data recovery will be impossible!";
+"settings.languageTitle" = "Select language";
+"settings.languageMessage" = "Selected language will be used throughout the app.";

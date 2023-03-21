@@ -11,5 +11,6 @@ target 'DiplomProject' do
   pod 'Charts'
   pod 'SnapKit'
   pod 'DeviceKit'
+  pod 'Moya'
 
 end

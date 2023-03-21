@@ -38,9 +38,14 @@ final class SettingsViewController: BaseViewController {
         contentView.tableView.reloadData()
     }
     
+    override func changeLanguage() {
+        contentView.tableView.reloadData()
+        navigationSettings(title: Localization.Settings.title.rawValue.localized())
+    }
+    
     private func configurateVc() {
         view.backgroundColor = defaultsBackgroundColor
-        navigationSettings(title: "Настройки")
+        navigationSettings(title: Localization.Settings.title.rawValue.localized())
         viewModel.configureCells()
         contentView.tableView.reloadData()
     }
@@ -77,7 +82,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             case .chooseColor:
                 pushToColorsVc()
             case .chooseLanguage:
-                changeLanguage()
+                languageChoose()
             case .currency:
                 pushToCurrencyVc()
             case .deleteAllData:
@@ -101,19 +106,38 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     private func pushToCurrencyVc() {
+        let currencyViewModel = CurrencyViewModel(provider: viewModel.provider)
+        let currencyVc = CurrencyViewController(viewModel: currencyViewModel)
         
+        navigationController?.pushViewController(currencyVc, animated: true)
     }
     
-    private func changeLanguage() {
-        
+    private func languageChoose() {
+        let alert = UIAlertController(
+            title: Localization.Settings.languageTitle.rawValue.localized(),
+            message: Localization.Settings.languageMessage.rawValue.localized(),
+            preferredStyle: .actionSheet)
+        LanguageType.allCases.forEach { language in
+            let action = UIAlertAction(title: language.title, style: .default) { _ in
+                DefaultsManager.language = language.languageCode
+                Bundle.setLanguage(lang: language.languageCode)
+            }
+            alert.addAction(action)
+        }
+        let cancel = UIAlertAction(title: Localization.Settings.alertCancel.rawValue.localized(), style: .cancel)
+        alert.addAction(cancel)
+        self.present(alert, animated: true)
     }
     
     private func deleteAllAlert() {
-        let alert = UIAlertController(title: "Удалить все данные?", message: "Восстановить данные будет невозможно!", preferredStyle: .alert)
-        let okBtn = UIAlertAction(title: "Подтвердить", style: .destructive) { [weak self] _ in
+        let alert = UIAlertController(
+            title: Localization.Settings.deleteAllTitle.rawValue.localized(),
+            message: Localization.Settings.deleteAllMessage.rawValue.localized(),
+            preferredStyle: .alert)
+        let okBtn = UIAlertAction(title: Localization.Settings.alertConfirm.rawValue.localized(), style: .destructive) { [weak self] _ in
             self?.viewModel.deleteAllData()
         }
-        let cancelBtn = UIAlertAction(title: "Отмена", style: .cancel)
+        let cancelBtn = UIAlertAction(title: Localization.Settings.alertCancel.rawValue.localized(), style: .cancel)
         alert.addAction(okBtn)
         alert.addAction(cancelBtn)
         present(alert, animated: true)

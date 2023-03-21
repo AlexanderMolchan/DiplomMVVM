@@ -16,21 +16,35 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserverForColorChange()
+        addObserverForLanguageChange()
     }
     
     deinit {
         removeObserverForColorChange()
+        removeObserverForLanguageChange()
     }
 
-    func addObserverForColorChange() {
+    private func addObserverForColorChange() {
         NotificationCenter.default.addObserver(self, selector: #selector(observerAction), name: NSNotification.Name("colorChanged"), object: nil)
     }
     
-    func removeObserverForColorChange() {
+    private func addObserverForLanguageChange() {
+        NotificationCenter.default.addObserver(self, selector: #selector(changeLanguage), name: NSNotification.Name("languageChanged"), object: nil)
+    }
+    
+    private func removeObserverForColorChange() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name("colorChanged"), object: nil)
     }
     
+    private func removeObserverForLanguageChange() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("languageChanged"), object: nil)
+    }
+    
     @objc func observerAction() {
+        
+    }
+    
+    @objc func changeLanguage() {
         
     }
     

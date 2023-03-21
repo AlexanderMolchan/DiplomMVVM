@@ -42,4 +42,12 @@ final class DefaultsManager {
         }
     }
     
+    static var language: String? {
+        get {
+            defaults.value(forKey: #function) as? String
+        } set {
+            defaults.set(newValue, forKey: #function)
+        }
+    }
+    
 }

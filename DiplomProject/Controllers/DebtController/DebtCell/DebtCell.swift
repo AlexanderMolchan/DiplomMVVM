@@ -13,7 +13,7 @@ final class DebtCell: UITableViewCell {
     
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Chalkboard SE", size: 18)
+        label.font = UIFont(name: "Marker Felt", size: 20)
         label.numberOfLines = 0
         label.textColor = .defaultsColor
         return label
@@ -68,7 +68,7 @@ final class DebtCell: UITableViewCell {
             make.leading.trailing.bottom.equalToSuperview().inset(labelInset)
         }
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = "dd/MM/yyyy, HH:mm"
         let stringNotificationDate = dateFormatter.string(from: notificationDate)
         reminderLabel.text? += stringNotificationDate
     }

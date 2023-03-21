@@ -15,6 +15,13 @@
 		4025632129986C31000B6036 /* Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025632029986C30000B6036 /* Listener.swift */; };
 		40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */; };
 		40256374299C515F000B6036 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40256373299C515F000B6036 /* ViewController+Extension.swift */; };
+		404CAFEC29C9AB8100B0C208 /* CurrencyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404CAFEB29C9AB8100B0C208 /* CurrencyApi.swift */; };
+		404CAFEE29C9ACED00B0C208 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404CAFED29C9ACED00B0C208 /* CurrencyModel.swift */; };
+		404CAFF029C9ADA500B0C208 /* ProviderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404CAFEF29C9ADA500B0C208 /* ProviderManager.swift */; };
+		404CAFF329C9AEFA00B0C208 /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404CAFF229C9AEFA00B0C208 /* CurrencyViewModel.swift */; };
+		404CAFF529C9AF0400B0C208 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404CAFF429C9AF0400B0C208 /* CurrencyViewController.swift */; };
+		404CAFF829C9B3B200B0C208 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404CAFF729C9B3B200B0C208 /* CurrencyCell.swift */; };
+		404CAFFC29C9C4B300B0C208 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 404CAFFE29C9C4B300B0C208 /* Localization.strings */; };
 		405070EE29C137B300A0F361 /* AnalitycsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405070ED29C137B300A0F361 /* AnalitycsCell.swift */; };
 		405448AB29B2141000143F4F /* DebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448AA29B2141000143F4F /* DebtViewController.swift */; };
 		405448AD29B2143300143F4F /* DebtViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405448AC29B2143300143F4F /* DebtViewModel.swift */; };
@@ -73,6 +80,14 @@
 		4025632029986C30000B6036 /* Listener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener.swift; sourceTree = "<group>"; };
 		40256370299C4DAD000B6036 /* AddTransactionViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewControllerView.swift; sourceTree = "<group>"; };
 		40256373299C515F000B6036 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		404CAFEB29C9AB8100B0C208 /* CurrencyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyApi.swift; sourceTree = "<group>"; };
+		404CAFED29C9ACED00B0C208 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
+		404CAFEF29C9ADA500B0C208 /* ProviderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderManager.swift; sourceTree = "<group>"; };
+		404CAFF229C9AEFA00B0C208 /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
+		404CAFF429C9AF0400B0C208 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
+		404CAFF729C9B3B200B0C208 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
+		404CAFFD29C9C4B300B0C208 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localization.strings; sourceTree = "<group>"; };
+		404CAFFF29C9C4CF00B0C208 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localization.strings; sourceTree = "<group>"; };
 		405070ED29C137B300A0F361 /* AnalitycsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalitycsCell.swift; sourceTree = "<group>"; };
 		405448AA29B2141000143F4F /* DebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtViewController.swift; sourceTree = "<group>"; };
 		405448AC29B2143300143F4F /* DebtViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtViewModel.swift; sourceTree = "<group>"; };
@@ -171,6 +186,8 @@
 				40C960F9299D717B004F8963 /* UserDefaults.swift */,
 				4025632029986C30000B6036 /* Listener.swift */,
 				40A2588229C7466400B6E3CA /* NotificationManager.swift */,
+				404CAFEB29C9AB8100B0C208 /* CurrencyApi.swift */,
+				404CAFEF29C9ADA500B0C208 /* ProviderManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -182,6 +199,24 @@
 				40F5326329B602BE0051E89C /* TabBarController + Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		404CAFF129C9AEE600B0C208 /* CurrencyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				404CAFF629C9B3A600B0C208 /* CurrencyCell */,
+				404CAFF229C9AEFA00B0C208 /* CurrencyViewModel.swift */,
+				404CAFF429C9AF0400B0C208 /* CurrencyViewController.swift */,
+			);
+			path = CurrencyViewController;
+			sourceTree = "<group>";
+		};
+		404CAFF629C9B3A600B0C208 /* CurrencyCell */ = {
+			isa = PBXGroup;
+			children = (
+				404CAFF729C9B3B200B0C208 /* CurrencyCell.swift */,
+			);
+			path = CurrencyCell;
 			sourceTree = "<group>";
 		};
 		405070EC29C1379F00A0F361 /* AnalitycsCell */ = {
@@ -244,6 +279,7 @@
 			children = (
 				40C960FB299D71A1004F8963 /* Models.swift */,
 				40D50C4E29B167FA00625F43 /* Enums.swift */,
+				404CAFED29C9ACED00B0C208 /* CurrencyModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -357,8 +393,9 @@
 				40256372299C5138000B6036 /* Extensions */,
 				4025631F29986C22000B6036 /* Helpers */,
 				40ED78CE29967ABC00EF36FF /* Controllers */,
-				40ED78BB29967A1E00EF36FF /* SceneDelegate.swift */,
 				40ED78B929967A1E00EF36FF /* AppDelegate.swift */,
+				40ED78BB29967A1E00EF36FF /* SceneDelegate.swift */,
+				404CAFFE29C9C4B300B0C208 /* Localization.strings */,
 				40ED78C729967A1F00EF36FF /* Info.plist */,
 				40ED78CD29967A9B00EF36FF /* Other */,
 			);
@@ -390,6 +427,7 @@
 				40E526AA29C851EB00FF194B /* DebtReminderController */,
 				40D50C4D29B1629F00625F43 /* SettingsController */,
 				400EBD9F29B8CB0300BED1BB /* ColorsController */,
+				404CAFF129C9AEE600B0C208 /* CurrencyViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -484,6 +522,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 40ED78AD29967A1E00EF36FF;
 			productRefGroup = 40ED78B729967A1E00EF36FF /* Products */;
@@ -501,6 +540,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40ED78C629967A1F00EF36FF /* LaunchScreen.storyboard in Resources */,
+				404CAFFC29C9C4B300B0C208 /* Localization.strings in Resources */,
 				40ED78C329967A1F00EF36FF /* Assets.xcassets in Resources */,
 				40ED78C129967A1E00EF36FF /* Main.storyboard in Resources */,
 			);
@@ -564,6 +604,7 @@
 				40E1300529A06B2B00D2A366 /* WalletViewControllerView.swift in Sources */,
 				406D98BC29C080C500B692D1 /* ColorCollectionCell.swift in Sources */,
 				40ED78D829967D1700EF36FF /* AddTransactionViewModel.swift in Sources */,
+				404CAFF529C9AF0400B0C208 /* CurrencyViewController.swift in Sources */,
 				405070EE29C137B300A0F361 /* AnalitycsCell.swift in Sources */,
 				40C960FF299D78DE004F8963 /* SelectedAccountViewModel.swift in Sources */,
 				40ED78D329967B0800EF36FF /* TabBarViewModel.swift in Sources */,
@@ -580,20 +621,25 @@
 				40DC238B29B5600F002D10A6 /* CardView.swift in Sources */,
 				40A2587E29C72FC500B6E3CA /* AnalyticsDetailViewModel.swift in Sources */,
 				40E1301329A0866D00D2A366 /* CreateEditViewModel.swift in Sources */,
+				404CAFF329C9AEFA00B0C208 /* CurrencyViewModel.swift in Sources */,
 				40ED78BA29967A1E00EF36FF /* AppDelegate.swift in Sources */,
 				40C960F8299D713E004F8963 /* RealmManager.swift in Sources */,
 				40ED78DA29967D8900EF36FF /* WalletViewController.swift in Sources */,
 				40E1300E29A0860200D2A366 /* CreateEditAccountViewController.swift in Sources */,
+				404CAFEC29C9AB8100B0C208 /* CurrencyApi.swift in Sources */,
+				404CAFF829C9B3B200B0C208 /* CurrencyCell.swift in Sources */,
 				40E526AE29C8521900FF194B /* DebtReminderViewController.swift in Sources */,
 				40256371299C4DAD000B6036 /* AddTransactionViewControllerView.swift in Sources */,
 				40D50C4F29B167FA00625F43 /* Enums.swift in Sources */,
 				40256374299C515F000B6036 /* ViewController+Extension.swift in Sources */,
+				404CAFEE29C9ACED00B0C208 /* CurrencyModel.swift in Sources */,
 				40C96101299D78F7004F8963 /* SelectedAccountViewController.swift in Sources */,
 				401AC40029B7EA2C003EE1D7 /* BaseViewController.swift in Sources */,
 				40ED78DC29967D9900EF36FF /* WalletViewModel.swift in Sources */,
 				40ED78D129967AF300EF36FF /* TabBarControllerView.swift in Sources */,
 				40A2588129C740AB00B6E3CA /* DebtCell.swift in Sources */,
 				40DC238829B55DCD002D10A6 /* GenericCell.swift in Sources */,
+				404CAFF029C9ADA500B0C208 /* ProviderManager.swift in Sources */,
 				405448AF29B2147000143F4F /* DebtViewControllerView.swift in Sources */,
 				40D50C4829B1627C00625F43 /* SettingsViewModel.swift in Sources */,
 				405448AD29B2143300143F4F /* DebtViewModel.swift in Sources */,
@@ -611,6 +657,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		404CAFFE29C9C4B300B0C208 /* Localization.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				404CAFFD29C9C4B300B0C208 /* en */,
+				404CAFFF29C9C4CF00B0C208 /* ru */,
+			);
+			name = Localization.strings;
+			sourceTree = "<group>";
+		};
 		40ED78BF29967A1E00EF36FF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -634,6 +689,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -694,6 +750,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
