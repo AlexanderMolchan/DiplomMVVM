@@ -9,10 +9,12 @@ import UIKit
 
 final class TabBarViewModel {
     let realm: RealmManager
+    let provider: ProviderManager
     var tabBarTintColor = UIColor()
     
-    init(realm: RealmManager) {
+    init(realm: RealmManager, provider: ProviderManager) {
         self.realm = realm
+        self.provider = provider
     }
     
     func setViewControllers() -> [UIViewController] {
@@ -20,7 +22,7 @@ final class TabBarViewModel {
         let walletViewModel = WalletViewModel(realm: realm, type: .wallet)
         let analyticsViewModel = AnalyticsViewModel(realm: realm)
         let debtViewModel = DebtViewModel(realm: realm)
-        let settingsViewModel = SettingsViewModel(realm: realm)
+        let settingsViewModel = SettingsViewModel(realm: realm, provider: provider)
         
         let addTransactionVc = UINavigationController(rootViewController: AddTransactionViewController(viewModel: addTransactionViewModel))
         let walletVc = UINavigationController(rootViewController: WalletViewController(viewModel: walletViewModel))

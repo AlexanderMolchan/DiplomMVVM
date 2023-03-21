@@ -16,7 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.windowScene = windowScene
         let realm = RealmManager()
-        let tabBarViewModel = TabBarViewModel(realm: realm)
+        let provider = ProviderManager()
+        let tabBarViewModel = TabBarViewModel(realm: realm, provider: provider)
         window?.rootViewController = TabBarControllerView(viewModel: tabBarViewModel)
         window?.makeKeyAndVisible()
     }

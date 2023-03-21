@@ -64,5 +64,33 @@ extension UIColor {
     static func updateDefaultColor() {
         defaultsColor = TintColorEnum.allCases[DefaultsManager.selectedColorIndex].color
     }
-    
 }
+
+extension Bundle {
+    private static var bundle: Bundle!
+
+    static func localizedBundle() -> Bundle! {
+        let locale = Locale.current.language.languageCode?.identifier
+        
+        if bundle == nil {
+            let path = Bundle.main.path(forResource: DefaultsManager.language ?? locale, ofType: "lproj")
+            bundle = Bundle(path: path!)
+        }
+        return bundle
+    }
+
+    static func setLanguage(lang: String) {
+        let path = Bundle.main.path(forResource: lang, ofType: "lproj")
+        bundle = Bundle(path: path!)
+        DefaultsManager.language = lang
+        NotificationCenter.default.post(name: NSNotification.Name("languageChanged"), object: nil)
+    }
+}
+
+extension String {
+    func localized() -> String {
+        return NSLocalizedString(self, tableName: "Localization", bundle: Bundle.localizedBundle(), value: self, comment: self)
+    }
+}
+
+

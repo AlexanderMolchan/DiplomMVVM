@@ -9,11 +9,13 @@ import Foundation
 
 final class SettingsViewModel {
     let realm: RealmManager
+    let provider: ProviderManager
     
     var settingPoints = [[SettingsEnum]]()
 
-    init(realm: RealmManager) {
+    init(realm: RealmManager, provider: ProviderManager) {
         self.realm = realm
+        self.provider = provider
     }
     
     func configureCells() {
