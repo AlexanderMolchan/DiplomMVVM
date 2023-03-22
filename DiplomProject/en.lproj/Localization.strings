@@ -35,7 +35,7 @@
 "flow.delete" = "Delete";
 
 "create.accName" = "Enter account name:";
-"create.accSumm" = "Enter amount:";
+"create.accSumm" = "Enter sum:";
 "create.message" = "Cash account will be automatically created. To create a cashless account, activate the switch.";
 "create.accType" = "Cashless account:";
 "create.save" = "Save";
@@ -83,6 +83,10 @@
 "wallet.navTitle" = "Wallet";
 "wallet.currentSumm" = "Amount in current account";
 "wallet.totalSumm" = "Total balance";
+"wallet.deleteAccountAlert" = "Delete current account?";
+"wallet.deleteAccountMessage" = "By deleting the current account, you will delete all transactions belonging to it.";
+"wallet.deleteFlowsAlert" = "Delete all transactions?";
+"wallet.deleteFlowsMessage" = "All transactions will be deleted from this account.";
 
 "empty.walletTop" = "You don't have active accounts.";
 "empty.walletBot" = "Create new accounts and they will show up here.";
@@ -92,3 +96,24 @@
 "empty.cardBot" = "The graph will be built after 2 days of accounting.";
 "empty.emptyAccounts" = "Create new accounts and detailed information about them will be displayed here.";
 
+"menu.accCreate" = "Create a new account";
+"menu.sortByName" = "Sort by name";
+"menu.sortBySumm" = "Sort by sum";
+"menu.sortTitle" = "Sorting";
+"menu.accEdit" = "Edit account";
+"menu.accDelete" = "Delete account";
+"menu.flowsDelete" = "Delete transactions";
+
+"add.chooseAccount" = "Select Account";
+"add.chooseCategory" = "Category";
+"add.segmentIncome" = "Income";
+"add.segmentSpend" = "Expense";
+"add.enterSum" = "Enter sum!";
+"add.addNavTitle" = "Add";
+"add.enterButton" = "Enter";
+
+"tabbar.add" = "Add";
+"tabbar.wallet" = "Wallet";
+"tabbar.analytics" = "Analytics";
+"tabbar.debts" = "Debts";
+"tabbar.settings" = "Settings";

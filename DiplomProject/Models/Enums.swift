@@ -164,7 +164,7 @@ enum SettingsEnum: CaseIterable {
 }
 
 // MARK: -
-// MARK: - Language Enums
+// MARK: - Localization Enum
 
 enum LanguageType: CaseIterable {
     case ru
@@ -294,6 +294,17 @@ extension Localization {
         case navTitle = "wallet.navTitle"
         case totalSumm = "wallet.totalSumm"
         case currentSumm = "wallet.currentSumm"
+        case accDeleteTitle = "wallet.deleteAccountAlert"
+        case accDeleteMessage = "wallet.deleteAccountMessage"
+        case flowDeleteTitle = "wallet.deleteFlowsAlert"
+        case flowDeleteMessage = "wallet.deleteFlowsMessage"
+        case menuAccCreate = "menu.accCreate"
+        case sortByName = "menu.sortByName"
+        case sortBySumm = "menu.sortBySumm"
+        case sortTitle = "menu.sortTitle"
+        case accEdit = "menu.accEdit"
+        case accDelete = "menu.accDelete"
+        case flowsDelete = "menu.flowsDelete"
     }
 }
 
@@ -308,3 +319,26 @@ extension Localization {
         case emptyAccs = "empty.emptyAccounts"
     }
 }
+
+extension Localization {
+    enum AddController: String {
+        case chooseAccount = "add.chooseAccount"
+        case cooseCategory = "add.chooseCategory"
+        case segmentIncome = "add.segmentIncome"
+        case segmentSpend = "add.segmentSpend"
+        case enterSum = "add.enterSum"
+        case addNavTitle = "add.addNavTitle"
+        case enterButtonTitle = "add.enterButton"
+    }
+}
+
+extension Localization {
+    enum TabBarTitle: String, CaseIterable {
+        case add = "tabbar.add"
+        case wallet = "tabbar.wallet"
+        case analytics = "tabbar.analytics"
+        case debts = "tabbar.debts"
+        case settings = "tabbar.settings"
+    }
+}
+

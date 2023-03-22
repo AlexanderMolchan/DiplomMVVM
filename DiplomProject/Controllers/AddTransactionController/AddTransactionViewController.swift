@@ -50,6 +50,11 @@ final class AddTransactionViewController: BaseViewController {
         updateNavigationColors()
     }
     
+    override func changeLanguage() {
+        contentView.changeLanguageForObserver()
+        navigationSettings(title: Localization.AddController.addNavTitle.rawValue.localized())
+    }
+    
     private func invalidateCheck() {
         viewModel.accountInvalidatedCheck()
         viewModel.categoryInvalidatedCheck()
@@ -57,7 +62,7 @@ final class AddTransactionViewController: BaseViewController {
     
     private func controllerConfigurate() {
         view.backgroundColor = defaultsBackgroundColor
-        navigationSettings(title: "Добавить")
+        navigationSettings(title: Localization.AddController.addNavTitle.rawValue.localized())
         deleteAll(sender: contentView.deleteButton)
     }
     
@@ -67,11 +72,11 @@ final class AddTransactionViewController: BaseViewController {
         }
         
         viewModel.selectedAccountName.bind { [weak self] name in
-            self?.contentView.selectedAccountTypeButton.setTitle(name ?? "Выберите аккаунт", for: .normal)
+            self?.contentView.selectedAccountTypeButton.setTitle(name ?? Localization.AddController.chooseAccount.rawValue.localized(), for: .normal)
         }
         
         viewModel.selectedCategoryName.bind { [weak self] name in
-            self?.contentView.selectedSpendCategoryButton.setTitle(name ?? "Категория", for: .normal)
+            self?.contentView.selectedSpendCategoryButton.setTitle(name ?? Localization.AddController.cooseCategory.rawValue.localized(), for: .normal)
         }
         
         viewModel.actionButtonIsEnabled.bind { [weak self] enabled in

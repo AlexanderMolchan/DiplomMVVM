@@ -83,7 +83,10 @@
 "wallet.navTitle" = "Кошелек";
 "wallet.currentSumm" = "Сумма на текущем аккаунте";
 "wallet.totalSumm" = "Общий баланс";
-
+"wallet.deleteAccountAlert" = "Удалить текущий счет?";
+"wallet.deleteAccountMessage" = "Удалив текущий счет, вы удалите все транзакции, принадлежащие ему.";
+"wallet.deleteFlowsAlert" = "Удалить все транзакции?";
+"wallet.deleteFlowsMessage" = "С данного счета будут удалены все транзакции.";
 
 "empty.walletTop" = "У вас нет активных счетов.";
 "empty.walletBot" = "Создайте новые счета, и они будут отображаться здесь.";
@@ -93,3 +96,24 @@
 "empty.cardBot" = "График будет построен после 2 дней учета.";
 "empty.emptyAccounts" = "Создайте новые счета, и здесь будет отображена подробная информация о них.";
 
+"menu.accCreate" = "Создать новый счет";
+"menu.sortByName" = "Сортировать по имени";
+"menu.sortBySumm" = "Сортировать по сумме";
+"menu.sortTitle" = "Cортировка";
+"menu.accEdit" = "Редактировать счет";
+"menu.accDelete" = "Удалить счет";
+"menu.flowsDelete" = "Удалить транзакции";
+
+"add.chooseAccount" = "Выберите аккаунт";
+"add.chooseCategory" = "Категория";
+"add.segmentIncome" = "Доход";
+"add.segmentSpend" = "Расход";
+"add.enterSum" = "Введите сумму!";
+"add.addNavTitle" = "Добавить";
+"add.enterButton" = "Ввод";
+
+"tabbar.add" = "Добавить";
+"tabbar.wallet" = "Кошелек";
+"tabbar.analytics" = "Аналитика";
+"tabbar.debts" = "Долги";
+"tabbar.settings" = "Настройки";

@@ -47,8 +47,7 @@ final class WalletViewController: BaseViewController {
     }
     
     override func changeLanguage() {
-        contentView.setTitles()
-        navigationSettings(title: Localization.Wallet.navTitle.rawValue.localized())
+        refreshTitlesForObserver()
     }
     
     private func updateColorsForObserver() {
@@ -56,6 +55,12 @@ final class WalletViewController: BaseViewController {
         contentView.updateColor()
         contentView.tableView.reloadData()
         updateNavigationColors()
+    }
+    
+    private func refreshTitlesForObserver() {
+        contentView.setTitles()
+        navigationSettings(title: Localization.Wallet.navTitle.rawValue.localized())
+        setupNavigationMenu()
     }
     
     private func bindElements() {
@@ -117,14 +122,14 @@ final class WalletViewController: BaseViewController {
     }
     
     private func walletMenu() {
-        let addNewAccount = UIAction(title: "Создать новый счет", image: UIImage(systemName: "plus.app")) { [weak self] _ in
+        let addNewAccount = UIAction(title: Localization.Wallet.menuAccCreate.rawValue.localized(), image: UIImage(systemName: "plus.app")) { [weak self] _ in
             self?.pushTo(.create)
         }
-        let sortByName = UIAction(title: "Сортировать по имени", image: UIImage(systemName: "textformat.alt")) { _ in }
-        let sortBySumm = UIAction(title: "Сортировать по сумме", image: UIImage(systemName: "arrow.up.arrow.down")) { _ in }
-        let subMenu = UIMenu(title: "Cортировка" ,options: .displayInline, children: [sortBySumm, sortByName])
+        let sortByName = UIAction(title: Localization.Wallet.sortByName.rawValue.localized(), image: UIImage(systemName: "textformat.alt")) { _ in }
+        let sortBySumm = UIAction(title: Localization.Wallet.sortBySumm.rawValue.localized(), image: UIImage(systemName: "arrow.up.arrow.down")) { _ in }
+        let subMenu = UIMenu(title: Localization.Wallet.sortTitle.rawValue.localized() ,options: .displayInline, children: [sortBySumm, sortByName])
         
-        let topMenu = UIMenu(title: "Дополнительно", options: .displayInline, children: [addNewAccount, subMenu])
+        let topMenu = UIMenu(title: Localization.Flows.menuTitle.rawValue.localized(), options: .displayInline, children: [addNewAccount, subMenu])
         
         
         let rightButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), menu: topMenu)
@@ -132,21 +137,21 @@ final class WalletViewController: BaseViewController {
     }
     
     private func accountMenu() {
-        let updateAccount = UIAction(title: "Редактировать счет", image: UIImage(systemName: "list.bullet.clipboard")) { [weak self] _ in
+        let updateAccount = UIAction(title: Localization.Wallet.accEdit.rawValue.localized(), image: UIImage(systemName: "list.bullet.clipboard")) { [weak self] _ in
             self?.pushTo(.edit, popVc: true)
         }
         
-        let deleteAccount = UIAction(title: "Удалить счет", image: UIImage(systemName: "delete.backward.fill"), attributes: .destructive) { [weak self] _ in
+        let deleteAccount = UIAction(title: Localization.Wallet.accDelete.rawValue.localized(), image: UIImage(systemName: "delete.backward.fill"), attributes: .destructive) { [weak self] _ in
             self?.deleteAccount()
         }
         
-        let deleteAllTransactions = UIAction(title: "Удалить транзакции", image: UIImage(systemName: "delete.backward"), attributes: .destructive) { [weak self] _ in
+        let deleteAllTransactions = UIAction(title: Localization.Wallet.flowsDelete.rawValue.localized(), image: UIImage(systemName: "delete.backward"), attributes: .destructive) { [weak self] _ in
             self?.deleteTransactions()
         }
         
         let subMenu = UIMenu(options: .displayInline, children: [deleteAccount])
 
-        let topMenu = UIMenu(title: "Дополнительно", options: .displayInline, children: [updateAccount, deleteAllTransactions, subMenu])
+        let topMenu = UIMenu(title: Localization.Flows.menuTitle.rawValue.localized(), options: .displayInline, children: [updateAccount, deleteAllTransactions, subMenu])
         
         let rightButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), menu: topMenu)
         navigationItem.rightBarButtonItem = rightButton
@@ -166,14 +171,20 @@ final class WalletViewController: BaseViewController {
     }
     
     private func deleteAccount() {
-        showAlert(title: "Удалить текущий счет?", message: "Удалив текущий счет, вы удалите все транзакции, принадлежащие ему.") {
+        showAlert(
+            title: Localization.Wallet.accDeleteTitle.rawValue.localized(),
+            message: Localization.Wallet.accDeleteMessage.rawValue.localized()
+        ) {
             self.viewModel.deleteCurrentAccount()
             self.navigationController?.popViewController(animated: true)
         }
     }
     
     private func deleteTransactions() {
-        showAlert(title: "Удалить все транзакции?", message: "С данного счета будут удалены все транзакции.") {
+        showAlert(
+            title: Localization.Wallet.flowDeleteTitle.rawValue.localized(),
+            message: Localization.Wallet.flowDeleteMessage.rawValue.localized()
+        ) {
             UIView.animate(withDuration: 0.25) { [weak self] in
                 guard let self else { return }
                 self.contentView.tableView.alpha = 0

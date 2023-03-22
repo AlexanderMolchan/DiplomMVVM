@@ -10,11 +10,14 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    private var overlayWindow: UIWindow?
+    private var scene: UIWindowScene?
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
-        window?.windowScene = windowScene
+        guard let scene = (scene as? UIWindowScene) else { return }
+        self.scene = scene
+        window = UIWindow(windowScene: scene)
+        window?.windowScene = scene
         let realm = RealmManager()
         let provider = ProviderManager()
         let tabBarViewModel = TabBarViewModel(realm: realm, provider: provider)
@@ -30,13 +33,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        removeOverlay()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
+        createBlurOverlay()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
@@ -49,7 +50,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
+    
+    private func createWindow() {
+        guard let scene else { return }
+        overlayWindow = UIWindow(windowScene: scene)
+        overlayWindow?.windowLevel = .alert
+        overlayWindow?.makeKeyAndVisible()
+    }
+    
+    private func createBlurOverlay() {
+        createWindow()
+        let blurVc = UIViewController()
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = blurVc.view.bounds
+        blurEffectView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        blurVc.view.addSubview(blurEffectView)
+        overlayWindow?.rootViewController = blurVc
+    }
+    
+    private func removeOverlay() {
+        overlayWindow = nil
+    }
 
 }
 
