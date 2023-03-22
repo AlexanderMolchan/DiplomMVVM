@@ -42,12 +42,10 @@ final class WalletViewControllerView: UIView {
         switch controllerType {
             case .account:
                 tableView = UITableView(frame: .zero, style: .plain)
-                commentLabel.text = "Сумма на текущем аккаунте"
             default:
                 tableView = UITableView(frame: .zero, style: .insetGrouped)
-                commentLabel.text = "Общий баланс"
         }
-        
+        setTitles()
         totalSummLabel.font = UIFont(name: "Hiragino Maru Gothic ProN W4", size: 32)
         totalSummLabel.textAlignment = .center
         totalSummLabel.textColor = contentColor
@@ -70,6 +68,15 @@ final class WalletViewControllerView: UIView {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(commentLabel.snp.bottom).offset(10)
             make.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    func setTitles() {
+        switch controllerType {
+            case .account:
+                commentLabel.text = Localization.Wallet.currentSumm.rawValue.localized()
+            default:
+                commentLabel.text = Localization.Wallet.totalSumm.rawValue.localized()
         }
     }
     

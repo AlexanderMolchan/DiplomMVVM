@@ -96,8 +96,12 @@ final class DebtReminderViewController: BaseViewController {
     }
     
     private func showNotificationsAlert() {
-        let alert = UIAlertController(title: "Уведомления запрещены.", message: "Перейдите в настройки, чтобы разрешить допуск уведомлений.", preferredStyle: .alert)
-        let okBtn = UIAlertAction(title: "Понятно", style: .default)
+        let alert = UIAlertController(
+            title: Localization.Debts.alertTitle.rawValue.localized(),
+            message: Localization.Debts.alertMessage.rawValue.localized(),
+            preferredStyle: .alert
+        )
+        let okBtn = UIAlertAction(title: Localization.Debts.done.rawValue.localized(), style: .default)
         alert.addAction(okBtn)
         present(alert, animated: true)
     }

@@ -46,6 +46,11 @@ final class WalletViewController: BaseViewController {
         updateColorsForObserver()
     }
     
+    override func changeLanguage() {
+        contentView.setTitles()
+        navigationSettings(title: Localization.Wallet.navTitle.rawValue.localized())
+    }
+    
     private func updateColorsForObserver() {
         contentView.contentColor = .defaultsColor
         contentView.updateColor()
@@ -63,7 +68,7 @@ final class WalletViewController: BaseViewController {
         view.backgroundColor = defaultsBackgroundColor
         switch viewModel.controllerType {
             case .wallet:
-                navigationSettings(title: "Кошелек")
+                navigationSettings(title: Localization.Wallet.navTitle.rawValue.localized())
             case .account:
                 navigationItem.largeTitleDisplayMode = .never
                 self.title = viewModel.currentAccount?.name
@@ -112,8 +117,8 @@ final class WalletViewController: BaseViewController {
     }
     
     private func walletMenu() {
-        let addNewAccount = UIAction(title: "Создать новый счет", image: UIImage(systemName: "plus.app")) { _ in
-            self.pushTo(.create)
+        let addNewAccount = UIAction(title: "Создать новый счет", image: UIImage(systemName: "plus.app")) { [weak self] _ in
+            self?.pushTo(.create)
         }
         let sortByName = UIAction(title: "Сортировать по имени", image: UIImage(systemName: "textformat.alt")) { _ in }
         let sortBySumm = UIAction(title: "Сортировать по сумме", image: UIImage(systemName: "arrow.up.arrow.down")) { _ in }

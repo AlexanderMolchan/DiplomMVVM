@@ -1,5 +1,5 @@
 //
-//  AnalitycsCell.swift
+//  AnalyticsCell.swift
 //  DiplomProject
 //
 //  Created by Александр Молчан on 15.03.23.
@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-final class AnalitycsCell: UITableViewCell {
-    static let id = String(describing: AnalitycsCell.self)
+final class AnalyticsCell: UITableViewCell {
+    static let id = String(describing: AnalyticsCell.self)
     
     private lazy var containerView: UIView = {
         let view = UIView()
@@ -26,14 +26,14 @@ final class AnalitycsCell: UITableViewCell {
     private lazy var totalSpendLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Chalkboard SE", size: 14)
-        label.text = "Всего расходов:"
+        label.text = Localization.Analytics.allSpend.rawValue.localized()
         return label
     }()
     
     private lazy var totalIncomeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Chalkboard SE", size: 14)
-        label.text = "Всего доходов:"
+        label.text = Localization.Analytics.allIncome.rawValue.localized()
         return label
     }()
     

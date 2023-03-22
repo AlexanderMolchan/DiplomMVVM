@@ -173,16 +173,18 @@ final class DebtReminderViewControllerView: UIView {
         addSubview(reminderTimeLabel)
     }
     
-    private func assignTexts() {
-        titleLabel.text = "Создать напоминание о возврате:"
-        debtNameLabel.text = "Введите название:"
-        summLabel.text = "Введите сумму возврата:"
-        returnDateLabel.text = "Укажите дату возврата:"
-        reminderLabel.text = "Создать напоминание:"
-        reminderDateLabel.text = "Укажите дату:"
-        reminderTimeLabel.text = "Укажите время:"
-        confirmButton.setTitle("Сохранить", for: .normal)
-        dismissButton.setTitle("Отмена", for: .normal)
+    func assignTexts() {
+        titleLabel.text = Localization.Debts.title.rawValue.localized()
+        debtNameLabel.text = Localization.Debts.debtName.rawValue.localized()
+        summLabel.text = Localization.Debts.summLabel.rawValue.localized()
+        returnDateLabel.text = Localization.Debts.returnDate.rawValue.localized()
+        reminderLabel.text = Localization.Debts.reminderLabel.rawValue.localized()
+        reminderDateLabel.text = Localization.Debts.reminderDate.rawValue.localized()
+        reminderTimeLabel.text = Localization.Debts.reminderTime.rawValue.localized()
+        
+        
+        confirmButton.setTitle(Localization.CreateEdit.save.rawValue.localized(), for: .normal)
+        dismissButton.setTitle(Localization.Settings.alertCancel.rawValue.localized(), for: .normal)
     }
     
     private func makeConstraints() {

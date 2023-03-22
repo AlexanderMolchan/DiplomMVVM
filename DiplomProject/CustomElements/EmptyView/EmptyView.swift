@@ -64,8 +64,8 @@ final class EmptyView: UIView {
     func setForCardView(top: String, bottom: String) {
         topLabel.text = top
         bottomLabel.text = bottom
-        topLabel.font = UIFont(name: "Marker Felt Thin", size: 17)
-        bottomLabel.font = UIFont(name: "Marker Felt Thin", size: 17)
+        topLabel.font = UIFont(name: "Marker Felt Thin", size: 19)
+        bottomLabel.font = UIFont(name: "Marker Felt Thin", size: 16)
         imageView.image = UIImage(systemName: "chart.pie")
         imageView.snp.updateConstraints { make in
             make.height.width.equalTo(155)

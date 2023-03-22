@@ -41,21 +41,21 @@ final class CreateEditAccountViewController: BaseViewController {
         switch viewModel.controllerType {
             case .create:
                 if viewModel.objectType == .account {
-                    contentView.titleLabel.text = "Создать новый аккаунт"
+                    contentView.titleLabel.text = Localization.CreateEdit.newAcc.rawValue.localized()
                 } else {
-                    contentView.titleLabel.text = "Создать новую категорию"
+                    contentView.titleLabel.text = Localization.CreateEdit.newCat.rawValue.localized()
                     contentView.hideElements()
                 }
             case .edit:
                 if viewModel.objectType == .account {
-                    contentView.titleLabel.text = "Редактировать аккаунт"
+                    contentView.titleLabel.text = Localization.CreateEdit.editAcc.rawValue.localized()
                     guard let doubleSumm = viewModel.currentAccount?.currentSumm,
                           let isCreditAccount = viewModel.currentAccount?.isCreditAccount else { return }
                     contentView.nameField.text = viewModel.currentAccount?.name
                     contentView.summField.text = "\(Int(doubleSumm))"
                     contentView.switcher.isOn = isCreditAccount
                 } else {
-                    contentView.titleLabel.text = "Редактировать категорию"
+                    contentView.titleLabel.text = Localization.CreateEdit.editCat.rawValue.localized()
                     contentView.nameField.text = viewModel.currentCategory?.name
                     contentView.hideElements()
                 }
@@ -119,8 +119,12 @@ final class CreateEditAccountViewController: BaseViewController {
     }
     
     private func repeatedNameCheck(name: String, type: AccountOrCategoryType) -> Bool {
-        let alert = UIAlertController(title: "Такое имя уже существует!", message: "Выберите другое имя.", preferredStyle: .alert)
-        let okBtn = UIAlertAction(title: "Хорошо", style: .cancel)
+        let alert = UIAlertController(
+            title: Localization.CreateEdit.alertTitle.rawValue.localized(),
+            message: Localization.CreateEdit.alertMessage.rawValue.localized(),
+            preferredStyle: .alert
+        )
+        let okBtn = UIAlertAction(title: Localization.CreateEdit.fine.rawValue.localized(), style: .cancel)
         alert.addAction(okBtn)
         
         var allNames = [String]()

@@ -51,7 +51,7 @@ final class CurrencyViewController: BaseViewController {
     
     private func layoutElements() {
         view.backgroundColor = .defaultsColor
-        self.title = "Курсы валюты"
+        self.title = Localization.Settings.currency.rawValue.localized()
         view.addSubview(tableView)
         view.addSubview(spinner)
         view.bringSubviewToFront(spinner)
@@ -68,7 +68,10 @@ final class CurrencyViewController: BaseViewController {
     
     private func addEmptyView() {
         let emptyView = EmptyView()
-        emptyView.setLabelsText(top: "Ошибка при выполнении запроса.", bottom: "Попробуйте повторить позже.")
+        emptyView.setLabelsText(
+            top: Localization.CurrencyTitles.emptyTop.rawValue.localized(),
+            bottom: Localization.CurrencyTitles.emptyBot.rawValue.localized()
+        )
         view.addSubview(emptyView)
         emptyView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

@@ -25,8 +25,8 @@ extension UIViewController {
     
     func showAlert(title: String, message: String, action: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let cancelBtn = UIAlertAction(title: "Отмена", style: .cancel)
-        let okBtn = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+        let cancelBtn = UIAlertAction(title: Localization.Settings.alertCancel.rawValue.localized(), style: .cancel)
+        let okBtn = UIAlertAction(title: Localization.Flows.delete.rawValue.localized(), style: .destructive) { _ in
             action?()
         }
         alert.addAction(okBtn)

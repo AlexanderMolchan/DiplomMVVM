@@ -38,6 +38,11 @@ final class DebtViewController: BaseViewController {
         updateData()
     }
     
+    override func changeLanguage() {
+        navigationSettings(title: Localization.Debts.navTitle.rawValue.localized())
+        createDebtMenu()
+    }
+    
     override func observerAction() {
         updateNavigationColors()
         contentView.updateColor()
@@ -57,7 +62,7 @@ final class DebtViewController: BaseViewController {
     
     private func configurateUI() {
         view.backgroundColor = defaultsBackgroundColor
-        navigationSettings(title: "Долги")
+        navigationSettings(title: Localization.Debts.navTitle.rawValue.localized())
         createDebtMenu()
     }
     
@@ -76,8 +81,11 @@ final class DebtViewController: BaseViewController {
     }
     
     private func createDebtMenu() {
-        let addNewAccount = UIAction(title: "Создать новую запись", image: UIImage(systemName: "plus.app")) { _ in
-            self.createDebt()
+        let addNewAccount = UIAction(
+            title: Localization.Debts.menuTitle.rawValue.localized(),
+            image: UIImage(systemName: "plus.app")
+        ) { [weak self] _ in
+            self?.createDebt()
         }
         let topMenu = UIMenu(children: [addNewAccount])
         let rightButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), menu: topMenu)

@@ -25,10 +25,20 @@ final class CreateEditAccountViewControllerView: UIView {
         super.init(frame: frame)
         configurateUI()
         addTapGesture()
+        setTitles()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setTitles() {
+        nameLabel.text = Localization.CreateEdit.accName.rawValue.localized()
+        summLabel.text = Localization.CreateEdit.accSumm.rawValue.localized()
+        messageLabel.text = Localization.CreateEdit.message.rawValue.localized()
+        isCreditOrNotLabel.text = Localization.CreateEdit.accType.rawValue.localized()
+        dismissButton.setTitle(Localization.Settings.alertCancel.rawValue.localized(), for: .normal)
+        confirmButton.setTitle(Localization.CreateEdit.save.rawValue.localized(), for: .normal)
     }
     
     private func configurateUI() {
@@ -43,7 +53,6 @@ final class CreateEditAccountViewControllerView: UIView {
         
         nameLabel.font = UIFont(name: "Marker Felt", size: 20)
         nameLabel.textColor = .defaultsColor
-        nameLabel.text = "Введите имя аккаунта:"
         addSubview(nameLabel)
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel).inset(60)
@@ -63,7 +72,6 @@ final class CreateEditAccountViewControllerView: UIView {
         
         summLabel.font = UIFont(name: "Marker Felt", size: 20)
         summLabel.textColor = .defaultsColor
-        summLabel.text = "Введите сумму:"
         addSubview(summLabel)
         summLabel.snp.makeConstraints { make in
             make.top.equalTo(nameField.snp.bottom).offset(30)
@@ -85,7 +93,6 @@ final class CreateEditAccountViewControllerView: UIView {
         messageLabel.font = UIFont(name: "Chalkboard SE", size: 14)
         messageLabel.textColor = .lightGray
         messageLabel.numberOfLines = 0
-        messageLabel.text = "Автоматически будет создан аккаунт с наличными средствами. Для того, чтобы создать безналичный аккаунт, активируйте переключатель."
         addSubview(messageLabel)
         messageLabel.snp.makeConstraints { make in
             make.top.equalTo(summField.snp.bottom).offset(15)
@@ -94,7 +101,6 @@ final class CreateEditAccountViewControllerView: UIView {
         
         isCreditOrNotLabel.font = UIFont(name: "Marker Felt", size: 20)
         isCreditOrNotLabel.textColor = .defaultsColor
-        isCreditOrNotLabel.text = "Безналичный аккаунт:"
         addSubview(isCreditOrNotLabel)
         isCreditOrNotLabel.snp.makeConstraints { make in
             make.top.equalTo(messageLabel.snp.bottom).offset(15)
@@ -111,7 +117,6 @@ final class CreateEditAccountViewControllerView: UIView {
         
         
         dismissButton = UIButton(type: .system)
-        dismissButton.setTitle("Отмена", for: .normal)
         dismissButton.titleLabel?.font = UIFont(name: "Marker Felt", size: 27)
         dismissButton.tintColor = .systemRed
         dismissButton.backgroundColor = .white
@@ -126,7 +131,6 @@ final class CreateEditAccountViewControllerView: UIView {
         }
         
         confirmButton = UIButton(type: .system)
-        confirmButton.setTitle("Сохранить", for: .normal)
         confirmButton.titleLabel?.font = UIFont(name: "Marker Felt", size: 27)
         confirmButton.tintColor = .defaultsColor
         confirmButton.backgroundColor = .white
@@ -157,7 +161,7 @@ final class CreateEditAccountViewControllerView: UIView {
         messageLabel.isHidden = true
         isCreditOrNotLabel.isHidden = true
         switcher.isHidden = true
-        nameLabel.text = "Введите имя категории:"
+        nameLabel.text = Localization.CreateEdit.accName.rawValue.localized()
     }
     
     // MARK: -
