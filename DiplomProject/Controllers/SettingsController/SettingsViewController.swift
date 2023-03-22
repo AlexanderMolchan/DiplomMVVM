@@ -118,15 +118,23 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             message: Localization.Settings.languageMessage.rawValue.localized(),
             preferredStyle: .actionSheet)
         LanguageType.allCases.forEach { language in
-            let action = UIAlertAction(title: language.title, style: .default) { _ in
+            let action = UIAlertAction(title: language.title, style: .default) { [weak self] _ in
                 DefaultsManager.language = language.languageCode
                 Bundle.setLanguage(lang: language.languageCode)
+                self?.tabBarTitleReload()
             }
             alert.addAction(action)
         }
         let cancel = UIAlertAction(title: Localization.Settings.alertCancel.rawValue.localized(), style: .cancel)
         alert.addAction(cancel)
         self.present(alert, animated: true)
+    }
+    
+    private func tabBarTitleReload() {
+        guard let items = tabBarController?.tabBar.items else { return }
+        items.enumerated().forEach { index, item in
+            item.title = Localization.TabBarTitle.allCases[index].rawValue.localized()
+        }
     }
     
     private func deleteAllAlert() {

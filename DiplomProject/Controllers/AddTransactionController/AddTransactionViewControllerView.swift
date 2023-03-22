@@ -61,6 +61,8 @@ final class AddTransactionViewControllerView: UIView {
         buttonsSettings()
         labelSettings()
         segmentControlSettings()
+        segmentControlConstraints()
+        setTitles()
     }
     
     private func stackViewsSettings() {
@@ -150,7 +152,6 @@ final class AddTransactionViewControllerView: UIView {
         selectedSpendCategoryButton.layer.borderColor = UIColor.defaultsColor.cgColor
         selectedSpendCategoryButton.tintColor = .defaultsColor
         selectedSpendCategoryButton.layer.cornerRadius = 10
-        selectedSpendCategoryButton.setTitle("Категория", for: .normal)
         bottomStack.addArrangedSubview(selectedSpendCategoryButton)
         
         enterButton = UIButton(type: .system)
@@ -158,13 +159,11 @@ final class AddTransactionViewControllerView: UIView {
         enterButton.alpha = 0.77
         enterButton.layer.cornerRadius = 10
         enterButton.tintColor = .white
-        enterButton.setTitle("Ввод", for: .normal)
         enterButton.titleLabel?.font = UIFont(name: "Marker Felt Thin", size: 20)
         bottomStack.addArrangedSubview(enterButton)
         
         selectedAccountTypeButton = UIButton(type: .system)
         selectedAccountTypeButton.backgroundColor = .clear
-        selectedAccountTypeButton.setTitle("Выберите аккаунт", for: .normal)
         selectedAccountTypeButton.tintColor = .defaultsColor
         selectedAccountTypeButton.titleLabel?.font = UIFont(name: "Marker felt", size: 18)
         selectedAccountTypeButton.alpha = 0.77
@@ -211,8 +210,19 @@ final class AddTransactionViewControllerView: UIView {
         }
     }
     
+    private func setTitles() {
+        selectedSpendCategoryButton.setTitle(Localization.AddController.cooseCategory.rawValue.localized(), for: .normal)
+        selectedAccountTypeButton.setTitle(Localization.AddController.chooseAccount.rawValue.localized(), for: .normal)
+        enterButton.setTitle(Localization.AddController.enterButtonTitle.rawValue.localized(), for: .normal)
+        controllerTypeSegmentControl.setTitle(Localization.AddController.segmentSpend.rawValue.localized(), forSegmentAt: 0)
+        controllerTypeSegmentControl.setTitle(Localization.AddController.segmentIncome.rawValue.localized(), forSegmentAt: 1)
+    }
+    
     private func segmentControlSettings() {
-        let items = ["Расход", "Доход"]
+        let items = [
+            Localization.AddController.segmentSpend.rawValue.localized(),
+            Localization.AddController.segmentIncome.rawValue.localized()
+        ]
         controllerTypeSegmentControl = UISegmentedControl(items: items)
         controllerTypeSegmentControl.selectedSegmentIndex = 0
         controllerTypeSegmentControl.selectedSegmentTintColor = .defaultsColor
@@ -220,6 +230,9 @@ final class AddTransactionViewControllerView: UIView {
             controllerTypeSegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
         }
         controllerTypeSegmentControl.alpha = 0.77
+    }
+    
+    private func segmentControlConstraints() {
         addSubview(controllerTypeSegmentControl)
         let segmentInsets = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 25)
         controllerTypeSegmentControl.snp.makeConstraints { make in
@@ -232,6 +245,10 @@ final class AddTransactionViewControllerView: UIView {
             make.trailing.equalTo(-100)
             make.height.equalTo(30)
         }
+    }
+    
+    func changeLanguageForObserver() {
+        setTitles()
     }
     
     func hapticFeedback() {
@@ -262,7 +279,7 @@ final class AddTransactionViewControllerView: UIView {
     }
     
     func emptyFieldError() {
-        errorLabel.text = "Введите сумму!"
+        errorLabel.text = Localization.AddController.enterSum.rawValue.localized()
         errorLabel.alpha = 0
         errorLabel.font = UIFont(name: "Marker Felt", size: 20)
         errorLabel.textColor = .red
