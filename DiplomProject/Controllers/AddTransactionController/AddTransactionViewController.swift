@@ -53,6 +53,8 @@ final class AddTransactionViewController: BaseViewController {
     override func changeLanguage() {
         contentView.changeLanguageForObserver()
         navigationSettings(title: Localization.AddController.addNavTitle.rawValue.localized())
+        contentView.selectedAccountTypeButton.setTitle(viewModel.selectedAccountName.value ?? Localization.AddController.chooseAccount.rawValue.localized(), for: .normal)
+        contentView.selectedSpendCategoryButton.setTitle(viewModel.selectedCategoryName.value ?? Localization.AddController.cooseCategory.rawValue.localized(), for: .normal)
     }
     
     private func invalidateCheck() {

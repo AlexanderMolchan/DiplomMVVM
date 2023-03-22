@@ -248,7 +248,9 @@ final class AddTransactionViewControllerView: UIView {
     }
     
     func changeLanguageForObserver() {
-        setTitles()
+        enterButton.setTitle(Localization.AddController.enterButtonTitle.rawValue.localized(), for: .normal)
+        controllerTypeSegmentControl.setTitle(Localization.AddController.segmentSpend.rawValue.localized(), forSegmentAt: 0)
+        controllerTypeSegmentControl.setTitle(Localization.AddController.segmentIncome.rawValue.localized(), forSegmentAt: 1)
     }
     
     func hapticFeedback() {
