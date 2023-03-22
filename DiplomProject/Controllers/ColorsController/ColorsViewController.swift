@@ -37,6 +37,7 @@ final class ColorsViewController: BaseViewController {
     
     private func controllerConfigurate() {
         view.backgroundColor = defaultsBackgroundColor
+        self.title = Localization.Settings.chooseColor.rawValue.localized()
     }
     
     private func collectionViewConfigurate() {

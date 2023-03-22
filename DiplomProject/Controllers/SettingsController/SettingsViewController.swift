@@ -94,14 +94,14 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     private func pushToEditVc(flowType: CashFlowType) {
         let editIncomeViewModel = SelectedAccountViewModel(controllerType: .spendCategory, controllerSubType: .edit, cashFlowType: flowType, realm: viewModel.realm)
         let editFlowVc = SelectedAccountViewController(viewModel: editIncomeViewModel)
-        editFlowVc.title = flowType.name
+        editFlowVc.title = flowType == .incoming ? Localization.Settings.incomeTypes.rawValue.localized() :
+        Localization.Settings.spendTypes.rawValue.localized()
         navigationController?.pushViewController(editFlowVc, animated: true)
     }
     
     private func pushToColorsVc() {
         let colorsViewModel = ColorsViewModel()
         let colorsVc = ColorsViewController(viewModel: colorsViewModel)
-        colorsVc.title = SettingsEnum.chooseColor.title
         navigationController?.pushViewController(colorsVc, animated: true)
     }
     

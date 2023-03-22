@@ -21,3 +21,74 @@
 "settings.deleteAllMessage" = "Data recovery will be impossible!";
 "settings.languageTitle" = "Select language";
 "settings.languageMessage" = "Selected language will be used throughout the app.";
+
+"flow.emptyAccTop" = "You don't have active accounts.";
+"flow.emptyAccBot" = "Create new accounts to add them to the list.";
+"flow.emptyFlowTop" = "You have not active categories.";
+"flow.emptyFlowBot" = "Go to settings to create new categories.";
+"flow.deleteTitle" = "Delete category?";
+"flow.deleteMessageOne" = "By deleting the ";
+"flow.deleteMessageTwo" = " category, you will delete transactions for this category.";
+"flow.createTitle" = "Create new category";
+"flow.menuTitle" = "More";
+"flow.edit" = "Edit";
+"flow.delete" = "Delete";
+
+"create.accName" = "Enter account name:";
+"create.accSumm" = "Enter amount:";
+"create.message" = "Cash account will be automatically created. To create a cashless account, activate the switch.";
+"create.accType" = "Cashless account:";
+"create.save" = "Save";
+"create.categoryName" = "Enter category name:";
+"create.newAcc" = "Create new account";
+"create.newCategory" = "Create new category";
+"create.editAcc" = "Edit account";
+"create.editCategory" = "Edit category";
+"create.nameAlertTitle" = "This name already exists!";
+"create.nameAlertMessage" = "Choose a different name.";
+"create.good" = "Okey dokey!";
+
+"currency.emptyTop" = "Error executing request.";
+"currency.emptyBot" = "Please try again later.";
+
+"debt.title" = "Create a return reminder:";
+"debt.debtName" = "Enter the title:";
+"debt.summ" = "Enter the amount of money to be returned";
+"debt.returnDate" = "Specify return date:";
+"debt.remindeLabel" = "Create reminder:";
+"debt.reminderDate" = "Specify date:";
+"debt.reminderTime" = "Specify time:";
+"debt.alertTitle" = "Notifications are not allowed.";
+"debt.alertMessage" = "Go to settings to allow notifications.";
+"debt.done" = "Okay";
+"debt.emptyTop" = "You don't have debt records.";
+"debt.emptyBot" = "Create new entries and they will be displayed here.";
+"debt.navTitle" = "Debts";
+"debt.menuTitle" = "Create a new entry";
+"debt.cellReturnDate" = "Return date: ";
+"debt.cellReminderDate" = "Reminder date: ";
+"debt.cellMainLabel" = " must return ";
+
+"analytics.totalIncome" = "Sum of all income";
+"analytics.totalSpend" = "Sum of all expenses";
+"analytics.incomePerDay" = "Daily income";
+"analytics.spendPerDay" = "Daily expenses";
+"analytics.flowsCount" = "transaction count - ";
+"analytics.allIncome" = "Total income:";
+"analytics.allSpend" = "Total expenses:";
+
+"account.cash" = "Cash Account";
+"account.cashless" = "Cashless Account";
+
+"wallet.navTitle" = "Wallet";
+"wallet.currentSumm" = "Amount in current account";
+"wallet.totalSumm" = "Total balance";
+
+"empty.walletTop" = "You don't have active accounts.";
+"empty.walletBot" = "Create new accounts and they will show up here.";
+"empty.accTop" = "There are no transactions on this account.";
+"empty.accBot" = "Add transactions to show here.";
+"empty.cardTop" = "Not enough data.";
+"empty.cardBot" = "The graph will be built after 2 days of accounting.";
+"empty.emptyAccounts" = "Create new accounts and detailed information about them will be displayed here.";
+

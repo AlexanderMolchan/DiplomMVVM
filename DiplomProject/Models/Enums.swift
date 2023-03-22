@@ -31,9 +31,9 @@ enum AccountType: String {
     
     var name: String {
         switch self {
-            case .cash:         return "Наличные"
-            case .credit:       return "Кредитная карта"
-            case .error:        return "Ошибка"
+            case .cash:         return Localization.Models.cash.rawValue.localized()
+            case .credit:       return Localization.Models.cashless.rawValue.localized()
+            case .error:        return "Error"
         }
     }
 }
@@ -63,16 +63,16 @@ enum ControllerType {
     
     var emptyViewTitle: String {
         switch self {
-            case .wallet:   return "У вас нет активных счетов."
-            case .account:  return "На данном счете нет транзакций."
+            case .wallet:   return Localization.EmptyTitle.walletTop.rawValue.localized()
+            case .account:  return Localization.EmptyTitle.accTop.rawValue.localized()
             default:        return "Title not found"
         }
     }
     
     var emptyViewMessage: String {
         switch self {
-            case .wallet:   return "Создайте новые счета, и они будут отображаться здесь."
-            case .account:  return "Добавьте транзакции, чтобы они отображались здесь."
+            case .wallet:   return Localization.EmptyTitle.walletBot.rawValue.localized()
+            case .account:  return Localization.EmptyTitle.accBot.rawValue.localized()
             default:        return "Message not found"
         }
     }
@@ -207,3 +207,104 @@ extension Localization {
     }
 }
 
+extension Localization {
+    enum Flows: String {
+        case emptyAccTop = "flow.emptyAccTop"
+        case emptyAccBot = "flow.emptyAccBot"
+        case emptyFlowTop = "flow.emptyFlowTop"
+        case emptyFlowBot = "flow.emptyFlowBot"
+        case deleteTitle = "flow.deleteTitle"
+        case deleteMessageOne = "flow.deleteMessageOne"
+        case deleteMessageTwo = "flow.deleteMessageTwo"
+        case createTitle = "flow.createTitle"
+        case menuTitle = "flow.menuTitle"
+        case edit = "flow.edit"
+        case delete = "flow.delete"
+    }
+}
+
+extension Localization {
+    enum CreateEdit: String {
+        case accName = "create.accName"
+        case accSumm = "create.accSumm"
+        case message = "create.message"
+        case accType = "create.accType"
+        case save = "create.save"
+        case categoryName = "create.categoryName"
+        case newAcc = "create.newAcc"
+        case newCat = "create.newCategory"
+        case editAcc = "create.editAcc"
+        case editCat = "create.editCategory"
+        case alertTitle = "create.nameAlertTitle"
+        case alertMessage = "create.nameAlertMessage"
+        case fine = "create.good"
+    }
+}
+
+extension Localization {
+    enum CurrencyTitles: String {
+        case emptyTop = "currency.emptyTop"
+        case emptyBot = "currency.emptyBot"
+    }
+}
+
+extension Localization {
+    enum Debts: String {
+        case title = "debt.title"
+        case debtName = "debt.debtName"
+        case summLabel = "debt.summ"
+        case returnDate = "debt.returnDate"
+        case reminderLabel = "debt.remindeLabel"
+        case reminderDate = "debt.reminderDate"
+        case reminderTime = "debt.reminderTime"
+        case alertTitle = "debt.alertTitle"
+        case alertMessage = "debt.alertMessage"
+        case done = "debt.done"
+        case emptyTop = "debt.emptyTop"
+        case emptyBot = "debt.emptyBot"
+        case navTitle = "debt.navTitle"
+        case menuTitle = "debt.menuTitle"
+        case cellReturnDate = "debt.cellReturnDate"
+        case cellReminderDate = "debt.cellReminderDate"
+        case mainLabel = "debt.cellMainLabel"
+    }
+}
+
+extension Localization {
+    enum Analytics: String {
+        case totalIncome = "analytics.totalIncome"
+        case totalSpend = "analytics.totalSpend"
+        case dailyIncome = "analytics.incomePerDay"
+        case dailySpend = "analytics.spendPerDay"
+        case flowsCount = "analytics.flowsCount"
+        case allIncome = "analytics.allIncome"
+        case allSpend = "analytics.allSpend" 
+    }
+}
+
+extension Localization {
+    enum Models: String {
+        case cash = "account.cash"
+        case cashless = "account.cashless"
+    }
+}
+
+extension Localization {
+    enum Wallet: String {
+        case navTitle = "wallet.navTitle"
+        case totalSumm = "wallet.totalSumm"
+        case currentSumm = "wallet.currentSumm"
+    }
+}
+
+extension Localization {
+    enum EmptyTitle: String {
+        case walletTop = "empty.walletTop"
+        case walletBot = "empty.walletBot"
+        case accTop = "empty.accTop"
+        case accBot = "empty.accBot"
+        case cardTop = "empty.cardTop"
+        case cardBot = "empty.cardBot"
+        case emptyAccs = "empty.emptyAccounts"
+    }
+}

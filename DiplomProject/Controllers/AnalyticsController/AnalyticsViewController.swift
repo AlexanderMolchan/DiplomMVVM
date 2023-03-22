@@ -7,7 +7,7 @@
 
 import UIKit
 
-typealias AnalyticsCell = GenericCell<AnalyticsCardView>
+typealias StatisticsCell = GenericCell<AnalyticsCardView>
 
 final class AnalyticsViewController: BaseViewController {
     private let viewModel: AnalyticsViewModel
@@ -60,7 +60,7 @@ final class AnalyticsViewController: BaseViewController {
     private func tableViewSettings() {
         contentView.tableView.dataSource = self
         contentView.tableView.delegate = self
-        contentView.tableView.register(AnalyticsCell.self, forCellReuseIdentifier: String(describing: AnalyticsCell.self))
+        contentView.tableView.register(StatisticsCell.self, forCellReuseIdentifier: String(describing: StatisticsCell.self))
     }
     
     private func emptyViewSettings() {
@@ -79,8 +79,8 @@ extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AnalyticsCell.self), for: indexPath)
-        guard let cardCell = cell as? AnalyticsCell else { return cell }
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: StatisticsCell.self), for: indexPath)
+        guard let cardCell = cell as? StatisticsCell else { return cell }
         
         cardCell.mainView.viewSettings(account: viewModel.accountArray[indexPath.row], type: .card, totalSumm: viewModel.totalSumm)
         cardCell.mainView.animateChart()
@@ -95,11 +95,11 @@ extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
         let currentAccount = viewModel.accountArray[indexPath.row]
         let detailViewModel = AnalyticsDetailViewModel(account: currentAccount, type: .full, totalSumm: viewModel.totalSumm, realm: viewModel.realm)
         
-        let presentedVc = AnalitycsDetailViewController(viewModel: detailViewModel)
+        let presentedVc = AnalyticsDetailViewController(viewModel: detailViewModel)
         presentedVc.modalPresentationStyle = .overFullScreen
         presentedVc.modalPresentationCapturesStatusBarAppearance = true
         presentedVc.transitioningDelegate = transitionManager
-        guard let cell = tableView.cellForRow(at: indexPath) as? AnalyticsCell else { return }
+        guard let cell = tableView.cellForRow(at: indexPath) as? StatisticsCell else { return }
         transitionManager.takeCard(card: cell.mainView, viewModel: viewModel)
         tabBarController?.setTabBarHidden(true, animated: true)
         presentedVc.tabbarOpenClousure = {
@@ -111,7 +111,7 @@ extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func selectedCellCardView() -> AnalyticsCardView? {
         guard let indexPath = contentView.tableView.indexPathForSelectedRow,
-              let cell = contentView.tableView.cellForRow(at: indexPath) as? AnalyticsCell else { return nil }
+              let cell = contentView.tableView.cellForRow(at: indexPath) as? StatisticsCell else { return nil }
         let cardView = cell.mainView
         return cardView
     }

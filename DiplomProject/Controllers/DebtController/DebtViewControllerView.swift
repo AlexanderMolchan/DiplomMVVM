@@ -44,7 +44,10 @@ final class DebtViewControllerView: UIView {
     func addEmptyView() {
         addSubview(emptyView)
         emptyView.emptyViewColor = .defaultsColor
-        emptyView.setLabelsText(top: "У вас нет записей о долгах.", bottom: "Создайте новые записи, и они будут отображены здесь.")
+        emptyView.setLabelsText(
+            top: Localization.Debts.emptyTop.rawValue.localized(),
+            bottom: Localization.Debts.emptyBot.rawValue.localized()
+        )
         emptyView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

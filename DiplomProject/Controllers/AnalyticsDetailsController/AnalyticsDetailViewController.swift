@@ -1,5 +1,5 @@
 //
-//  AnalitycsDetailViewController.swift
+//  AnalyticsDetailViewController.swift
 //  DiplomProject
 //
 //  Created by Александр Молчан on 6.03.23.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDelegate {
+final class AnalyticsDetailViewController: BaseViewController, UIScrollViewDelegate {
     private let viewModel: AnalyticsDetailViewModel
     
     override var prefersStatusBarHidden: Bool {
@@ -85,7 +85,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
     private lazy var totalIncomeCommentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Kohinoor Telugu", size: 14)
-        label.text = "Сумма всех доходов"
+        label.text = Localization.Analytics.totalIncome.rawValue.localized()
         return label
     }()
     
@@ -101,7 +101,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
     private lazy var totalSpendCommentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Kohinoor Telugu", size: 14)
-        label.text = "Сумма всех расходов"
+        label.text = Localization.Analytics.totalSpend.rawValue.localized()
         return label
     }()
     
@@ -116,7 +116,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
     private lazy var averageIncomeCommentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Kohinoor Telugu", size: 14)
-        label.text = "Доход в день"
+        label.text = Localization.Analytics.dailyIncome.rawValue.localized()
         label.numberOfLines = 0
         return label
     }()
@@ -133,7 +133,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
     private lazy var averageSpendCommentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Kohinoor Telugu", size: 14)
-        label.text = "Расход в день"
+        label.text = Localization.Analytics.dailySpend.rawValue.localized()
         label.numberOfLines = 0
         return label
     }()
@@ -245,14 +245,13 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
             let label = UILabel()
             label.font = UIFont(name: "Marker Felt Thin", size: 17)
             
-            
             let categoryString = "\(category.name): "
             let categoryAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "Chalkboard SE", size: 19) as Any, .foregroundColor: UIColor.black]
             let categoryAttributedString = NSMutableAttributedString(string: categoryString, attributes: categoryAttributes)
             let countOfTransactionsString = "\(flowsCount)"
             let attributedCount = NSMutableAttributedString(string: countOfTransactionsString, attributes: categoryAttributes)
             
-            let commentString = "количество транзакций - "
+            let commentString = Localization.Analytics.flowsCount.rawValue.localized()
             let commentAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "Marker Felt", size: 15) as Any, .foregroundColor: UIColor.lightGray]
             let commentAttributedString = NSMutableAttributedString(string: commentString, attributes: commentAttributes)
             let attributedString = NSMutableAttributedString(attributedString: categoryAttributedString)
@@ -277,7 +276,7 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
     private func tableViewSettings() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(AnalitycsCell.self, forCellReuseIdentifier: AnalitycsCell.id)
+        tableView.register(AnalyticsCell.self, forCellReuseIdentifier: AnalyticsCell.id)
         tableView.alpha = 0
         containerView.addSubview(tableView)
         
@@ -458,14 +457,14 @@ final class AnalitycsDetailViewController: BaseViewController, UIScrollViewDeleg
     
 }
 
-extension AnalitycsDetailViewController: UITableViewDataSource, UITableViewDelegate {
+extension AnalyticsDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.groupedAccountFlows.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: AnalitycsCell.id, for: indexPath)
-        guard let totalCell = cell as? AnalitycsCell else { return cell }
+        let cell = tableView.dequeueReusableCell(withIdentifier: AnalyticsCell.id, for: indexPath)
+        guard let totalCell = cell as? AnalyticsCell else { return cell }
         totalCell.set(group: viewModel.groupedAccountFlows[indexPath.row])
 
         return totalCell

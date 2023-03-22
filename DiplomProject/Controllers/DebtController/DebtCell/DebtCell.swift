@@ -44,9 +44,10 @@ final class DebtCell: UITableViewCell {
     private func configurateCell() {
         contentView.addSubview(mainLabel)
         contentView.addSubview(returnLabel)
-        mainLabel.text = "\(debt.debterName) должен \(debt.summ)"
-        returnLabel.text = "Дата возврата: \(debt.stringDate)"
-        reminderLabel.text = "Дата напоминания: "
+        let formattedSumm = String.formatSumm(summ: debt.summ)
+        mainLabel.text = debt.debterName + Localization.Debts.mainLabel.rawValue.localized() + formattedSumm
+        returnLabel.text = Localization.Debts.cellReminderDate.rawValue.localized() + debt.stringDate
+        reminderLabel.text = Localization.Debts.cellReminderDate.rawValue.localized()
         
         let labelInset = UIEdgeInsets(top: 5, left: 16, bottom: 5, right: 16)
         mainLabel.snp.makeConstraints { make in

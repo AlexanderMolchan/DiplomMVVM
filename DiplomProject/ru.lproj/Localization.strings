@@ -21,3 +21,75 @@
 "settings.deleteAllMessage" = "Восстановить данные будет невозможно!";
 "settings.languageTitle" = "Выберите язык";
 "settings.languageMessage" = "Выбранный язык будет использован во всем приложении.";
+
+"flow.emptyAccTop" = "У вас нет активных счетов.";
+"flow.emptyAccBot" = "Перейдите в меню создания новых счетов, чтобы добавить их в список.";
+"flow.emptyFlowTop" = "У вас нет активных категорий.";
+"flow.emptyFlowBot" = "Перейдите в настройки, чтобы создать новые категории.";
+"flow.deleteTitle" = "Удалить категорию?";
+"flow.deleteMessageOne" = "Удалив категорию ";
+"flow.deleteMessageTwo" = ", вы удалите транзакции по этой категории.";
+"flow.createTitle" = "Создать новую категорию";
+"flow.menuTitle" = "Дополнительно";
+"flow.edit" = "Редактировать";
+"flow.delete" = "Удалить";
+
+"create.accName" = "Введите имя аккаунта:";
+"create.accSumm" = "Введите сумму:";
+"create.message" = "Автоматически будет создан аккаунт с наличными средствами. Для того, чтобы создать безналичный аккаунт, активируйте переключатель.";
+"create.accType" = "Безналичный аккаунт:";
+"create.save" = "Сохранить";
+"create.categoryName" = "Введите имя категории:";
+"create.newAcc" = "Создать новый аккаунт";
+"create.newCategory" = "Создать новую категорию";
+"create.editAcc" = "Редактировать аккаунт";
+"create.editCategory" = "Редактировать категорию";
+"create.nameAlertTitle" = "Такое имя уже существует!";
+"create.nameAlertMessage" = "Выберите другое имя.";
+"create.good" = "Хорошо";
+
+"currency.emptyTop" = "Ошибка при выполнении запроса.";
+"currency.emptyBot" = "Попробуйте повторить позже.";
+
+"debt.title" = "Создать напоминание о возврате:";
+"debt.debtName" = "Введите название:";
+"debt.summ" = "Введите сумму возврата:";
+"debt.returnDate" = "Укажите дату возврата:";
+"debt.remindeLabel" = "Создать напоминание:";
+"debt.reminderDate" = "Укажите дату:";
+"debt.reminderTime" = "Укажите время:";
+"debt.alertTitle" = "Уведомления запрещены.";
+"debt.alertMessage" = "Перейдите в настройки, чтобы разрешить допуск уведомлений.";
+"debt.done" = "Понятно";
+"debt.emptyTop" = "У вас нет записей о долгах.";
+"debt.emptyBot" = "Создайте новые записи, и они будут отображены здесь.";
+"debt.navTitle" = "Долги";
+"debt.menuTitle" = "Создать новую запись";
+"debt.cellReturnDate" = "Дата возврата: ";
+"debt.cellReminderDate" = "Дата напоминания: ";
+"debt.cellMainLabel" = " должен вернуть ";
+
+"analytics.totalIncome" = "Сумма всех доходов";
+"analytics.totalSpend" = "Сумма всех расходов";
+"analytics.incomePerDay" = "Доход в день";
+"analytics.spendPerDay" = "Расход в день";
+"analytics.flowsCount" = "количество транзакций - ";
+"analytics.allIncome" = "Всего доходов:";
+"analytics.allSpend" = "Всего расходов:";
+
+"account.cash" = "Наличный Аккаунт";
+"account.cashless" = "Безналичный Аккаунт";
+
+"wallet.navTitle" = "Кошелек";
+"wallet.currentSumm" = "Сумма на текущем аккаунте";
+"wallet.totalSumm" = "Общий баланс";
+
+
+"empty.walletTop" = "У вас нет активных счетов.";
+"empty.walletBot" = "Создайте новые счета, и они будут отображаться здесь.";
+"empty.accTop" = "На данном счете нет транзакций.";
+"empty.accBot" = "Добавьте транзакции, чтобы они отображались здесь.";
+"empty.cardTop" = "Недостаточно данных.";
+"empty.cardBot" = "График будет построен после 2 дней учета.";
+"empty.emptyAccounts" = "Создайте новые счета, и здесь будет отображена подробная информация о них.";
+

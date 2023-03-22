@@ -45,7 +45,10 @@ final class AnalyticsViewControllerView: UIView {
     func addEmptyView() {
         addSubview(emptyView)
         emptyView.emptyViewColor = .defaultsColor
-        emptyView.setLabelsText(top: "У вас нет активных счетов.", bottom: "Создайте новые счета, и здесь будет отображена подробная информация о них.")
+        emptyView.setLabelsText(
+            top: Localization.EmptyTitle.walletTop.rawValue.localized(),
+            bottom: Localization.EmptyTitle.emptyAccs.rawValue.localized()
+        )
         emptyView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

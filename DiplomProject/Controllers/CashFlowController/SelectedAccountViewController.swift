@@ -38,11 +38,19 @@ final class SelectedAccountViewController: BaseViewController {
         switch viewModel.controllerType {
             case .account:
                 if viewModel.accountArray.isEmpty {
-                    createEmptyView(topTitle: "У вас нет активных счетов.", bottomTitle: "Перейдите в меню создания новых счетов, чтобы добавить их в список.", type: .account)
+                    createEmptyView(
+                        topTitle: Localization.Flows.emptyAccTop.rawValue.localized(),
+                        bottomTitle: Localization.Flows.emptyAccBot.rawValue.localized(),
+                        type: .account
+                    )
                 }
             case .spendCategory:
                 if viewModel.cashFlowCategoryArray.isEmpty {
-                    createEmptyView(topTitle: "У вас нет активных категорий.", bottomTitle: "Перейдите в настройки, чтобы создать новые категории.", type: .spendCategory)
+                    createEmptyView(
+                        topTitle: Localization.Flows.emptyFlowTop.rawValue.localized(),
+                        bottomTitle: Localization.Flows.emptyFlowBot.rawValue.localized(),
+                        type: .spendCategory
+                    )
                 }
         }
     }
@@ -93,7 +101,12 @@ final class SelectedAccountViewController: BaseViewController {
     }
     
     private func deleteCategory(at indexPath: IndexPath) {
-        showAlert(title: "Удалить категорию?", message: "Удалив категорию \"\(viewModel.cashFlowCategoryArray[indexPath.row].name)\", вы удалите транзакции по этой категории.") { [weak self] in
+        let firstMessagePart = Localization.Flows.deleteMessageOne.rawValue.localized()
+        let secondMessagePart = Localization.Flows.deleteMessageTwo.rawValue.localized()
+        showAlert(
+            title: Localization.Flows.deleteTitle.rawValue.localized(),
+            message: (firstMessagePart + viewModel.cashFlowCategoryArray[indexPath.row].name + secondMessagePart)
+        ) { [weak self] in
             self?.tableView.performBatchUpdates { [weak self] in
                 self?.viewModel.deleteCategoryFromRealm(indexPath: indexPath)
                 self?.tableView.deleteRows(at: [indexPath], with: .fade)
@@ -110,10 +123,10 @@ final class SelectedAccountViewController: BaseViewController {
     private func setupCreateMenu() {
         switch viewModel.controllerSubType {
             case .edit:
-                let createNewCategory = UIAction(title: "Создать новую категорию", image: UIImage(systemName: "plus.app")) { [weak self] _ in
+                let createNewCategory = UIAction(title: Localization.Flows.createTitle.rawValue.localized(), image: UIImage(systemName: "plus.app")) { [weak self] _ in
                     self?.createCategory()
                 }
-                let topMenu = UIMenu(title: "Дополнительно", options: .displayInline, children: [createNewCategory])
+                let topMenu = UIMenu(title: Localization.Flows.menuTitle.rawValue.localized(), options: .displayInline, children: [createNewCategory])
                 let rightButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), menu: topMenu)
                 navigationItem.rightBarButtonItem = rightButton
             default: break
@@ -179,11 +192,11 @@ extension SelectedAccountViewController {
         if viewModel.controllerSubType == .edit {
             let identifier = "\(indexPath.row)" as NSString
             return UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { _ in
-                let updateAction = UIAction(title: "Редактировать", image: UIImage(systemName: "square.and.pencil")) { [weak self] _ in
+                let updateAction = UIAction(title: Localization.Flows.edit.rawValue.localized(), image: UIImage(systemName: "square.and.pencil")) { [weak self] _ in
                     self?.updateCategory(at: indexPath)
                     
                 }
-                let deleteAction = UIAction(title: "Удалить", image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
+                let deleteAction = UIAction(title: Localization.Flows.delete.rawValue.localized(), image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
                     self?.deleteCategory(at: indexPath)
                 }
                 return UIMenu(children: [updateAction, deleteAction])
@@ -192,9 +205,6 @@ extension SelectedAccountViewController {
             return nil
         }
     }
-    
-    
-    
     // beautifull pop vc
 //    func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
 //        guard

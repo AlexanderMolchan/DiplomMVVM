@@ -50,7 +50,6 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
     
     private lazy var emptyView: EmptyView = {
         let view = EmptyView()
-        view.setForCardView(top: "Недостаточно данных.", bottom: "График будет построен после 2 дней учета.")
         view.contentMode = .scaleAspectFit
         return view
     }()
@@ -258,6 +257,10 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
         createDataGroups()
         emptyViewSettings()
         lineChartSettings()
+        emptyView.setForCardView(
+            top: Localization.EmptyTitle.cardTop.rawValue.localized(),
+            bottom: Localization.EmptyTitle.cardBot.rawValue.localized()
+        )
     }
 
 }

@@ -97,7 +97,7 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
         cardViewCopy.insertSubview(whiteView, aboveSubview: cardViewCopy.shadowView)
         
         if transition == .presentation {
-            guard let detailView = toView as? AnalitycsDetailViewController else { return }
+            guard let detailView = toView as? AnalyticsDetailViewController else { return }
             containerView.addSubview(detailView.view)
             detailView.viewsHidden = true
             
@@ -110,7 +110,7 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
             }
             
         } else {
-            guard let detailView = fromView as? AnalitycsDetailViewController,
+            guard let detailView = fromView as? AnalyticsDetailViewController,
                   let width = detailView.cardView?.frame.size.width,
                   let height = detailView.cardView?.frame.size.height else { return }
             detailView.viewsHidden = true
