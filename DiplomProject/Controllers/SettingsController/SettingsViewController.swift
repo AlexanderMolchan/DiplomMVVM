@@ -122,6 +122,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 DefaultsManager.language = language.languageCode
                 Bundle.setLanguage(lang: language.languageCode)
                 self?.tabBarTitleReload()
+                self?.viewModel.changeNotificationLanguage()
             }
             alert.addAction(action)
         }

@@ -24,5 +24,4 @@ final class Dynamic<T> {
     func bind(_ listener: Listener?) {
         self.listener = listener
     }
-    
 }

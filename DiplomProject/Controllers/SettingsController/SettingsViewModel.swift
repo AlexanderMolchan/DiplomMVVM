@@ -31,6 +31,15 @@ final class SettingsViewModel {
         settingPoints = sections
     }
     
+    func changeNotificationLanguage() {
+        realm.read(type: DebtModel.self).forEach { debt in
+            if let _ = debt.notificationDate {
+                NotificationManager().removePushFor(debt)
+                NotificationManager().createPushFor(debt)
+            }
+        }
+    }
+    
     func deleteAllData() {
         realm.read(type: AccountModel.self).forEach { account in
             account.allCashFlows.forEach { flow in

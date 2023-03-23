@@ -111,11 +111,6 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
         }
     }
     
-    private func animatedEmptyConstraintRemake(type: CardViewMode?) {
-        if containerView.subviews.contains(emptyView) {
-        }
-    }
-    
     private func makeConstraints() {
         let containerInsets = UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
         containerView.snp.makeConstraints { make in
@@ -245,7 +240,6 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
                 }
             default: break
         }
-        animatedEmptyConstraintRemake(type: type)
     }
     
     private func setupViews() {

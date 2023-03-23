@@ -21,7 +21,6 @@ extension UITabBarController {
 
         UIViewPropertyAnimator(duration: animated ? 0.25 : 0, curve: .easeOut) {
             self.tabBar.frame = self.tabBar.frame.offsetBy(dx: 0, dy: offsetY)
-            self.view.setNeedsDisplay()
             self.view.layoutIfNeeded()
         } .startAnimation()
     }
