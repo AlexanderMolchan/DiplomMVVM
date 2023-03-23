@@ -126,13 +126,13 @@ final class WalletViewController: BaseViewController {
             self?.pushTo(.create)
         }
         
-        let sortAscending = UIAction(title: Localization.Wallet.sortByName.rawValue.localized(), image: UIImage(systemName: "arrow.up.arrow.down")) { _ in
-//            self?.sortBy(ascending: true)
-        }
-        
-        let sortDescending = UIAction(title: Localization.Wallet.sortBySumm.rawValue.localized(), image: UIImage(systemName: "arrow.up.arrow.down")) { _ in
+//        let sortAscending = UIAction(title: Localization.Wallet.sortByName.rawValue.localized(), image: UIImage(systemName: "arrow.up.arrow.down")) { _ in
+//           self?.sortBy(ascending: true)
+//        }
+//
+//        let sortDescending = UIAction(title: Localization.Wallet.sortBySumm.rawValue.localized(), image: UIImage(systemName: "arrow.up.arrow.down")) { _ in
 //            self?.sortBy(ascending: false)
-        }
+//        }
         
 //        let subMenu = UIMenu(title: Localization.Wallet.sortTitle.rawValue.localized() ,options: .displayInline, children: [sortAscending, sortDescending])
         
