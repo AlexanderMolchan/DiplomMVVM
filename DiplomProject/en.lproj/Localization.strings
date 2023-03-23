@@ -97,8 +97,8 @@
 "empty.emptyAccounts" = "Create new accounts and detailed information about them will be displayed here.";
 
 "menu.accCreate" = "Create a new account";
-"menu.sortByName" = "Sort by name";
-"menu.sortBySumm" = "Sort by sum";
+"menu.sortAscending" = "Sort Ascending";
+"menu.sortDescending" = "Sort Descending";
 "menu.sortTitle" = "Sorting";
 "menu.accEdit" = "Edit account";
 "menu.accDelete" = "Delete account";
@@ -117,3 +117,6 @@
 "tabbar.analytics" = "Analytics";
 "tabbar.debts" = "Debts";
 "tabbar.settings" = "Settings";
+
+"notify.title" = "Debt reminder for ";
+"notify.summInfo" = "Returning sum: ";

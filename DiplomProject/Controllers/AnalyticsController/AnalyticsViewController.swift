@@ -106,7 +106,7 @@ extension AnalyticsViewController: UITableViewDataSource, UITableViewDelegate {
             self.tabBarController?.setTabBarHidden(false, animated: true)
         }
         present(presentedVc, animated: true)
-        CFRunLoopWakeUp(CFRunLoopGetCurrent())
+//        CFRunLoopWakeUp(CFRunLoopGetCurrent())
     }
     
     func selectedCellCardView() -> AnalyticsCardView? {

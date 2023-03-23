@@ -125,13 +125,18 @@ final class WalletViewController: BaseViewController {
         let addNewAccount = UIAction(title: Localization.Wallet.menuAccCreate.rawValue.localized(), image: UIImage(systemName: "plus.app")) { [weak self] _ in
             self?.pushTo(.create)
         }
-        let sortByName = UIAction(title: Localization.Wallet.sortByName.rawValue.localized(), image: UIImage(systemName: "textformat.alt")) { _ in }
-        let sortBySumm = UIAction(title: Localization.Wallet.sortBySumm.rawValue.localized(), image: UIImage(systemName: "arrow.up.arrow.down")) { _ in }
-        let subMenu = UIMenu(title: Localization.Wallet.sortTitle.rawValue.localized() ,options: .displayInline, children: [sortBySumm, sortByName])
         
-        let topMenu = UIMenu(title: Localization.Flows.menuTitle.rawValue.localized(), options: .displayInline, children: [addNewAccount, subMenu])
+        let sortAscending = UIAction(title: Localization.Wallet.sortByName.rawValue.localized(), image: UIImage(systemName: "arrow.up.arrow.down")) { _ in
+//            self?.sortBy(ascending: true)
+        }
         
+        let sortDescending = UIAction(title: Localization.Wallet.sortBySumm.rawValue.localized(), image: UIImage(systemName: "arrow.up.arrow.down")) { _ in
+//            self?.sortBy(ascending: false)
+        }
         
+//        let subMenu = UIMenu(title: Localization.Wallet.sortTitle.rawValue.localized() ,options: .displayInline, children: [sortAscending, sortDescending])
+        
+        let topMenu = UIMenu(title: Localization.Flows.menuTitle.rawValue.localized(), options: .displayInline, children: [addNewAccount])
         let rightButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), menu: topMenu)
         navigationItem.rightBarButtonItem = rightButton
     }
@@ -169,6 +174,15 @@ final class WalletViewController: BaseViewController {
         }
         present(createEditVc, animated: true)
     }
+    
+//    private func sortBy(ascending: Bool) {
+//        if ascending {
+//            viewModel.accountArray.sort(by: { $0.currentSumm > $1.currentSumm } )
+//        } else {
+//            viewModel.accountArray.sort(by: { $0.currentSumm < $1.currentSumm } )
+//        }
+//        contentView.tableView.reloadData()
+//    }
     
     private func deleteAccount() {
         showAlert(

@@ -97,8 +97,8 @@
 "empty.emptyAccounts" = "Создайте новые счета, и здесь будет отображена подробная информация о них.";
 
 "menu.accCreate" = "Создать новый счет";
-"menu.sortByName" = "Сортировать по имени";
-"menu.sortBySumm" = "Сортировать по сумме";
+"menu.sortAscending" = "Сортировать по возрастанию";
+"menu.sortDescending" = "Сортировать по убыванию";
 "menu.sortTitle" = "Cортировка";
 "menu.accEdit" = "Редактировать счет";
 "menu.accDelete" = "Удалить счет";
@@ -117,3 +117,6 @@
 "tabbar.analytics" = "Аналитика";
 "tabbar.debts" = "Долги";
 "tabbar.settings" = "Настройки";
+
+"notify.title" = "Напоминание о долге ";
+"notify.summInfo" = "Сумма возврата: ";

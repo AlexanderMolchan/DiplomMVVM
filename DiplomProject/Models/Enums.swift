@@ -299,8 +299,8 @@ extension Localization {
         case flowDeleteTitle = "wallet.deleteFlowsAlert"
         case flowDeleteMessage = "wallet.deleteFlowsMessage"
         case menuAccCreate = "menu.accCreate"
-        case sortByName = "menu.sortByName"
-        case sortBySumm = "menu.sortBySumm"
+        case sortByName = "menu.sortAscending" 
+        case sortBySumm = "menu.sortDescending"
         case sortTitle = "menu.sortTitle"
         case accEdit = "menu.accEdit"
         case accDelete = "menu.accDelete"
@@ -342,3 +342,9 @@ extension Localization {
     }
 }
 
+extension Localization {
+    enum Notification: String {
+        case main = "notify.title"
+        case summInfo = "notify.summInfo"
+    }
+}

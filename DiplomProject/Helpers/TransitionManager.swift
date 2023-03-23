@@ -145,7 +145,6 @@ extension TransitionManager: UIViewControllerAnimatedTransitioning {
             container.layoutIfNeeded()
             self.whiteView.frame = self.transition == .presentation ? container.frame : card.containerView.frame
         }
-        
         return animator
     }
     

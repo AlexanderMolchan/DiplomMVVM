@@ -31,8 +31,8 @@ final class NotificationManager {
     
     func createPushFor(_ model: DebtModel) {
         let content = UNMutableNotificationContent()
-        content.title = "Напоминание о долге \(model.debterName)"
-        content.subtitle = "Сумма возврата: \(String.formatSumm(summ: model.summ))"
+        content.title = Localization.Notification.main.rawValue.localized() + model.debterName
+        content.subtitle = Localization.Notification.summInfo.rawValue.localized() + String.formatSumm(summ: model.summ)
         content.sound = .default
         
         let calendar = Calendar.current
