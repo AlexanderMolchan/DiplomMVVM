@@ -46,7 +46,7 @@ final class DebtCell: UITableViewCell {
         contentView.addSubview(returnLabel)
         let formattedSumm = String.formatSumm(summ: debt.summ)
         mainLabel.text = debt.debterName + Localization.Debts.mainLabel.rawValue.localized() + formattedSumm
-        returnLabel.text = Localization.Debts.cellReminderDate.rawValue.localized() + debt.stringDate
+        returnLabel.text = Localization.Debts.cellReturnDate.rawValue.localized() + debt.stringDate
         reminderLabel.text = Localization.Debts.cellReminderDate.rawValue.localized()
         
         let labelInset = UIEdgeInsets(top: 5, left: 16, bottom: 5, right: 16)
