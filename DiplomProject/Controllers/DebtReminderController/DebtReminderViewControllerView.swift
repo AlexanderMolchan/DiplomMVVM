@@ -97,7 +97,6 @@ final class DebtReminderViewControllerView: UIView {
         picker.datePickerMode = .time
         picker.preferredDatePickerStyle = .compact
         picker.tintColor = .defaultsColor
-        picker.minimumDate = .now
         return picker
     }()
     
