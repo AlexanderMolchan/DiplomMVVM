@@ -36,6 +36,7 @@ final class AddTransactionViewControllerView: UIView {
     private let thirdButtonStack = UIStackView()
     private let fourButtonStack = UIStackView()
     private let bottomStack = UIStackView()
+    private let generator = UIImpactFeedbackGenerator()
     
     var buttonsArray = [UIButton]()
     
@@ -255,7 +256,6 @@ final class AddTransactionViewControllerView: UIView {
     
     func hapticFeedback() {
         if DefaultsManager.isHapticEnabled {
-            let generator = UIImpactFeedbackGenerator()
             generator.impactOccurred()
         }
     }

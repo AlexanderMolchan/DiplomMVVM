@@ -11,6 +11,7 @@ final class TabBarViewModel {
     let realm: RealmManager
     let provider: ProviderManager
     var tabBarTintColor = UIColor()
+    private let generator = UIImpactFeedbackGenerator()
     
     init(realm: RealmManager, provider: ProviderManager) {
         self.realm = realm
@@ -62,7 +63,6 @@ final class TabBarViewModel {
     
     func hapticFeedBack() {
         if DefaultsManager.isHapticEnabled {
-            let generator = UIImpactFeedbackGenerator()
             generator.impactOccurred()
         }
     }
