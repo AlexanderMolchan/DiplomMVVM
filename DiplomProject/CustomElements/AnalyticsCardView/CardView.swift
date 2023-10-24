@@ -233,7 +233,7 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
                     make.edges.equalToSuperview()
                 }
                 titleLabel.snp.updateConstraints { make in
-                    make.top.equalToSuperview().inset(45)
+                    make.top.equalToSuperview().inset(55)
                 }
                 typeLabel.snp.updateConstraints { make in
                 make.bottom.equalTo(lineChartView.snp.top)
