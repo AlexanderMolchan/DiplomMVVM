@@ -234,6 +234,7 @@ final class AnalyticsCardView: UIView, ChartViewDelegate {
                 }
                 titleLabel.snp.updateConstraints { make in
                     make.top.equalToSuperview().inset(55)
+                    // device kit make enum with switch constraint
                 }
                 typeLabel.snp.updateConstraints { make in
                 make.bottom.equalTo(lineChartView.snp.top)
